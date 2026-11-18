@@ -1161,3 +1161,4 @@ body[data-page=inicio] .ft .ft-in{padding-top:40px;border-top:1px solid rgba(255
   body[data-page=pintar] .in-icons{bottom:178px}
   body[data-page=pintar] .in-cap{bottom:140px}
 }
+@media (max-width:819px){.pr-hc .hc-ol{flex:0 1 auto;padding:0 16px}.pr-hc .hc-wa{padding:0 16px}}
