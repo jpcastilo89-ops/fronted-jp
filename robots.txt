@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://tiendas-montana.onrender.com/sitemap.xml
