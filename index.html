@@ -769,6 +769,53 @@ img{display:block}
   #visitanos.vt-js .vt-i{animation:none!important}
   .vt-pin{animation:none}
 }
+
+/* ===== Detalle visual 1: portada con jerarquía clara (18/11/2026) ===== */
+#title{top:calc(50% - 345 * var(--u));color:rgba(243,239,232,.92);letter-spacing:.01em}
+.hc{position:absolute;z-index:61;left:calc(50% - 692 * var(--u));bottom:calc(58 * var(--u));max-width:calc(900 * var(--u));color:#f3efe8;animation:hcIn .7s cubic-bezier(.22,1,.36,1) both}
+.hc-eye{display:flex;align-items:center;gap:10px;font-size:max(12px,calc(14 * var(--u)));font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--yellow,#ffd21f);margin:0 0 calc(12 * var(--u))}
+.hc-eye::before{content:"";width:28px;height:2px;border-radius:2px;background:currentColor}
+.hc-h{margin:0;font-size:calc(56 * var(--u));line-height:.96;text-transform:uppercase;letter-spacing:-.01em;text-wrap:balance;text-shadow:0 2px 24px rgba(0,0,0,.25)}
+.hc-y{color:var(--yellow,#ffd21f)}
+.hc-b{display:flex;flex-wrap:wrap;gap:12px;margin-top:calc(26 * var(--u))}
+.hc-btn{height:max(46px,calc(54 * var(--u)));padding:0 max(20px,calc(26 * var(--u)));border-radius:99px;display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:max(15px,calc(16 * var(--u)));text-decoration:none;white-space:nowrap;transition:transform .2s cubic-bezier(.22,1,.36,1),box-shadow .2s}
+.hc-btn svg{width:20px;height:20px;flex:none}
+.hc-wa{background:var(--yellow,#ffd21f);color:#0c1f4d;box-shadow:0 1px 1px rgba(0,0,0,.12),0 10px 26px -8px rgba(255,210,31,.55),0 8px 20px -10px rgba(0,0,0,.5)}
+.hc-ol{color:#f3efe8;box-shadow:inset 0 0 0 1.5px rgba(243,239,232,.55);background:rgba(12,31,77,.18);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.hc-btn:hover{transform:translateY(-2px)}
+.hc-btn:active{transform:translateY(0) scale(.98)}
+.hc-btn:focus-visible{outline:3px solid #f3efe8;outline-offset:3px}
+@keyframes hcIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.hc{animation:none}.hc-btn{transition:none}}
+@media (max-width:819px){
+  #title{top:calc(84px + env(safe-area-inset-top,0px));bottom:auto;left:18px;right:110px;text-align:left;padding:0}
+  .hc{left:18px;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));max-width:none}
+  .hc-eye{font-size:11.5px;margin-bottom:9px}
+  .hc-eye::before{width:20px}
+  .hc-h{font-size:clamp(27px,8.2vw,40px)}
+  .hc-b{margin-top:16px;gap:10px;flex-wrap:nowrap}
+  .hc-btn{height:48px;padding:0 18px;font-size:15px}
+  .hc-wa{flex:1 1 auto;justify-content:center}
+  .hc-ol{flex:none}
+}
+@media (max-width:389px){
+  .hc-btn{padding:0 14px;font-size:14px;gap:8px}
+  .hc-btn svg{width:18px;height:18px}
+  .hc-ol{flex:0 1 auto}
+}
+@media (max-width:339px){
+  .hc-btn{padding:0 12px;font-size:13.5px}
+  .hc-wa svg{display:none}
+}
+@media (max-width:819px) and (orientation:landscape) and (max-height:500px){
+  #title{top:72px;right:auto;max-width:44vw}
+  .hc{left:18px;right:auto;bottom:14px;max-width:38vw}
+  .hc-eye{display:none}
+  .hc-h{font-size:22px}
+  .hc-b{flex-direction:column;align-items:flex-start;gap:8px;margin-top:10px}
+  .hc-btn{height:40px;font-size:13.5px}
+  #play{bottom:16px}
+}
 </style>
 </head>
 <body>
@@ -849,7 +896,15 @@ img{display:block}
   <div class="bits" id="bits"></div>
   <div class="arc" id="arc"></div>
   <button id="play" aria-label="Siguiente producto"><svg viewBox="0 0 18 18" fill="none" stroke="#0c1f4d" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h12M10 4l5 5-5 5"/></svg></button>
-  <h1 id="title" class="disp" aria-live="polite"></h1>
+  <p id="title" class="disp"></p>
+  <div class="hc" id="heroCopy">
+    <p class="hc-eye">Pinturería en Carora · 24 años</p>
+    <h1 class="hc-h disp">El color de tu casa,<br><span class="hc-y">a un mensaje</span></h1>
+    <div class="hc-b">
+      <a class="hc-btn hc-wa" id="heroWa" href="https://wa.me/584129939022" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8.5 8.5 0 0 1-12.6 7.4L3.5 20l1.2-3.7A8.5 8.5 0 1 1 20 11.5z"/></svg>Pide por WhatsApp</a>
+      <a class="hc-btn hc-ol" id="heroCat" href="#catalogo">Ver productos</a>
+    </div>
+  </div>
   <div id="count" class="disp" aria-hidden="true">01</div>
   <button id="auto" aria-pressed="true" aria-label="Avance automático"><span class="rg"><svg class="pa" viewBox="0 0 10 10" fill="#fff"><rect x="1.5" y="1" width="2.4" height="8" rx="1.2"/><rect x="6.1" y="1" width="2.4" height="8" rx="1.2"/></svg><svg class="pl" viewBox="0 0 10 10" fill="#fff"><path d="M2.5 1.3v7.4a.6.6 0 0 0 .9.5l5.6-3.7a.6.6 0 0 0 0-1L3.4.8a.6.6 0 0 0-.9.5z"/></svg></span>Auto</button>
 </section>
@@ -1062,11 +1117,11 @@ const GLIDE=bez(.25,.75,.2,1), ENTER=bez(.16,1,.3,1);
 
 /* Productos: solo lo esencial */
 const P=[
- {n:"ABC Látex Mate",two:["ABC","Látex Mate"],cat:"Pintura",col:"#0a78c8",bg:"#1a2633",cap:["Interior y exterior.","Acabado mate."],f:["Acabado mate","Rinde hasta 40 m² por galón por mano","Galón y cuñetes de 4 y 5"]},
- {n:"Brillo de Seda",two:["Brillo","de Seda"],cat:"Pintura",col:"#d12a30",bg:"#2a1d20",cap:["Satinado lavable.","Primera calidad."],f:["Brillo sedoso y lavable","Rinde hasta 50 m² por galón por mano","Galón y cuñete de 4"]},
- {n:"ImperCoat Plus",two:["ImperCoat","Plus"],cat:"Impermeabilizante",col:"#0e8f8f",bg:"#17282a",cap:["Techos y terrazas.","Sin calentar."],f:["Base agua, listo para aplicar","Bajo olor y no tóxico","Dos manos cruzadas, 24 h entre manos"]},
- {n:"Hidro Esmalte",two:["Hidro","Esmalte"],cat:"Esmalte al agua",col:"#1f9d55",bg:"#18261e",cap:["Esmalte al agua.","Interior y exterior."],f:["Mate, satinado o brillante","Se diluye con agua","Resiste la intemperie"]},
- {n:"Montafix Mate",two:["Montafix","Mate"],cat:"Esmalte alquídico",col:"#e8830c",bg:"#2a221a",cap:["Metal, concreto y madera.","Clase A."],f:["Primera calidad (Clase A)","Metal, concreto y madera","Presentación de 1 galón"]}
+ {n:"ABC Látex Mate",two:["ABC","Látex Mate"],cat:"Pintura",col:"#0a78c8",bg:"#0e2a5e",cap:["Interior y exterior.","Acabado mate."],f:["Acabado mate","Rinde hasta 40 m² por galón por mano","Galón y cuñetes de 4 y 5"]},
+ {n:"Brillo de Seda",two:["Brillo","de Seda"],cat:"Pintura",col:"#d12a30",bg:"#1a1f4c",cap:["Satinado lavable.","Primera calidad."],f:["Brillo sedoso y lavable","Rinde hasta 50 m² por galón por mano","Galón y cuñete de 4"]},
+ {n:"ImperCoat Plus",two:["ImperCoat","Plus"],cat:"Impermeabilizante",col:"#0e8f8f",bg:"#0b2d4b",cap:["Techos y terrazas.","Sin calentar."],f:["Base agua, listo para aplicar","Bajo olor y no tóxico","Dos manos cruzadas, 24 h entre manos"]},
+ {n:"Hidro Esmalte",two:["Hidro","Esmalte"],cat:"Esmalte al agua",col:"#1f9d55",bg:"#0f2d40",cap:["Esmalte al agua.","Interior y exterior."],f:["Mate, satinado o brillante","Se diluye con agua","Resiste la intemperie"]},
+ {n:"Montafix Mate",two:["Montafix","Mate"],cat:"Esmalte alquídico",col:"#e8830c",bg:"#1e2448",cap:["Metal, concreto y madera.","Clase A."],f:["Primera calidad (Clase A)","Metal, concreto y madera","Presentación de 1 galón"]}
 ];
 const NP=P.length;
 const STEPS=[
@@ -1250,8 +1305,8 @@ const mctx=document.createElement("canvas").getContext("2d");
 function measure(t){mctx.font='800 100px "Bricolage Grotesque"';return mctx.measureText(t.toUpperCase()).width}
 function sizeTitle(i=cur){
   const n=P[i].n;let fs;
-  if(phone()){const base=clamp(.125*vw,40,64);const w=Math.max(...n.split(" ").map(measure));fs=Math.min(base,(vw-36)*100/w);if(vw<820&&vh<=500&&vw>vh)fs=Math.min(36,fs)}
-  else fs=Math.min(96*HU,760*HU*100/measure(n));
+  if(phone()){const base=clamp(.08*vw,22,30);fs=Math.min(base,(vw-170)*100/measure(n));if(vw<820&&vh<=500&&vw>vh)fs=Math.min(20,fs)}
+  else fs=Math.min(44*HU,700*HU*100/measure(n));
   titleEl.style.fontSize=fs+"px";
 }
 function buildTitle(i){
@@ -1547,6 +1602,7 @@ const navH=()=>nav.getBoundingClientRect().height;
 matchMedia("(min-width:1100px)").addEventListener("change",e=>{if(e.matches)setMenu(false);moveHL()});
 links.forEach(l=>l.addEventListener("click",e=>{e.preventDefault();setMenu(false);const s=SECS[+l.dataset.s];smoothTo(s===hero?0:s===inside?inside.offsetTop+1:s.offsetTop-(s===shop?navH()*.5:0))}));
 $(".brand").addEventListener("click",e=>{e.preventDefault();smoothTo(0)});
+{const hcat=$("#heroCat");if(hcat)hcat.addEventListener("click",e=>{e.preventDefault();smoothTo(shop.offsetTop-navH()*.5)})}
 
 /* ---------- Desplazamiento suave (ratón de escritorio) ---------- */
 let sTarget=null,sCur=0;
@@ -1915,6 +1971,11 @@ requestAnimationFrame(t=>{last=t;frame(t)});
   var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}})},{threshold:.15,rootMargin:"0px 0px -6% 0px"});
   [].forEach.call(sec.querySelectorAll("[data-vt]"),function(el){io.observe(el)});
 })();
+</script>
+<script>
+(function(){var a=document.getElementById("heroWa");if(!a)return;var C=window.MONTANA_CONFIG||{};var wa=String(C.whatsapp||"").replace(/\D/g,"");
+if(wa){a.href="https://wa.me/"+wa+"?text="+encodeURIComponent("Hola, Tiendas Montana. Vi su página web y quiero hacer una consulta.")}
+else{a.removeAttribute("target");a.href="#visitanos";a.lastChild.textContent="Visítanos"}})();
 </script>
 </body>
 </html>
