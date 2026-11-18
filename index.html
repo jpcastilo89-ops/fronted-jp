@@ -554,7 +554,7 @@ img{display:block}
   #simulador.on .sm-room .tx{justify-content:center}
   #simulador.on .sm-room .nm{font-size:12.5px}
   .sm-stage{margin:0 -16px;background:var(--ivory)}
-  .sm-photo{border-radius:0;box-shadow:none}
+  .sm-photo{border-radius:0;box-shadow:none}.sm-quick{padding:0 16px}
   .sm-note{margin-top:0}
   .sm-tag{left:10px;bottom:10px;padding:5px 11px 5px 5px;border-radius:12px}
   .sm-tag i{width:28px;height:28px;border-radius:8px}
@@ -1011,6 +1011,23 @@ img{display:block}
   .kt-empty{font-size:15px}
 }
 @media (prefers-reduced-motion:reduce){.slot{transition:none}.th.rec .sq{animation:none}.kt-see{animation:none}}
+
+/* ===== «¿Cómo quedaría en tu casa?» con los colores guardados (18/11/2026) ===== */
+.sm-quick{display:flex;align-items:center;gap:10px;margin-top:10px;min-width:0}
+.sm-quick[hidden]{display:none}
+.sm-qk{flex:none;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sm-soft)}
+.sm-qc{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:3px 2px;min-width:0}
+.sm-qc::-webkit-scrollbar{display:none}
+.sm-qb{flex:none;display:flex;align-items:center;gap:7px;height:38px;padding:0 12px 0 5px;border-radius:99px;background:#fff;box-shadow:0 0 0 1px rgba(12,31,77,.12);font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap}
+.sm-qb i{width:28px;height:28px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(12,31,77,.15)}
+.sm-qb[aria-pressed="true"]{background:var(--ink);color:#f6f3ee;box-shadow:none}
+.sm-qb:focus-visible{outline:3px solid #1546c4;outline-offset:2px}
+.kt-mine{display:flex;align-items:center;gap:6px;margin:-2px 0 12px;font-size:13px;color:rgba(246,243,238,.75)}
+.kt-mine[hidden]{display:none}
+.kt-mine span{margin-right:4px}
+.kt-mine i{width:20px;height:20px;border-radius:50%;background:var(--c);box-shadow:0 0 0 2px rgba(246,243,238,.85)}
+.kt-mine em{font-style:normal;font-weight:700;margin-left:2px}
+@media (max-width:819px){.sm-quick{margin-top:8px}.sm-qb{height:34px;font-size:12.5px}.sm-qb i{width:24px;height:24px}}
 </style>
 </head>
 <body>
@@ -1139,7 +1156,8 @@ img{display:block}
     <a class="kt-wa" id="ktWa" href="#visitanos" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8.5 8.5 0 0 1-12.6 7.4L3.5 20l1.2-3.7A8.5 8.5 0 1 1 20 11.5z"/></svg>Pedir asesoría</a>
   </div>
   <div class="kt-see" id="ktSee" hidden>
-    <p class="kt-q">¿Cómo quedaría en tu casa? <span>Prueba colores en una foto</span></p>
+    <p class="kt-q">¿Cómo quedaría en tu casa? <span id="ktSeeSub">Prueba colores en una foto</span></p>
+    <div class="kt-mine" id="ktMine" hidden></div>
     <div class="kt-rooms">
       <button type="button" class="kt-room" data-r="sala"><span class="ph" data-img="sala"></span><b>Sala</b></button>
       <button type="button" class="kt-room" data-r="hab"><span class="ph" data-img="hab"></span><b>Habitación</b></button>
@@ -1184,6 +1202,7 @@ img{display:block}
           <div class="sm-tag" aria-live="polite"><i id="smTagC"></i><span><b id="smTagN">Color original</b><em id="smTagH">Así es la foto</em></span></div>
           <button type="button" class="sm-orig" id="smOrig" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>Color original</button>
         </div>
+        <div class="sm-quick" id="smQuick" hidden><span class="sm-qk">Tus colores</span><div class="sm-qc" id="smQc"></div></div>
       </div>
 
       <div class="sm-panel">
@@ -1780,8 +1799,13 @@ function renderPack(added=-1){
   const n=pack.length;
   if(!buy.classList.contains("done")){buy.disabled=!n;buy.textContent=n?`Añadir ${n===1?"1 producto":n+" productos"} a tu lista`:"Elige tus productos"}
   ktWa.setAttribute("aria-disabled",String(!n&&!need));
-  ktSee.hidden=!n;
+  ktSee.hidden=!n;mineDots();
 }
+function mineDots(){const box=document.getElementById("ktMine"),sub=document.getElementById("ktSeeSub");if(!box)return;
+  const L=window.MONTANA_SIM&&window.MONTANA_SIM.saved?window.MONTANA_SIM.saved():[];
+  if(L.length){box.hidden=false;box.innerHTML='<span>Con tus colores:</span>'+L.slice(0,8).map(x=>`<i style="--c:${/^#[0-9a-f]{6}$/i.test(x.h)?x.h:"#ccc"}" title="${x.n.replace(/[<>"&]/g,"")}"></i>`).join("")+(L.length>8?`<em>+${L.length-8}</em>`:"");sub.textContent="Se abrirá con tus colores ya pintados"}
+  else{box.hidden=true;sub.textContent="Se abrirá con el Color del mes; guarda tus colores en el simulador"}}
+document.addEventListener("montana:colores",mineDots);
 function kitMsg(){const items=pack.map(i=>P[i].n);const lugar=need?{paredes:"las paredes de mi casa",fachada:"la fachada",techo:"el techo o la terraza",rejas:"rejas, puertas y madera"}[need]:"";
   return "Hola, Tiendas Montana. Quiero asesoría"+(lugar?" para pintar "+lugar:"")+(items.length?". Me interesan: "+items.join(", "):"")+".";}
 ktWa.addEventListener("click",e=>{if(ktWa.getAttribute("aria-disabled")==="true"){e.preventDefault();ktTip.textContent="Elige primero qué vas a pintar o algún producto.";return}
@@ -1793,7 +1817,8 @@ document.querySelectorAll(".kt-chip").forEach(c=>c.addEventListener("click",()=>
 {const loadRooms=()=>document.querySelectorAll(".kt-room .ph").forEach(ph=>{if(ph.firstChild)return;const im=document.querySelector(`.sm-room[data-r="${ph.dataset.img}"] img`);if(im){const c=im.cloneNode();c.alt="";ph.appendChild(c)}});
   const io=new IntersectionObserver(en=>{if(en[0].isIntersecting){loadRooms();io.disconnect()}},{rootMargin:"300px 0px"});io.observe(kit)}
 document.querySelectorAll(".kt-room").forEach(b=>b.addEventListener("click",()=>{const sim=$("#simulador");
-  if(window.MONTANA_SIM){window.MONTANA_SIM.select(b.dataset.r,true)}
+  if(window.MONTANA_SIM){const r=window.MONTANA_SIM.openWithSaved?window.MONTANA_SIM.openWithSaved(b.dataset.r):(window.MONTANA_SIM.select(b.dataset.r,true),"none");
+    const m=document.getElementById("smMsg");if(m&&r==="month"){m.hidden=false;m.textContent="Aún no has guardado colores: te mostramos el Color del mes. Guarda los que te gusten con «Añadir este color» y aparecerán aquí."}}
   setTimeout(()=>{const t=document.querySelector(".sm-stage")||sim;smoothTo(t.getBoundingClientRect().top+scrollY-navH()-8)},120)}));
 buy.addEventListener("click",()=>{
   if(!pack.length)return;const items=[...pack];
@@ -2094,7 +2119,15 @@ requestAnimationFrame(t=>{last=t;frame(t)});
     orig.disabled=!color;setTag(color);
     [].forEach.call(swEl.children,function(b){b.setAttribute("aria-pressed",color&&b.dataset.h===color[1]?"true":"false")});
   }
-  function pick(c){color=c;updSel();show(c&&c[1])}
+  function pick(c){color=c;updSel();show(c&&c[1]);markQuick()}
+  /* --- tira rápida «Tus colores»: cambia la pared con un toque --- */
+  var qBox=$("smQuick"),qC=$("smQc");
+  function famOf(h){var fi=-1;FAMS.forEach(function(f,k){if(f.c.some(function(c){return c[1]===h}))fi=k});return fi}
+  function pickSaved(x){var fi=famOf(x.h);if(fi>=0&&fi!==fam)setFam(fi);pick([x.n,x.h])}
+  function markQuick(){if(!qC)return;[].forEach.call(qC.children,function(b){b.setAttribute("aria-pressed",color&&b.dataset.h===color[1]?"true":"false")})}
+  function renderQuick(){if(!qBox)return;qC.innerHTML="";qBox.hidden=!LIST.length;
+    LIST.forEach(function(x){var b=document.createElement("button");b.type="button";b.className="sm-qb";b.dataset.h=x.h;b.style.setProperty("--c",x.h);b.setAttribute("aria-label","Probar "+x.n);b.title=x.n;
+      b.innerHTML='<i></i><span>'+esc(x.n)+'</span>';b.addEventListener("click",function(){pickSaved(x)});qC.appendChild(b)});markQuick()}
 
   /* --- ambientes --- */
   function selectRoom(key,focus){
@@ -2147,7 +2180,7 @@ requestAnimationFrame(t=>{last=t;frame(t)});
 
   /* --- mi lista de colores --- */
   function esc(s){return String(s).replace(/[&<>"']/g,function(c){return"&#"+c.charCodeAt(0)+";"})}
-  function save(){try{localStorage.setItem(KEY,JSON.stringify(LIST))}catch(e){}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(LIST))}catch(e){}try{document.dispatchEvent(new CustomEvent("montana:colores"))}catch(e){}}
   function listTxt(){return LIST.map(function(x){return x.n+" ("+x.h+")"}).join(", ")}
   function renderList(){
     ul.innerHTML="";
@@ -2162,7 +2195,7 @@ requestAnimationFrame(t=>{last=t;frame(t)});
       li.querySelector(".x").addEventListener("click",function(){LIST.splice(i,1);save();renderList();updSel();(LIST.length?ul.querySelector(".x"):addB).focus()});
       ul.appendChild(li);
     });
-    countEl.textContent=LIST.length;emptyEl.hidden=LIST.length>0;askB.disabled=!LIST.length;
+    countEl.textContent=LIST.length;emptyEl.hidden=LIST.length>0;askB.disabled=!LIST.length;renderQuick();
     if(!LIST.length)msg.hidden=true;
   }
   addB.addEventListener("click",function(){
@@ -2196,7 +2229,13 @@ requestAnimationFrame(t=>{last=t;frame(t)});
     box.hidden=false;
     $("cdmB").addEventListener("click",function(){selectRoom("sala",true);if(hit.f!==fam)setFam(hit.f);pick(hit.c)});
   })();
-  window.MONTANA_SIM={select:selectRoom,pick:function(h){var c=null,fi=-1;FAMS.forEach(function(f,k){f.c.forEach(function(x){if(x[1]===h){c=x;fi=k}})});if(fi>=0&&fi!==fam)setFam(fi);pick(c)},list:function(){return LIST.slice()}};
+  renderQuick();
+  window.MONTANA_SIM={saved:function(){return LIST.slice()},openWithSaved:function(key){
+      selectRoom(key,true);
+      if(LIST.length){pickSaved(LIST[0]);return "saved"}
+      var want=String(CFG.colorDelMes||"").trim().toLowerCase(),hit=null;FAMS.forEach(function(f){f.c.forEach(function(x){if(!hit&&x[0].toLowerCase()===want)hit=x})});
+      if(hit){var fi=famOf(hit[1]);if(fi>=0&&fi!==fam)setFam(fi);pick(hit);return "month"}return "none"},
+    select:selectRoom,pick:function(h){var c=null,fi=-1;FAMS.forEach(function(f,k){f.c.forEach(function(x){if(x[1]===h){c=x;fi=k}})});if(fi>=0&&fi!==fam)setFam(fi);pick(c)},list:function(){return LIST.slice()}};
 })();
 </script>
 <script>
