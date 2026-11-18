@@ -816,6 +816,40 @@ img{display:block}
   .hc-btn{height:40px;font-size:13.5px}
   #play{bottom:16px}
 }
+
+/* ===== Detalle visual 2: barra inferior tipo app (18/11/2026) ===== */
+.tb{display:none}
+@media (max-width:819px){
+  .tb{display:grid;grid-template-columns:repeat(5,1fr);align-items:end;position:fixed;left:8px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom));z-index:85;height:62px;padding:0 4px;border-radius:22px;
+    background:rgba(246,243,238,.94);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);
+    box-shadow:0 0 0 1px rgba(21,70,196,.14),0 14px 34px -10px rgba(12,31,77,.45),0 2px 6px rgba(12,31,77,.12);
+    transform:translateY(calc(100% + 24px));opacity:0;pointer-events:none;transition:transform .32s cubic-bezier(.22,1,.36,1),opacity .25s}
+  .tb.show{transform:none;opacity:1;pointer-events:auto}
+  .tb-i,.tb-wa{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:62px;padding-bottom:9px;color:#0c1f4d;text-decoration:none;font:600 10.5px/1 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:.01em;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent;position:relative;min-width:0}
+  .tb-i svg{width:23px;height:23px}
+  .tb-i span{white-space:nowrap}
+  .tb-i::after{content:"";position:absolute;top:6px;left:50%;width:0;height:3px;border-radius:3px;background:#ffd21f;transform:translateX(-50%);transition:width .25s}
+  .tb-i.on{color:#1546c4}
+  .tb-i.on::after{width:18px}
+  .tb-ic{position:relative;display:block;line-height:0}
+  .tb-n{position:absolute;top:-6px;right:-10px;min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:#c8262c;color:#fff;font:700 10.5px/18px "Bricolage Grotesque",system-ui,sans-serif;text-align:center;box-shadow:0 0 0 2px #f6f3ee}
+  .tb-wa{padding-bottom:9px}
+  .tb-c{position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:56px;height:56px;border-radius:50%;background:#ffd21f;color:#0c1f4d;display:grid;place-items:center;
+    box-shadow:0 0 0 4px #f6f3ee,0 10px 22px -6px rgba(255,210,31,.75),0 6px 14px -6px rgba(12,31,77,.45)}
+  .tb-c svg{width:26px;height:26px}
+  .tb-wa:active .tb-c,.tb-i:active svg{transform:translateX(-50%) scale(.94)}
+  .tb-i:active svg{transform:scale(.92)}
+  .tb a:focus-visible,.tb button:focus-visible{outline:3px solid #1546c4;outline-offset:-3px;border-radius:14px}
+  #kit{padding-bottom:calc(110px + 70px)}
+  #visitanos{padding-bottom:calc(96px + 70px + env(safe-area-inset-bottom))}
+}
+@media (max-width:819px) and (orientation:landscape) and (max-height:500px){
+  .tb{left:50%;right:auto;width:420px;transform:translate(-50%,calc(100% + 24px));height:54px}
+  .tb.show{transform:translate(-50%,0)}
+  .tb-i,.tb-wa{height:54px;padding-bottom:7px}
+  .tb-c{width:48px;height:48px;top:-16px}
+}
+@media (prefers-reduced-motion:reduce){.tb{transition:none}}
 </style>
 </head>
 <body>
@@ -1556,7 +1590,7 @@ function listText(){
   return parts.join("; ");
 }
 function updateCount(){
-  const n=LIST.length;badge.textContent=n;
+  const n=LIST.length;badge.textContent=n;tbCount(n);
   if(n){badge.style.transform="scale(1)";if(!RM)badge.animate([{transform:"scale(0)"},{transform:"scale(1.5)",offset:.5},{transform:"scale(1)"}],{duration:350})}
   $("#listLine").textContent=n?(waNum?"Tu lista: ":"Tu lista para mostrar en tienda: ")+listText()+".":"";
 }
@@ -1568,7 +1602,7 @@ function bump(){if(!RM)listBtn.animate([{transform:"scale(1)"},{transform:"scale
 function addToList(item,srcs){
   LIST.push(item);
   if(RM){updateCount();return}
-  const b=listBtn.getBoundingClientRect(),bx=b.left+b.width/2,by=b.top+b.height/2;
+  const tgt=(tbList&&tbOn())?tbList:listBtn,b=tgt.getBoundingClientRect(),bx=b.left+b.width/2,by=b.top+b.height/2;
   let left=srcs.length;
   srcs.forEach((im,k)=>{
     if(!im){if(--left===0)updateCount();return}
@@ -1578,7 +1612,7 @@ function addToList(item,srcs){
     document.body.appendChild(fly);
     const dx=bx-(r.left+r.width/2),dy=by-(r.top+r.height/2),sk=Math.min(.2,30/r.height),lift=Math.min(160,.35*Math.abs(dy)+60);
     const a=fly.animate([{transform:"translate(0,0) scale(1) rotate(0deg)",opacity:1},{transform:`translate(${dx*.4}px,${dy*.4-lift}px) scale(${.45+sk}) rotate(-10deg)`,opacity:1,offset:.45},{transform:`translate(${dx}px,${dy}px) scale(${sk}) rotate(-18deg)`,opacity:.15}],{duration:900,delay:k*120,easing:"cubic-bezier(.5,0,.2,1)",fill:"forwards"});
-    a.onfinish=()=>{fly.remove();bump();if(--left===0)updateCount()};
+    a.onfinish=()=>{fly.remove();bump();if(tbList&&tbOn()&&!RM)tbList.animate([{transform:"scale(1)"},{transform:"scale(1.15)"},{transform:"scale(1)"}],{duration:320});if(--left===0)updateCount()};
   });
 }
 
@@ -1591,6 +1625,45 @@ function updateNav(){
   if(visit.getBoundingClientRect().top<vh*.35)a=3;
   if(a!==active){active=a;links.forEach((l,i)=>{l.classList.toggle("on",i===a);if(i===a)l.setAttribute("aria-current","true");else l.removeAttribute("aria-current")});moveHL()}
   nav.classList.toggle("scrolled",scrollY>8);
+}
+
+/* ---------- Detalle visual 2: barra inferior tipo app (solo teléfono) ---------- */
+const tabBar=$("#tabBar"),tbList=$("#tbList"),tbN=$("#tbN"),tbWa=$("#tbWa"),simSec=$("#simulador");
+function tbOn(){return tabBar&&phone()&&tabBar.classList.contains("show")}
+function tbCount(n){if(!tbN)return;tbN.hidden=!n;tbN.textContent=n;if(n&&!RM)tbN.animate([{transform:"scale(0)"},{transform:"scale(1.45)",offset:.5},{transform:"scale(1)"}],{duration:350})}
+if(tabBar){
+  const go=(el,off)=>e=>{e.preventDefault();setMenu(false);smoothTo(el.offsetTop-off())};
+  $("#tbProd").addEventListener("click",go(shop,()=>navH()*.5));
+  $("#tbCol").addEventListener("click",go(simSec,()=>navH()));
+  $("#tbVis").addEventListener("click",go(visit,()=>0));
+  tbList.addEventListener("click",()=>{setMenu(false);listBtn.click()});
+  const waMsg=()=>{
+    if(LIST.length)return "Hola, Tiendas Montana. Quiero consultar: "+listText()+".";
+    const y=vh*.4,inS=s=>{const r=s.getBoundingClientRect();return r.top<y&&r.bottom>y};
+    if(inS(shop))return "Hola, Tiendas Montana. Vi el "+P[cur].n+" en la web y quiero hacer una consulta.";
+    if(inS(kit))return "Hola, Tiendas Montana. Quiero armar un kit para mi obra.";
+    if(simSec&&inS(simSec))return "Hola, Tiendas Montana. Quiero asesoría para elegir colores.";
+    if(inS(visit))return "Hola, Tiendas Montana. Quiero visitar la tienda.";
+    return "Hola, Tiendas Montana. Vi su página web y quiero hacer una consulta.";
+  };
+  if(waNum){tbWa.target="_blank";tbWa.rel="noopener";tbWa.href="https://wa.me/"+waNum;
+    tbWa.addEventListener("click",()=>{tbWa.href="https://wa.me/"+waNum+"?text="+encodeURIComponent(waMsg())})}
+  else{tbWa.addEventListener("click",go(visit,()=>0))}
+  let lastY=scrollY,acc=0;
+  const tbUpdate=()=>{
+    const y=scrollY,d=y-lastY;lastY=y;
+    if(!phone()){tabBar.classList.remove("show");return}
+    const ir=inside.getBoundingClientRect(),pastHero=ir.bottom<vh*.55;
+    acc=(d>0)===(acc>0)?acc+d:d;
+    if(!pastHero)tabBar.classList.remove("show");
+    else if(acc>140&&y<maxScroll()-40)tabBar.classList.remove("show");
+    else if(acc<-24||!tabBar.classList.contains("show")&&acc<=0)tabBar.classList.add("show");
+    const y2=vh*.4,inS=s=>{if(!s)return false;const r=s.getBoundingClientRect();return r.top<y2&&r.bottom>y2};
+    $("#tbProd").classList.toggle("on",inS(shop)||inS(kit));$("#tbCol").classList.toggle("on",inS(simSec));$("#tbVis").classList.toggle("on",inS(visit));
+  };
+  addEventListener("scroll",tbUpdate,{passive:true});addEventListener("resize",tbUpdate);
+  tabBar.addEventListener("focusin",()=>tabBar.classList.add("show"));
+  tbUpdate();tbCount(LIST.length);
 }
 /* Menú en móvil: el mismo bloque de enlaces se despliega bajo la cabecera */
 const menuBtn=$("#menu");
@@ -1972,6 +2045,13 @@ requestAnimationFrame(t=>{last=t;frame(t)});
   [].forEach.call(sec.querySelectorAll("[data-vt]"),function(el){io.observe(el)});
 })();
 </script>
+<nav class="tb" id="tabBar" aria-label="Accesos rápidos">
+  <a class="tb-i" id="tbProd" href="#catalogo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8h12l-1 11a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2z"/><path d="M5 8h14M9 8V6a3 3 0 0 1 6 0v2"/></svg><span>Productos</span></a>
+  <a class="tb-i" id="tbCol" href="#simulador"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4c0-4.4-4-8-9-8z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10.5" cy="7.5" r="1.2"/><circle cx="15" cy="7.5" r="1.2"/></svg><span>Colores</span></a>
+  <a class="tb-wa" id="tbWa" href="#visitanos" aria-label="Escribir por WhatsApp"><span class="tb-c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" stroke-width="2"><path d="M20 11.5a8.5 8.5 0 0 1-12.6 7.4L3.5 20l1.2-3.7A8.5 8.5 0 1 1 20 11.5z"/></svg></span><span>WhatsApp</span></a>
+  <button class="tb-i" id="tbList" type="button" aria-label="Mi lista para consultar"><span class="tb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1z"/><path d="M8 6H6.5A1.5 1.5 0 0 0 5 7.5v12A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 17.5 6H16"/><path d="M9 12h6M9 16h4"/></svg><b class="tb-n" id="tbN" hidden>0</b></span><span>Mi lista</span></button>
+  <a class="tb-i" id="tbVis" href="#visitanos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>Visítanos</span></a>
+</nav>
 <script>
 (function(){var a=document.getElementById("heroWa");if(!a)return;var C=window.MONTANA_CONFIG||{};var wa=String(C.whatsapp||"").replace(/\D/g,"");
 if(wa){a.href="https://wa.me/"+wa+"?text="+encodeURIComponent("Hola, Tiendas Montana. Vi su página web y quiero hacer una consulta.")}
