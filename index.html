@@ -31,12 +31,12 @@
 window.MONTANA_CONFIG = {
   address: "",        /* dirección exacta, p. ej. "Av. Francisco de Miranda, local 3, Carora, Lara" */
   phone: "",          /* teléfono tal como quieras mostrarlo, p. ej. "0252-000 0000" */
-  whatsapp: "",       /* solo números con código de país, p. ej. "584121234567" */
+  whatsapp: "584129939022",       /* solo números con código de país, p. ej. "584121234567" */
   hours: "",          /* horario; usa \n para varias líneas, p. ej. "Lunes a viernes: 8:00 a 17:00\nSábados: 8:00 a 13:00" */
-  instagram: "",      /* usuario (@tiendasmontana) o enlace completo del perfil */
-  mapsUrl: "https://maps.app.goo.gl/BRDzBQ5ghFgAs2vg7",   /* enlace «Cómo llegar» (venía en la web original: confírmalo) */
-  mapsEmbedUrl: "",   /* enlace del mapa para incrustar: Google Maps > Compartir > Insertar un mapa > copia solo el src="..." */
-  wazeUrl: "https://waze.com/ul?ll=10.1813951,-70.073815&navigate=yes",   /* venía en la web original: confírmalo */
+  instagram: "tiendasmontana.carora",      /* usuario (@tiendasmontana) o enlace completo del perfil */
+  mapsUrl: "https://maps.app.goo.gl/s71HtNyvrHgZjJDZA",   /* enlace «Cómo llegar» que envió Juanpo (2026-11-18) */
+  mapsEmbedUrl: "https://www.google.com/maps?q=10.1685125,-70.0774844&z=17&output=embed",   /* enlace del mapa para incrustar: Google Maps > Compartir > Insertar un mapa > copia solo el src="..." */
+  wazeUrl: "https://waze.com/ul?ll=10.1685125,-70.0774844&navigate=yes",   /* misma ubicación que mapsUrl (Plus Code 5W9F+C22 Carora) */
   fotoNosotros: ""    /* foto real de la tienda para «Sobre nosotros», p. ej. "fotos/tienda.jpg" */
 };
 </script>
@@ -785,7 +785,7 @@ img{display:block}
   </nav>
   <div class="right">
     <button class="chip" id="list" aria-label="Tu lista para consultar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1z"/><path d="M8 5H6.5A1.5 1.5 0 0 0 5 6.5v13A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5v-13A1.5 1.5 0 0 0 17.5 5H16"/><path d="M9 11h6M9 15h4"/></svg><span class="lt">Tu lista</span><span class="badge" id="badge">0</span></button>
-    <a class="cta" id="go" href="https://maps.app.goo.gl/BRDzBQ5ghFgAs2vg7" target="_blank" rel="noopener" aria-label="Cómo llegar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg><span>Cómo llegar</span></a>
+    <a class="cta" id="go" href="https://maps.app.goo.gl/s71HtNyvrHgZjJDZA" target="_blank" rel="noopener" aria-label="Cómo llegar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg><span>Cómo llegar</span></a>
     <button class="menu" id="menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="pill"><span></span></button>
   </div>
 </header>
