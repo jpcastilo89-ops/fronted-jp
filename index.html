@@ -1028,6 +1028,56 @@ img{display:block}
 .kt-mine i{width:20px;height:20px;border-radius:50%;background:var(--c);box-shadow:0 0 0 2px rgba(246,243,238,.85)}
 .kt-mine em{font-style:normal;font-weight:700;margin-left:2px}
 @media (max-width:819px){.sm-quick{margin-top:8px}.sm-qb{height:34px;font-size:12.5px}.sm-qb i{width:24px;height:24px}}
+
+/* ---------- Carrito «Tu lista» ---------- */
+.ct{position:fixed;inset:0;z-index:95;display:flex;justify-content:flex-end;font-family:"Bricolage Grotesque",system-ui,sans-serif;color:#0c1f4d}
+.ct[hidden]{display:none}
+.ct-bg{position:absolute;inset:0;background:rgba(8,18,46,.5);opacity:0;transition:opacity .3s}
+.ct.on .ct-bg{opacity:1}
+.ct-p{position:relative;width:min(440px,100%);height:100%;background:#f8f5ef;display:flex;flex-direction:column;box-shadow:-20px 0 60px -20px rgba(8,18,46,.45);transform:translateX(100%);transition:transform .38s cubic-bezier(.2,.8,.2,1)}
+.ct.on .ct-p{transform:none}
+.ct-h{display:flex;align-items:center;gap:12px;padding:20px 22px 14px;border-bottom:1px solid rgba(12,31,77,.08)}
+.ct-h h2{margin:0;font-size:22px;font-weight:800;letter-spacing:-.01em;flex:1}
+.ct-h h2 small{display:block;font-size:13px;font-weight:500;color:#5b6582;letter-spacing:0;margin-top:2px}
+.ct-x{width:42px;height:42px;border-radius:50%;border:1px solid rgba(12,31,77,.16);background:#fff;display:grid;place-items:center;color:#0c1f4d;cursor:pointer}
+.ct-x svg{width:18px;height:18px}
+.ct-b{flex:1;overflow-y:auto;padding:14px 22px 20px;overscroll-behavior:contain}
+.ct-sec{margin:14px 0 8px;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#5b6582}
+.ct-ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.ct-it{display:flex;align-items:center;gap:12px;padding:10px 12px;background:#fff;border-radius:16px;box-shadow:0 1px 0 rgba(12,31,77,.06),0 8px 20px -16px rgba(12,31,77,.4)}
+.ct-im{flex:none;width:58px;height:58px;border-radius:12px;background:var(--bg,#0e2a5e);display:grid;place-items:center;overflow:hidden}
+.ct-im img{width:100%;height:100%;object-fit:contain}
+.ct-im.sw{background:var(--c);box-shadow:inset 0 0 0 1px rgba(12,31,77,.12)}
+.ct-im.kt{background:#ffd21f;font-weight:800;font-size:15px}
+.ct-tx{flex:1;min-width:0}
+.ct-n{font-size:15.5px;font-weight:700;line-height:1.2}
+.ct-d{font-size:13px;color:#5b6582;margin-top:2px;line-height:1.35}
+.ct-q{display:inline-flex;align-items:center;margin-top:7px;border:1px solid rgba(12,31,77,.16);border-radius:99px;height:32px}
+.ct-q button{width:32px;height:30px;border:0;background:none;font:inherit;font-size:18px;font-weight:700;color:#0c1f4d;cursor:pointer}
+.ct-q span{min-width:22px;text-align:center;font-weight:700;font-size:14.5px}
+.ct-rm{flex:none;align-self:flex-start;border:0;background:none;font:inherit;font-size:13px;font-weight:600;color:#c8262c;padding:6px 2px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.ct-empty{text-align:center;padding:48px 10px 20px}
+.ct-empty b{display:block;font-size:19px;margin-bottom:6px}
+.ct-empty p{margin:0 0 18px;color:#5b6582;font-size:14.5px;line-height:1.45}
+.ct-f{padding:14px 22px calc(16px + env(safe-area-inset-bottom));border-top:1px solid rgba(12,31,77,.08);background:#fff}
+.ct-sum{display:flex;justify-content:space-between;font-size:14px;color:#5b6582;margin-bottom:10px}
+.ct-sum b{color:#0c1f4d}
+.ct-buy{width:100%;height:54px;border:0;border-radius:99px;background:#1f9d55;color:#fff;font:inherit;font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;box-shadow:0 12px 24px -14px rgba(31,157,85,.9)}
+.ct-buy svg{width:20px;height:20px}
+.ct-buy:disabled{background:#c9cdd8;box-shadow:none;cursor:default}
+.ct-note{margin:9px 0 0;font-size:12.5px;color:#5b6582;text-align:center;line-height:1.4}
+.ct-more{width:100%;margin-top:8px;height:44px;border-radius:99px;border:1px solid rgba(12,31,77,.16);background:none;font:inherit;font-size:15px;font-weight:600;color:#0c1f4d;cursor:pointer}
+.ct-msg{margin:10px 0 0;padding:12px 14px;border-radius:12px;background:rgba(255,210,31,.25);font-size:14px;line-height:1.45}
+@media (max-width:819px){
+  .ct{align-items:flex-end}
+  .ct-p{width:100%;height:auto;max-height:88vh;max-height:88dvh;border-radius:24px 24px 0 0;transform:translateY(100%);box-shadow:0 -20px 60px -20px rgba(8,18,46,.45)}
+  .ct-h{padding:10px 18px 12px;position:relative}
+  .ct-h::before{content:"";position:absolute;top:7px;left:50%;width:42px;height:5px;margin-left:-21px;border-radius:9px;background:rgba(12,31,77,.18)}
+  .ct-h h2{margin-top:12px}
+  .ct-b{padding:10px 18px 16px}.ct-f{padding-left:18px;padding-right:18px}
+}
+@media (prefers-reduced-motion:reduce){.ct-p,.ct-bg{transition:none}}
+html.ct-lock{overflow:hidden}
 </style>
 </head>
 <body>
@@ -1043,7 +1093,7 @@ img{display:block}
     <a href="#kit" data-s="3">Tu kit</a>
   </nav>
   <div class="right">
-    <button class="chip" id="list" aria-label="Tu lista para consultar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1z"/><path d="M8 5H6.5A1.5 1.5 0 0 0 5 6.5v13A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5v-13A1.5 1.5 0 0 0 17.5 5H16"/><path d="M9 11h6M9 15h4"/></svg><span class="lt">Tu lista</span><span class="badge" id="badge">0</span></button>
+    <button class="chip" id="list" aria-label="Ver tu lista" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1z"/><path d="M8 5H6.5A1.5 1.5 0 0 0 5 6.5v13A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5v-13A1.5 1.5 0 0 0 17.5 5H16"/><path d="M9 11h6M9 15h4"/></svg><span class="lt">Tu lista</span><span class="badge" id="badge">0</span></button>
     <a class="cta" id="go" href="https://maps.app.goo.gl/s71HtNyvrHgZjJDZA" target="_blank" rel="noopener" aria-label="Cómo llegar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg><span>Cómo llegar</span></a>
     <button class="menu" id="menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="pill"><span></span></button>
   </div>
@@ -1842,10 +1892,61 @@ function updateCount(){
   if(n){badge.style.transform="scale(1)";if(!RM)badge.animate([{transform:"scale(0)"},{transform:"scale(1.5)",offset:.5},{transform:"scale(1)"}],{duration:350})}
   $("#listLine").textContent=n?(waNum?"Tu lista: ":"Tu lista para mostrar en tienda: ")+listText()+".":"";
 }
-listBtn.addEventListener("click",()=>{
-  if(waNum&&LIST.length){open("https://wa.me/"+waNum+"?text="+encodeURIComponent("Hola, quiero consultar: "+listText()+"."),"_blank","noopener");return}
-  smoothTo(visit.offsetTop);
-});
+/* carrito: ver todo antes de comprar; solo «Comprar» manda a WhatsApp */
+const WA_IC='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>';
+const cart=document.createElement("div");cart.className="ct";cart.id="cart";cart.hidden=true;
+cart.innerHTML=`<div class="ct-bg"></div><div class="ct-p" role="dialog" aria-modal="true" aria-labelledby="ctT"><div class="ct-h"><h2 id="ctT">Tu lista<small id="ctSub"></small></h2><button class="ct-x" id="ctX" type="button" aria-label="Cerrar tu lista"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="ct-b" id="ctB"></div><div class="ct-f" id="ctF"><div class="ct-sum"><span>Productos</span><b id="ctN">0</b></div><button class="ct-buy" id="ctBuy" type="button">${WA_IC}<span>Comprar</span></button><p class="ct-note" id="ctNote">Te llevamos a WhatsApp con tu lista para que la tienda te atienda.</p><p class="ct-msg" id="ctMsg" hidden></p><button class="ct-more" id="ctMore" type="button">Seguir viendo</button></div></div>`;
+document.body.appendChild(cart);
+const ctB=$("#ctB"),ctBuy=$("#ctBuy"),ctMsg=$("#ctMsg");let ctLast=null;
+const ctCols=()=>(window.MONTANA_SIM&&window.MONTANA_SIM.saved)?window.MONTANA_SIM.saved():[];
+const escH=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function cartText(){const cols=ctCols(),parts=[];const t=listText();if(t)parts.push(t);
+  if(cols.length)parts.push("Colores: "+cols.map(x=>x.n+" ("+x.h+")").join(", "));return parts.join("; ")}
+function renderCart(){
+  const cols=ctCols(),c={};const order=[];
+  LIST.forEach(it=>{if(it.t==="p"){if(!(it.i in c)){c[it.i]=0;order.push(it.i)}c[it.i]++}});
+  const kits=LIST.map((it,k)=>[it,k]).filter(([it])=>it.t==="kit");
+  const nProd=LIST.filter(it=>it.t==="p").length+kits.reduce((a,[it])=>a+it.items.length,0);
+  const empty=!order.length&&!kits.length&&!cols.length;
+  $("#ctN").textContent=nProd;$("#ctSub").textContent=empty?"Todavía no has añadido nada":"Revisa lo que te vas a llevar";
+  let h="";
+  if(empty)h=`<div class="ct-empty"><b>Tu lista está vacía</b><p>Toca el <strong>+</strong> de un producto, arma tu kit o guarda colores en el simulador.</p><button class="ct-more" type="button" data-go="shop">Ver productos</button></div>`;
+  if(order.length||kits.length){h+=`<p class="ct-sec">Productos</p><ul class="ct-ul">`;
+    order.forEach(i=>{const p=P[i];h+=`<li class="ct-it"><div class="ct-im" style="--bg:${p.bg}">${sprites[i]?`<img alt="" src="${sprites[i]}">`:""}</div><div class="ct-tx"><div class="ct-n">${escH(p.n)}</div><div class="ct-d">${escH(p.cat)}</div><div class="ct-q" role="group" aria-label="Cantidad de ${escH(p.n)}"><button type="button" data-dec="${i}" aria-label="Quitar uno">−</button><span>${c[i]}</span><button type="button" data-inc="${i}" aria-label="Añadir uno">+</button></div></div><button class="ct-rm" type="button" data-rmp="${i}" aria-label="Quitar ${escH(p.n)} de tu lista">Quitar</button></li>`});
+    kits.forEach(([it,k],n)=>{h+=`<li class="ct-it"><div class="ct-im kt">Kit</div><div class="ct-tx"><div class="ct-n">Kit${kits.length>1?" "+(n+1):""} · ${it.items.length} producto${it.items.length>1?"s":""}</div><div class="ct-d">${it.items.map(i=>escH(P[i].n)).join(", ")}</div></div><button class="ct-rm" type="button" data-rmk="${k}" aria-label="Quitar este kit de tu lista">Quitar</button></li>`});
+    h+=`</ul>`}
+  if(cols.length){h+=`<p class="ct-sec">Colores elegidos</p><ul class="ct-ul">`;
+    cols.forEach(x=>{h+=`<li class="ct-it"><div class="ct-im sw" style="--c:${escH(x.h)}"></div><div class="ct-tx"><div class="ct-n">${escH(x.n)}</div><div class="ct-d">${escH(x.h)}</div></div><button class="ct-rm" type="button" data-rmc="${escH(x.h)}" aria-label="Quitar ${escH(x.n)} de tu lista">Quitar</button></li>`});h+=`</ul>`}
+  ctB.innerHTML=h;
+  ctBuy.disabled=empty;$("#ctNote").hidden=empty||!waNum;
+  ctBuy.querySelector("span").textContent=waNum?"Comprar":"Ver cómo llegar";
+  if(empty)ctMsg.hidden=true;
+}
+function openCart(){ctLast=document.activeElement;renderCart();ctMsg.hidden=true;cart.hidden=false;document.documentElement.classList.add("ct-lock");
+  requestAnimationFrame(()=>requestAnimationFrame(()=>cart.classList.add("on")));setTimeout(()=>$("#ctX").focus(),60)}
+function closeCart(then){if(cart.hidden)return;cart.classList.remove("on");document.documentElement.classList.remove("ct-lock");
+  setTimeout(()=>{cart.hidden=true;if(then)then();else if(ctLast&&ctLast.focus)ctLast.focus()},RM?0:380)}
+ctB.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const d=b.dataset;
+  if(d.go){closeCart(()=>smoothTo(shop.offsetTop-navH()*.5));return}
+  if(d.inc!=null)LIST.push({t:"p",i:+d.inc});
+  else if(d.dec!=null){const k=LIST.findIndex(it=>it.t==="p"&&it.i===+d.dec);if(k>=0)LIST.splice(k,1)}
+  else if(d.rmp!=null){for(let k=LIST.length-1;k>=0;k--)if(LIST[k].t==="p"&&LIST[k].i===+d.rmp)LIST.splice(k,1)}
+  else if(d.rmk!=null)LIST.splice(+d.rmk,1);
+  else if(d.rmc!=null){if(window.MONTANA_SIM&&window.MONTANA_SIM.remove)window.MONTANA_SIM.remove(d.rmc);renderCart();return}
+  else return;
+  updateCount();renderCart();});
+$("#ctX").addEventListener("click",()=>closeCart());cart.querySelector(".ct-bg").addEventListener("click",()=>closeCart());
+$("#ctMore").addEventListener("click",()=>closeCart());
+document.addEventListener("keydown",e=>{if(cart.hidden)return;if(e.key==="Escape"){closeCart();return}
+  if(e.key==="Tab"){const f=[...cart.querySelectorAll("button:not([disabled])")].filter(x=>x.offsetParent);if(!f.length)return;const a=f[0],z=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
+document.addEventListener("montana:colores",()=>{if(!cart.hidden)renderCart()});
+ctBuy.addEventListener("click",()=>{const t=cartText();if(!t)return;
+  if(waNum){open("https://wa.me/"+waNum+"?text="+encodeURIComponent("Hola, Tiendas Montana. Quiero comprar: "+t+"."),"_blank","noopener");return}
+  ctMsg.innerHTML="<b>Lleva tu lista a Tiendas Montana.</b> Muestra esta pantalla en la tienda y te atendemos.";ctMsg.hidden=false;
+  setTimeout(()=>closeCart(()=>smoothTo(visit.offsetTop)),1200)});
+listBtn.addEventListener("click",()=>{setMenu&&setMenu(false);openCart()});
+window.MONTANA_CART={open:openCart,close:closeCart,text:cartText};
 function bump(){if(!RM)listBtn.animate([{transform:"scale(1)"},{transform:"scale(1.18)"},{transform:"scale(1)"}],{duration:320})}
 function addToList(item,srcs){
   LIST.push(item);
@@ -2230,7 +2331,7 @@ requestAnimationFrame(t=>{last=t;frame(t)});
     $("cdmB").addEventListener("click",function(){selectRoom("sala",true);if(hit.f!==fam)setFam(hit.f);pick(hit.c)});
   })();
   renderQuick();
-  window.MONTANA_SIM={saved:function(){return LIST.slice()},openWithSaved:function(key){
+  window.MONTANA_SIM={saved:function(){return LIST.slice()},remove:function(h){var k=-1;LIST.forEach(function(x,i){if(x.h===h)k=i});if(k<0)return;LIST.splice(k,1);save();renderList();updSel()},openWithSaved:function(key){
       selectRoom(key,true);
       if(LIST.length){pickSaved(LIST[0]);return "saved"}
       var want=String(CFG.colorDelMes||"").trim().toLowerCase(),hit=null;FAMS.forEach(function(f){f.c.forEach(function(x){if(!hit&&x[0].toLowerCase()===want)hit=x})});
