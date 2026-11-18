@@ -957,6 +957,60 @@ img{display:block}
   .cf-fotos,.cf-ad{gap:18px;margin-bottom:32px}
   .cf-f::before{left:-8px}
 }
+
+/* ===== Kit libre con asesoría y «¿Cómo quedaría en tu casa?» (18/11/2026) ===== */
+.kt-need{position:relative;z-index:1;margin-top:calc(26*var(--w));max-width:calc(640*var(--w))}
+.kt-q{font-weight:800;font-size:max(15px,calc(17*var(--w)));margin:0 0 10px;color:var(--cream)}
+.kt-q span{display:block;font-weight:500;font-size:max(13px,calc(14*var(--w)));color:rgba(246,243,238,.7);margin-top:2px}
+.kt-chips{display:flex;flex-wrap:wrap;gap:8px}
+.kt-chip{height:40px;padding:0 16px;border-radius:99px;font-weight:600;font-size:14px;color:var(--cream);box-shadow:inset 0 0 0 1.5px rgba(246,243,238,.35);transition:background .2s,color .2s}
+.kt-chip[aria-pressed="true"]{background:#ffd21f;color:#0c1f4d;box-shadow:none}
+.kt-chip:focus-visible,.th:focus-visible,.kt-room:focus-visible,.kt-wa:focus-visible{outline:3px solid #ffd21f;outline-offset:3px}
+.kt-tip{min-height:1.4em;margin:10px 0 0;font-size:14.5px;line-height:1.45;color:#ffe680}
+.kt-tip:empty{min-height:0;margin:0}
+.kt-empty{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;text-align:center;font-weight:700;font-size:max(14px,calc(18*var(--w)));line-height:1.3;color:rgba(246,243,238,.55);pointer-events:none}
+.kt-empty[hidden]{display:none}
+.slot{transition:left .45s cubic-bezier(.22,1,.36,1),top .45s cubic-bezier(.22,1,.36,1)}
+#kit .glow{z-index:2}
+.glow.many .slot{transform:translate(-50%,-50%) scale(.78)}
+.glow.five .slot{transform:translate(-50%,-50%) scale(.7)}
+.th{position:relative}
+.th .ok{transform:scale(0)}
+.th.has .ok{transform:none}
+.th.has .sq{box-shadow:0 0 0 3px var(--cream)}
+.th .rc{position:absolute;left:50%;bottom:calc(-9*var(--w));transform:translateX(-50%) scale(.6);opacity:0;padding:3px 7px;border-radius:99px;background:#ffd21f;color:#0c1f4d;font-size:max(8.5px,calc(10*var(--w)));font-weight:800;letter-spacing:.03em;text-transform:uppercase;white-space:nowrap;transition:transform .25s,opacity .25s}
+.th.rec .rc{opacity:1;transform:translateX(-50%)}
+.th.rec .sq{animation:ktPulse 1.6s ease-in-out 2}
+@keyframes ktPulse{50%{transform:translateY(-5px)}}
+.th .cp{font-size:max(9px,calc(11*var(--w)));line-height:1.2;color:rgba(246,243,238,.72);text-align:center;margin-top:-4px}
+.kt-act{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:12px;margin-top:calc(36*var(--w))}
+.kt-act #buy{margin-top:0}
+.kt-wa{height:max(44px,calc(54*var(--w)));padding:0 calc(26*var(--w));border-radius:99px;display:inline-flex;align-items:center;gap:9px;background:#ffd21f;color:#0c1f4d;font-weight:700;font-size:max(14px,calc(16*var(--w)));text-decoration:none}
+.kt-wa svg{width:19px;height:19px}
+.kt-wa[aria-disabled="true"]{opacity:.45}
+.kt-see{position:relative;z-index:1;margin-top:calc(34*var(--w));max-width:calc(640*var(--w));animation:ktIn .45s cubic-bezier(.22,1,.36,1)}
+.kt-see[hidden]{display:none}
+@keyframes ktIn{from{opacity:0;transform:translateY(10px)}}
+.kt-rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.kt-room{display:flex;flex-direction:column;gap:7px;text-align:left;color:var(--cream)}
+.kt-room .ph{display:block;aspect-ratio:3/2;border-radius:12px;overflow:hidden;background:rgba(246,243,238,.12);box-shadow:0 0 0 1px rgba(246,243,238,.18)}
+.kt-room .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.kt-room:hover .ph img{transform:scale(1.05)}
+.kt-room b{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;display:flex;align-items:center;gap:6px}
+.kt-room b::after{content:"→";font-weight:600}
+@media (max-width:819px){
+  .kt-need{margin-top:20px;max-width:none}
+  .kt-chip{height:38px;padding:0 13px;font-size:13.5px}
+  .kt-act{flex-direction:column;gap:10px;margin-top:22px}
+  .kt-act #buy,.kt-wa{width:100%;justify-content:center;height:52px;font-size:15px}
+  .kt-see{margin-top:28px;max-width:none}
+  .kt-rooms{gap:10px}
+  .kt-room b{font-size:12.5px}
+  .th .cp{font-size:9px}
+  .th .rc{font-size:8px;padding:2px 5px;bottom:-8px}
+  .kt-empty{font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){.slot{transition:none}.th.rec .sq{animation:none}.kt-see{animation:none}}
 </style>
 </head>
 <body>
@@ -1067,10 +1121,31 @@ img{display:block}
 </section>
 
 <section id="kit" aria-label="Arma tu kit">
-  <h2 class="kt-head disp"><span class="ln"><span>Arma tu</span></span><span class="ln"><span>kit de <span class="three">3</span></span></span><span class="ln"><span>para tu obra</span></span></h2>
-  <div class="glow" id="glow"></div>
+  <h2 class="kt-head disp"><span class="ln"><span>Arma tu</span></span><span class="ln"><span>kit para</span></span><span class="ln"><span>tu obra</span></span></h2>
+  <div class="kt-need" id="ktNeed">
+    <p class="kt-q">¿Qué vas a pintar? <span>Te recomendamos qué usar</span></p>
+    <div class="kt-chips" role="group" aria-label="Qué vas a pintar">
+      <button type="button" class="kt-chip" data-need="paredes" aria-pressed="false">Paredes de la casa</button>
+      <button type="button" class="kt-chip" data-need="fachada" aria-pressed="false">Fachada</button>
+      <button type="button" class="kt-chip" data-need="techo" aria-pressed="false">Techo o terraza</button>
+      <button type="button" class="kt-chip" data-need="rejas" aria-pressed="false">Rejas, puertas y madera</button>
+    </div>
+    <p class="kt-tip" id="ktTip" aria-live="polite"></p>
+  </div>
+  <div class="glow" id="glow"><p class="kt-empty" id="ktEmpty">Toca los productos<br>que necesitas</p></div>
   <div class="thumbs" id="thumbs"></div>
-  <button id="buy" disabled>Elige 3 más</button>
+  <div class="kt-act">
+    <button id="buy" disabled>Elige tus productos</button>
+    <a class="kt-wa" id="ktWa" href="#visitanos" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8.5 8.5 0 0 1-12.6 7.4L3.5 20l1.2-3.7A8.5 8.5 0 1 1 20 11.5z"/></svg>Pedir asesoría</a>
+  </div>
+  <div class="kt-see" id="ktSee" hidden>
+    <p class="kt-q">¿Cómo quedaría en tu casa? <span>Prueba colores en una foto</span></p>
+    <div class="kt-rooms">
+      <button type="button" class="kt-room" data-r="sala"><span class="ph" data-img="sala"></span><b>Sala</b></button>
+      <button type="button" class="kt-room" data-r="hab"><span class="ph" data-img="hab"></span><b>Habitación</b></button>
+      <button type="button" class="kt-room" data-r="coc"><span class="ph" data-img="coc"></span><b>Cocina</b></button>
+    </div>
+  </div>
 </section>
 
 <section id="simulador" aria-labelledby="smT">
@@ -1678,31 +1753,53 @@ document.body.classList.add("gl");
 
 /* ---------- Kit ---------- */
 const glow=$("#glow"),thumbs=$("#thumbs"),buy=$("#buy");
-const SLOTS=[[50.2,37],[34.8,59.3],[64.8,59.3]];
-const pack=[null,null,null];let touched=false;
-const slotEls=SLOTS.map(([l,t],k)=>{const s=document.createElement("div");s.className="slot";s.style.left=l+"%";s.style.top=t+"%";
-  s.innerHTML=`<button class="x" aria-label="Quitar"><svg viewBox="0 0 12 12" fill="none" stroke="#f6f3ee" stroke-width="1.8" stroke-linecap="round"><path d="M2 2l8 8M10 2l-8 8"/></svg></button>`;
-  s.querySelector(".x").addEventListener("click",()=>{touched=true;pack[k]=null;renderPack()});glow.appendChild(s);return s});
-const thEls=P.map((p,i)=>{const b=document.createElement("button");b.className="th";b.style.setProperty("--c",p.col);b.setAttribute("aria-label","Añadir "+p.n+" al kit");
-  b.innerHTML=`<span class="sq"><img alt="" data-spr="${i}" src="${sprites[i]||BLANK}"><span class="ok"></span></span><span class="nm">${p.n}</span>`;
-  b.addEventListener("click",()=>{touched=true;addToPack(i)});thumbs.appendChild(b);return b});
-function addToPack(i){const k=pack.indexOf(null);if(k<0)return;pack[k]=i;renderPack(k);
-  glow.style.setProperty("--g",hexA(P[i].col,.62));if(!RM)glow.animate([{opacity:.55},{opacity:1}],{duration:600})}
+/* Kit libre (18/11/2026): se eligen de 1 a 5 productos, con recomendación según lo que se va a pintar */
+const LAYOUTS=[[],[[50,48]],[[37,50],[63,50]],[[50.2,37],[34.8,59.3],[64.8,59.3]],[[36,36],[64,36],[36,68],[64,68]],[[22,36],[50,36],[78,36],[36,68],[64,68]]];
+const NEEDS={paredes:{p:[0,1],t:"Para paredes: ABC Látex Mate (interior y exterior, acabado mate) o Brillo de Seda (satinado y lavable)."},
+  fachada:{p:[0,3],t:"Para fachadas: ABC Látex Mate (interior y exterior) e Hidro Esmalte, que resiste la intemperie."},
+  techo:{p:[2],t:"Para techos y terrazas: ImperCoat Plus, impermeabilizante base agua que se aplica sin calentar."},
+  rejas:{p:[4,3],t:"Para rejas, puertas y madera: Montafix Mate (metal, concreto y madera) o Hidro Esmalte al agua."}};
+let pack=[],touched=false,need=null;
+const ktEmpty=$("#ktEmpty"),ktWa=$("#ktWa"),ktSee=$("#ktSee"),ktTip=$("#ktTip");
+const thEls=P.map((p,i)=>{const b=document.createElement("button");b.className="th";b.style.setProperty("--c",p.col);b.setAttribute("aria-pressed","false");b.setAttribute("aria-label",p.n+": "+p.cap[0]);
+  b.innerHTML=`<span class="sq"><img alt="" data-spr="${i}" src="${sprites[i]||BLANK}"><span class="ok">✓</span><span class="rc">Ideal</span></span><span class="nm">${p.n}</span><span class="cp">${p.cap[0]}</span>`;
+  b.addEventListener("click",()=>{touched=true;togglePack(i)});thumbs.appendChild(b);return b});
+function togglePack(i){const k=pack.indexOf(i);if(k>=0){pack.splice(k,1);renderPack()}else{pack.push(i);renderPack(i);
+  glow.style.setProperty("--g",hexA(P[i].col,.62));if(!RM)glow.animate([{opacity:.55},{opacity:1}],{duration:600})}}
 function hexA(h,a){const n=parseInt(h.slice(1),16);return`rgba(${n>>16},${n>>8&255},${n&255},${a})`}
 function renderPack(added=-1){
-  slotEls.forEach((s,k)=>{const i=pack[k];let sp=s.querySelector(".sp");
-    if(i===null){if(sp)sp.remove();s.classList.remove("full");return}
-    if(!sp||+sp.dataset.i!==i){if(sp)sp.remove();sp=document.createElement("div");sp.className="sp";sp.dataset.i=i;sp.innerHTML=`<img alt="${P[i].n}" data-spr="${i}" src="${sprites[i]||BLANK}">`;s.insertBefore(sp,s.firstChild);if(k===added&&!RM)sp.classList.add("rise")}
-    s.classList.add("full")});
-  thEls.forEach((t,i)=>{const n=pack.filter(x=>x===i).length;t.classList.toggle("has",n>0);t.querySelector(".ok").textContent=n>1?n:"✓"});
-  const left=pack.filter(x=>x===null).length;
-  if(!buy.classList.contains("done")){buy.disabled=left>0;buy.innerHTML=left?`Elige ${left} más`:`Añadir kit a tu lista`}
+  const L=LAYOUTS[pack.length];
+  [...glow.querySelectorAll(".slot")].forEach(s=>{if(!pack.includes(+s.dataset.i))s.remove()});
+  pack.forEach((i,k)=>{let s=glow.querySelector(`.slot[data-i="${i}"]`);
+    if(!s){s=document.createElement("div");s.className="slot full";s.dataset.i=i;
+      s.innerHTML=`<div class="sp" data-i="${i}"><img alt="${P[i].n}" data-spr="${i}" src="${sprites[i]||BLANK}"></div><button class="x" aria-label="Quitar ${P[i].n}"><svg viewBox="0 0 12 12" fill="none" stroke="#f6f3ee" stroke-width="1.8" stroke-linecap="round"><path d="M2 2l8 8M10 2l-8 8"/></svg></button>`;
+      s.querySelector(".x").addEventListener("click",()=>{touched=true;togglePack(i)});glow.appendChild(s);if(i===added&&!RM)s.querySelector(".sp").classList.add("rise")}
+    s.style.left=L[k][0]+"%";s.style.top=L[k][1]+"%"});
+  glow.classList.toggle("many",pack.length===4);glow.classList.toggle("five",pack.length===5);ktEmpty.hidden=pack.length>0;
+  thEls.forEach((t,i)=>{const on=pack.includes(i);t.classList.toggle("has",on);t.setAttribute("aria-pressed",String(on));t.classList.toggle("rec",!!need&&NEEDS[need].p.includes(i))});
+  const n=pack.length;
+  if(!buy.classList.contains("done")){buy.disabled=!n;buy.textContent=n?`Añadir ${n===1?"1 producto":n+" productos"} a tu lista`:"Elige tus productos"}
+  ktWa.setAttribute("aria-disabled",String(!n&&!need));
+  ktSee.hidden=!n;
 }
+function kitMsg(){const items=pack.map(i=>P[i].n);const lugar=need?{paredes:"las paredes de mi casa",fachada:"la fachada",techo:"el techo o la terraza",rejas:"rejas, puertas y madera"}[need]:"";
+  return "Hola, Tiendas Montana. Quiero asesoría"+(lugar?" para pintar "+lugar:"")+(items.length?". Me interesan: "+items.join(", "):"")+".";}
+ktWa.addEventListener("click",e=>{if(ktWa.getAttribute("aria-disabled")==="true"){e.preventDefault();ktTip.textContent="Elige primero qué vas a pintar o algún producto.";return}
+  if(waNum){ktWa.href="https://wa.me/"+waNum+"?text="+encodeURIComponent(kitMsg());ktWa.target="_blank";ktWa.rel="noopener"}else{e.preventDefault();smoothTo(visit.offsetTop)}});
+document.querySelectorAll(".kt-chip").forEach(c=>c.addEventListener("click",()=>{touched=true;const v=c.dataset.need;need=need===v?null:v;
+  document.querySelectorAll(".kt-chip").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.need===need)));
+  ktTip.textContent=need?NEEDS[need].t+" Toca los que quieras.":"";renderPack()}));
+/* fotos de los ambientes del simulador, reutilizadas (se cargan al ver el kit) */
+{const loadRooms=()=>document.querySelectorAll(".kt-room .ph").forEach(ph=>{if(ph.firstChild)return;const im=document.querySelector(`.sm-room[data-r="${ph.dataset.img}"] img`);if(im){const c=im.cloneNode();c.alt="";ph.appendChild(c)}});
+  const io=new IntersectionObserver(en=>{if(en[0].isIntersecting){loadRooms();io.disconnect()}},{rootMargin:"300px 0px"});io.observe(kit)}
+document.querySelectorAll(".kt-room").forEach(b=>b.addEventListener("click",()=>{const sim=$("#simulador");
+  if(window.MONTANA_SIM){window.MONTANA_SIM.select(b.dataset.r,true)}
+  setTimeout(()=>{const t=document.querySelector(".sm-stage")||sim;smoothTo(t.getBoundingClientRect().top+scrollY-navH()-8)},120)}));
 buy.addEventListener("click",()=>{
-  if(pack.includes(null))return;const items=[...pack];
-  const srcs=slotEls.map(s=>s.querySelector(".sp img"));
+  if(!pack.length)return;const items=[...pack];
+  const srcs=[...glow.querySelectorAll(".slot .sp img")];
   addToList({t:"kit",items},srcs);
-  setTimeout(()=>{pack.fill(null);buy.classList.add("done");buy.disabled=false;buy.textContent="Añadido a tu lista";renderPack();
+  setTimeout(()=>{buy.classList.add("done");buy.disabled=false;buy.textContent="Añadido a tu lista";
     setTimeout(()=>{buy.classList.remove("done");renderPack()},1600)},60);
 });
 renderPack();
@@ -1825,7 +1922,7 @@ function stepScroll(dt){if(sTarget===null)return;sCur+= (sTarget-sCur)*(1-Math.e
 const once=(el,th,fn)=>{const io=new IntersectionObserver(([en])=>{if(en.isIntersecting){fn();io.disconnect()}},{threshold:th});io.observe(el)};
 once(shop,.18,()=>shop.classList.add("shown"));
 once(kit,.18,()=>kit.classList.add("shown"));
-once(kit,.3,()=>{if(touched)return;[0,1,2].forEach((k,n)=>setTimeout(()=>{if(!touched&&pack[k]===null){pack[k]=mod(cur+n,NP);renderPack(k);glow.style.setProperty("--g",hexA(P[pack[k]].col,.62))}},RM?0:[250,410,570][n]))});
+/* (kit libre: ya no se rellenan 3 productos automáticamente) */
 
 /* ---------- Bucle principal ---------- */
 let entered=false,last=performance.now(),phoneCentered=false;
