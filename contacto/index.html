@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contacto · Tiendas Montana</title>
+<meta name="description" content="Estamos en Carora. Cómo llegar, WhatsApp e Instagram de Tiendas Montana.">
+<link rel="icon" href="/assets/img/logo-montana.webp">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0c1f4d">
+<!-- Vista previa al compartir el enlace (WhatsApp, Facebook, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tiendas-montana.onrender.com/contacto/">
+<link rel="canonical" href="https://tiendas-montana.onrender.com/contacto/">
+<meta property="og:locale" content="es_VE">
+<meta property="og:site_name" content="Tiendas Montana">
+<meta property="og:title" content="Contacto · Tiendas Montana">
+<meta property="og:description" content="24 años dándole color a Carora. Pinturas, impermeabilizantes y esmaltes Montana. Prueba colores en tu sala y consúltanos.">
+<meta property="og:image" content="https://tiendas-montana.onrender.com/og-montana.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tiendas Montana, La Pinturería de Carora">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>/* orden de las páginas y sentido de la transición (siguiente o anterior) */
+window.MONTANA_ORDEN=[["/", "Inicio"], ["/productos/", "Productos"], ["/catalogo/", "Catálogo"], ["/tu-kit/", "Tu kit"], ["/prueba-de-colores/", "Prueba de colores"], ["/sobre-nosotros/", "Sobre nosotros"], ["/contacto/", "Contacto"]];
+(function(){var d=document.documentElement,O=window.MONTANA_ORDEN;if("CSSViewTransitionRule" in window)d.classList.add("vt");
+function ix(p){try{p=new URL(p,location.href).pathname}catch(e){return -1}p=p.replace(/index\.html$/,"");if(p.slice(-1)!=="/")p+="/";for(var i=0;i<O.length;i++)if(O[i][0]===p)return i;return -1}
+function put(dir){d.classList.remove("dir-next","dir-prev");d.classList.add("dir-"+dir)}
+var dir="";try{dir=sessionStorage.getItem("montanaDir")||"";sessionStorage.removeItem("montanaDir")}catch(e){}
+if(!dir){var a=ix(document.referrer),b=ix(location.href);if(a>=0&&b>=0&&a!==b)dir=a<b?"next":"prev"}
+put(dir||"next");
+/* atrás/adelante del navegador: el sentido se calcula con la página de la que se viene */
+addEventListener("pagereveal",function(){try{var f=navigation.activation&&navigation.activation.from;if(f&&navigation.activation.navigationType==="traverse"){var a=ix(f.url),b=ix(location.href);if(a>=0&&b>=0&&a!==b)put(a<b?"next":"prev")}}catch(e){}});
+})();</script>
+<!-- Si el navegador o el visor del teléfono no ejecuta JavaScript, la página se muestra igual (sin la intro) -->
+<noscript><style>#intro{display:none!important}.ln>span{transform:none!important}.fi{opacity:1;transform:none}</style></noscript>
+<link rel="preload" href="/assets/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/montana.css?v=20261118n">
+<script src="/assets/js/config.js?v=20261118n"></script>
+<script type="importmap">
+{"imports":{"three":"/vendor/three/build/three.module.min.js","three/addons/":"/vendor/three/examples/jsm/"}}
+</script>
+<link rel="modulepreload" href="/vendor/three/build/three.module.min.js">
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"href_matches":"/*"},"eagerness":"moderate"}]}
+</script>
+</head>
+<body data-page="contacto">
+<canvas id="gl" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a class="brand" href="/" aria-label="Tiendas Montana, inicio"><img src="/assets/img/logo-montana.webp" alt="" width="50" height="42"><span class="wm"><b>Tiendas Montana</b><small>La Pinturería</small></span></a>
+  <nav class="pill" id="pill" aria-label="Páginas">
+    <span class="hl" aria-hidden="true"></span>
+    <a href="/">Inicio</a>
+    <a href="/productos/">Productos</a>
+    <a href="/catalogo/">Catálogo</a>
+    <a href="/tu-kit/">Tu kit</a>
+    <a href="/prueba-de-colores/">Prueba de colores</a>
+    <a href="/sobre-nosotros/">Sobre nosotros</a>
+    <a href="/contacto/" class="on" aria-current="page">Contacto</a>
+  </nav>
+  <div class="right">
+    <button class="chip" id="list" aria-label="Ver tu lista" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1z"/><path d="M8 5H6.5A1.5 1.5 0 0 0 5 6.5v13A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5v-13A1.5 1.5 0 0 0 17.5 5H16"/><path d="M9 11h6M9 15h4"/></svg><span class="lt">Tu lista</span><span class="badge" id="badge">0</span></button>
+    <a class="cta" id="go" href="https://maps.app.goo.gl/s71HtNyvrHgZjJDZA" target="_blank" rel="noopener" aria-label="Cómo llegar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg><span>Cómo llegar</span></a>
+    <button class="menu" id="menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="pill"><span></span></button>
+  </div>
+</header>
+<script>/* coloca la marca amarilla bajo la página actual antes de pintar (la transición la desliza) */
+(function(){var p=document.getElementById("pill"),a=p&&p.querySelector("a.on"),h=p&&p.querySelector(".hl");if(!a||!h)return;
+function m(){var pad=parseFloat(getComputedStyle(a).paddingLeft)||0;h.style.left=(a.offsetLeft+pad)+"px";h.style.width=Math.max(0,a.offsetWidth-2*pad)+"px"}
+m();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(m);addEventListener("resize",m)})();</script>
+<nav class="dots" aria-label="Páginas"><a href="/"><span>01 · Inicio</span></a><a href="/productos/"><span>02 · Productos</span></a><a href="/catalogo/"><span>03 · Catálogo</span></a><a href="/tu-kit/"><span>04 · Tu kit</span></a><a href="/prueba-de-colores/"><span>05 · Prueba de colores</span></a><a href="/sobre-nosotros/"><span>06 · Sobre nosotros</span></a><a href="/contacto/" aria-current="page"><span>07 · Contacto</span></a></nav>
+
+<script src="/assets/js/intro.js?v=20261118n"></script>
+
+<main id="contenido">
+<section id="visitanos" aria-labelledby="vtT">
+  <span class="vt-glow" aria-hidden="true"></span>
+  <div class="vt-wrap">
+    <div class="vt-top" data-vt>
+      <p class="vt-eye cap">Te esperamos</p>
+      <h1 class="vt-h disp" id="vtT"><span class="ln"><span>Estamos en Carora.</span></span><span class="ln"><span><span class="y">¡Ven a visitarnos!<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 12C70 4 150 16 220 8S288 8 294 9"/></svg></span></span></span></h1>
+      <p class="vt-intro">Tu próximo proyecto de color empieza aquí. Visítanos, conoce nuestros productos y recibe asesoramiento para encontrar la solución perfecta para tus espacios.</p>
+    </div>
+
+    <div class="vt-grid">
+      <ul class="vt-info" data-vt>
+        <li class="vt-i">
+          <span class="vt-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg></span>
+          <span class="vt-k">Ubicación</span>
+          <div class="vt-v" id="vtAddr"></div>
+          <a class="vt-a" id="vtAddrA" target="_blank" rel="noopener">Cómo llegar<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </li>
+        <li class="vt-i">
+          <span class="vt-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
+          <span class="vt-k">Horario</span>
+          <div class="vt-v" id="vtHours"></div>
+        </li>
+        <li class="vt-i">
+          <span class="vt-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg></span>
+          <span class="vt-k">Contacto</span>
+          <div class="vt-v" id="vtContact"></div>
+          <a class="vt-a" id="vtWaA" target="_blank" rel="noopener">Escríbenos por WhatsApp<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </li>
+        <li class="vt-i">
+          <span class="vt-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor" stroke="none"/></svg></span>
+          <span class="vt-k">Redes sociales</span>
+          <div class="vt-v" id="vtIg"></div>
+          <a class="vt-a" id="vtIgA" target="_blank" rel="noopener">Síguenos en Instagram<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </li>
+        <li style="display:contents"><p id="listLine"></p></li>
+      </ul>
+
+      <div class="vt-map" id="vtMap" data-vt>
+        <div class="vt-pend" id="vtPend">
+          <svg class="st" viewBox="0 0 700 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M-20 120C120 90 260 150 420 110S640 60 720 80" stroke-width="18"/><path d="M-20 330C140 300 300 360 470 320S650 280 720 300" stroke-width="26"/><path d="M180 -20C200 120 150 300 210 520" stroke-width="16"/><path d="M500 -20C470 140 540 330 490 520" stroke-width="22"/><path d="M-20 230L720 210M330 -20L350 520" stroke-width="6"/></svg>
+          <div class="vt-pc">
+            <span class="vt-pin" aria-hidden="true"><i></i></span>
+            <b>Mapa pendiente de configurar</b>
+            <span>Aquí aparecerá la ubicación exacta de Tiendas Montana en Carora.</span>
+            <span class="tag">Próximamente</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="vt-acts" data-vt>
+        <a class="vt-b r" id="vtGo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg><span>Cómo llegar</span></a>
+        <a class="vt-b o" id="vtWaze" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15.5A7.5 7.5 0 1 1 19.5 12c0 2.6-1.4 4.7-3.6 5.9H9.2c-1 0-1.9-.4-2.5-1"/><circle cx="9" cy="19.5" r="1.6"/><circle cx="16" cy="19.5" r="1.6"/><path d="M10 10.5h.01M14.5 10.5h.01M10 13.5c1.2 1 3.3 1 4.5 0"/></svg><span>Abrir en Waze</span></a>
+        <a class="vt-b y" id="vWa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg><span>Escribir por WhatsApp</span></a>
+      </div>
+    </div>
+
+    <div class="foot"><span>Tiendas Montana, La Pinturería. Carora, Lara.</span><span>Colores en pantalla orientativos.</span></div>
+  </div>
+</section>
+</main>
+<nav class="nx lt" aria-label="Volver al inicio"><a class="nx-a" href="/"><span class="nx-k">Has llegado al final · 01</span><span class="nx-t disp">Volver al <span class="c">inicio</span></span><span class="nx-ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span><span class="nx-h">Gracias por visitarnos</span></a></nav>
+
+<nav class="tb show" id="tabBar" aria-label="Accesos rápidos">
+  <a class="tb-i" id="tbProd" href="/productos/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8h12l-1 11a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2z"/><path d="M5 8h14M9 8V6a3 3 0 0 1 6 0v2"/></svg><span>Productos</span></a>
+  <a class="tb-i" id="tbCol" href="/prueba-de-colores/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4c0-4.4-4-8-9-8z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10.5" cy="7.5" r="1.2"/><circle cx="15" cy="7.5" r="1.2"/></svg><span>Colores</span></a>
+  <a class="tb-wa" id="tbWa" href="/contacto/" aria-label="Escribir por WhatsApp"><span class="tb-c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" stroke-width="2"><path d="M20 11.5a8.5 8.5 0 0 1-12.6 7.4L3.5 20l1.2-3.7A8.5 8.5 0 1 1 20 11.5z"/></svg></span><span>WhatsApp</span></a>
+  <button class="tb-i" id="tbList" type="button" aria-label="Mi lista para consultar"><span class="tb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1z"/><path d="M8 6H6.5A1.5 1.5 0 0 0 5 7.5v12A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 17.5 6H16"/><path d="M9 12h6M9 16h4"/></svg><b class="tb-n" id="tbN" hidden>0</b></span><span>Mi lista</span></button>
+  <a class="tb-i on" id="tbVis" href="/contacto/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>Contacto</span></a>
+</nav>
+<script src="/assets/js/paginas.js?v=20261118n"></script>
+<script src="/assets/js/nav.js?v=20261118n"></script>
+<script type="module" src="/assets/js/app.js?v=20261118n"></script>
+</body>
+</html>

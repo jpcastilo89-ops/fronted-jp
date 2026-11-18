@@ -110,14 +110,37 @@ else{a.removeAttribute("target");a.href="#visitanos";a.lastChild.textContent="Vi
   a=f.querySelector("[data-ft=maps]");
   if(a){if(/^https:\/\/(maps\.app\.goo\.gl|goo\.gl|(www\.)?google\.com)\//i.test(maps))a.href=maps;else a.hidden=true}
 })();
-/* ===== Cómo pintar: abrir el simulador con un ambiente (enlace desde «Tu kit») ===== */
+/* ===== Prueba de colores: abrir el simulador con un ambiente (enlace desde «Tu kit») ===== */
 (function(){
   var q="";try{q=new URLSearchParams(location.search).get("ambiente")||""}catch(e){}
   if(!/^(sala|hab|coc)$/.test(q)||!window.MONTANA_SIM)return;
   var r=window.MONTANA_SIM.openWithSaved?window.MONTANA_SIM.openWithSaved(q):(window.MONTANA_SIM.select(q,true),"none");
   var m=document.getElementById("smMsg");
   if(m&&r==="month"){m.hidden=false;m.textContent="Aún no has guardado colores: te mostramos el Color del mes. Guarda los que te gusten con «Añadir este color» y aparecerán aquí."}
-  try{history.replaceState(null,"",location.pathname+"#simulador")}catch(e){}
+  try{history.replaceState(null,"",location.pathname)}catch(e){}
   setTimeout(function(){var t=document.querySelector(".sm-stage");if(!t)return;var h=(document.getElementById("nav")||{}).offsetHeight||70;
     scrollTo({top:t.getBoundingClientRect().top+scrollY-h-8,behavior:"smooth"})},420);
+})();
+
+/* ===== Inicio: portada (18/11/2026) =====
+   Entrada escalonada al destaparse la presentación, paredes que cambian de color
+   (colores del simulador, orientativos) y una ligera profundidad al mover el ratón. */
+(function(){
+  var s=document.getElementById("portada");if(!s)return;
+  var RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function start(){s.classList.add("in")}
+  if(window.MONTANA_INTRO&&!window.MONTANA_INTRO.done())document.addEventListener("montana:revelado",start,{once:true});
+  else requestAnimationFrame(function(){requestAnimationFrame(start)});
+  var COL=[["Verde salvia","#A7B79A"],["Azul sereno","#6F93B5"],["Amarillo maíz","#F2D16B"],["Terracota","#B86B4B"],["Azul cielo","#C3D9EA"],["Rosa palo","#E9C6BE"],["Verde eucalipto","#6E9887"],["Arena","#D8C4A0"],["Coral","#E2725B"]];
+  var cards=[].slice.call(s.querySelectorAll(".pt-card"));
+  function paint(c,k){var x=COL[k%COL.length];c.style.setProperty("--wc",x[1]);c.querySelector("b").textContent=x[0];c.querySelector("em").textContent=x[1]}
+  cards.forEach(function(c,i){c._k=i*3;paint(c,c._k)});
+  if(!RM){var turn=0;setInterval(function(){if(document.hidden)return;var c=cards[turn%cards.length];c._k++;paint(c,c._k);turn++},2200)}
+  if(RM||!matchMedia("(pointer: fine)").matches)return;
+  var art=s.querySelector(".pt-art"),tx=0,ty=0,cx=0,cy=0,raf=0;
+  s.addEventListener("pointermove",function(e){var r=s.getBoundingClientRect();tx=(e.clientX-r.left)/r.width-.5;ty=(e.clientY-r.top)/r.height-.5;if(!raf)raf=requestAnimationFrame(step)});
+  s.addEventListener("pointerleave",function(){tx=ty=0;if(!raf)raf=requestAnimationFrame(step)});
+  function step(){raf=0;cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;
+    s.style.setProperty("--mx",cx.toFixed(4));s.style.setProperty("--my",cy.toFixed(4));
+    if(Math.abs(tx-cx)>.001||Math.abs(ty-cy)>.001)raf=requestAnimationFrame(step)}
 })();

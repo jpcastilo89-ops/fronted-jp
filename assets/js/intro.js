@@ -15,6 +15,7 @@
     if(revealed)return;revealed=true;
     document.body.classList.remove("locked");
     if(hero)hero.classList.add("in");
+    try{document.dispatchEvent(new CustomEvent("montana:revelado"))}catch(e){}
     var tt=document.getElementById("title");if(tt&&!tt.textContent)tt.textContent="Tiendas Montana";
     run();
   }

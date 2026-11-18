@@ -57,7 +57,7 @@ const hero=$("#productos"),inside=$("#aplicar"),shop=$("#catalogo"),kit=$("#kit"
 /* Web multipágina (18/11/2026): cada página trae solo sus secciones; este código se adapta a lo que hay */
 const PAGE=document.body.dataset.page||"inicio";
 const HAS_GL=!!(hero||inside||shop);
-const ROUTES={inicio:"/",productos:"/productos/",pintar:"/como-pintar/",catalogo:"/catalogo/",kit:"/tu-kit/",visitanos:"/#visitanos",simulador:"/como-pintar/#simulador"};
+const ROUTES={inicio:"/",productos:"/productos/",catalogo:"/catalogo/",kit:"/tu-kit/",colores:"/prueba-de-colores/",nosotros:"/sobre-nosotros/",visitanos:"/contacto/",simulador:"/prueba-de-colores/"};
 const goPage=url=>{if(window.MONTANA_NAV)window.MONTANA_NAV.go(url);else location.href=url};
 const cv=$("#gl"),titleEl=$("#title"),countEl=$("#count"),reveal=$("#reveal"),arc=$("#arc");
 const inBar=$("#inBar"),inFront=$("#inFront"),inHead=$("#inHead"),inCap=$("#inCap"),inNum=$("#inNum"),inDark=$("#inDark"),frontFrame=$("#frontFrame");
@@ -500,7 +500,7 @@ document.querySelectorAll(".kt-chip").forEach(c=>c.addEventListener("click",()=>
 {const loadRooms=()=>document.querySelectorAll(".kt-room .ph").forEach(ph=>{if(ph.firstChild)return;const c=new Image();c.alt="";c.decoding="async";c.src="/assets/img/simulador/"+ph.dataset.img+"-mini.webp";ph.appendChild(c)});
   const io=new IntersectionObserver(en=>{if(en[0].isIntersecting){loadRooms();io.disconnect()}},{rootMargin:"300px 0px"});io.observe(kit)}
 document.querySelectorAll(".kt-room").forEach(b=>b.addEventListener("click",()=>{
-  goPage("/como-pintar/?ambiente="+encodeURIComponent(b.dataset.r)+"#simulador")}));
+  goPage("/prueba-de-colores/?ambiente="+encodeURIComponent(b.dataset.r))}));
 buy.addEventListener("click",()=>{
   if(!pack.length)return;const items=[...pack];
   const srcs=[...glow.querySelectorAll(".slot .sp img")];
@@ -626,8 +626,8 @@ if(tabBar){
     if(LIST.length)return "Hola, Tiendas Montana. Quiero consultar: "+listText()+".";
     if(PAGE==="productos"||PAGE==="catalogo")return "Hola, Tiendas Montana. Vi el "+P[cur].n+" en la web y quiero hacer una consulta.";
     if(PAGE==="kit")return "Hola, Tiendas Montana. Quiero armar un kit para mi obra.";
-    if(PAGE==="pintar")return "Hola, Tiendas Montana. Quiero asesoría para elegir colores.";
-    if(visit){const r=visit.getBoundingClientRect();if(r.top<vh*.4&&r.bottom>vh*.4)return "Hola, Tiendas Montana. Quiero visitar la tienda."}
+    if(PAGE==="colores")return "Hola, Tiendas Montana. Quiero asesoría para elegir colores.";
+    if(PAGE==="contacto")return "Hola, Tiendas Montana. Quiero visitar la tienda.";
     return "Hola, Tiendas Montana. Vi su página web y quiero hacer una consulta.";
   };
   if(waNum){tbWa.target="_blank";tbWa.rel="noopener";tbWa.href="https://wa.me/"+waNum;
@@ -644,7 +644,6 @@ if(tabBar){
     if(!pastHero)tabBar.classList.remove("show");
     else if(acc>140&&y<maxScroll()-40&&y>vh*.5)tabBar.classList.remove("show");
     else if(acc<-24||!tabBar.classList.contains("show")&&acc<=0)tabBar.classList.add("show");
-    if(visit){const r=visit.getBoundingClientRect(),on=r.top<vh*.4&&r.bottom>vh*.4;$("#tbVis").classList.toggle("on",on)}
   };
   addEventListener("scroll",tbUpdate,{passive:true});addEventListener("resize",tbUpdate);
   tabBar.addEventListener("focusin",()=>tabBar.classList.add("show"));
