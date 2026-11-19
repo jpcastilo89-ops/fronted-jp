@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZETA · Premium Wear · Carora</title>
+  <meta name="description" content="ZETA Premium Wear. Franelas oversized de algodón. Envíos a toda Venezuela y entregas en Carora. Pide por WhatsApp.">
+  <meta name="theme-color" content="#0b0b0b">
+  <link rel="icon" href="img/icono-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>try{if(sessionStorage.getItem("zeta-intro")||matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.className+=" sin-intro";sessionStorage.setItem("zeta-intro","1")}catch(e){}</script>
+</head>
+<body class="pagina-inicio">
+  <!-- Toque especial: presentación de marca (solo la primera vez, 1,4 s, no bloquea) -->
+  <div class="intro" aria-hidden="true">
+    <div class="intro__logo"><img src="img/logo-zeta-blanco.png" alt="" width="600" height="373"><span class="intro__linea"></span></div>
+  </div>
+  <!-- Dibujo de la franela (se reutiliza en todas partes) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="sombraLados" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0" stop-color="#000" stop-opacity=".32"/>
+        <stop offset=".28" stop-color="#000" stop-opacity="0"/>
+        <stop offset=".55" stop-color="#fff" stop-opacity=".06"/>
+        <stop offset=".75" stop-color="#000" stop-opacity="0"/>
+        <stop offset="1" stop-color="#000" stop-opacity=".34"/>
+      </linearGradient>
+      <linearGradient id="sombraAbajo" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="#000" stop-opacity="0"/>
+        <stop offset=".8" stop-color="#000" stop-opacity=".06"/>
+        <stop offset="1" stop-color="#000" stop-opacity=".22"/>
+      </linearGradient>
+      <symbol id="franela" viewBox="0 0 400 420">
+        <path fill="currentColor" stroke="rgba(255,255,255,.16)" stroke-width="2" d="M128 30c18 20 44 30 72 30s54-10 72-30l86 40 34 104-62 24-14-30v240H84V168l-14 30-62-24L42 70z"/>
+        <path fill="url(#sombraLados)" d="M128 30c18 20 44 30 72 30s54-10 72-30l86 40 34 104-62 24-14-30v240H84V168l-14 30-62-24L42 70z"/>
+        <path fill="url(#sombraAbajo)" d="M84 160h232v248H84z"/>
+        <path fill="#000" fill-opacity=".28" d="M128 30c18 20 44 30 72 30s54-10 72-30l-14-6c-14 16-36 24-58 24s-44-8-58-24z"/>
+        <path fill="none" stroke="#000" stroke-opacity=".14" stroke-width="3" d="M84 168c4-30 2-60-6-84M316 168c-4-30-2-60 6-84M150 300c10 40 8 80 4 108M262 260c-6 50-2 100 2 148"/>
+      </symbol>
+    </defs>
+  </svg>
+  <!-- Barra superior: menú y logo -->
+  <div class="barra">
+    <button class="menu-boton vidrio" id="botonMenu" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a class="barra__logo" href="index.html" aria-label="ZETA, ir al inicio"><img src="img/logo-zeta-blanco.png" alt="ZETA" width="600" height="373"></a>
+  </div>
+  <button class="bolsa vidrio" id="bolsa" type="button" aria-label="Ver mi pedido" aria-haspopup="dialog">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Zm3 0V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <span class="bolsa__num" id="bolsaNum">0</span>
+    </button>
+  <!-- Menú -->
+  <nav class="menu" id="menu" aria-label="Menú principal" hidden>
+    <button class="menu__cerrar" id="cerrarMenu" type="button" aria-label="Cerrar menú">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <ol class="menu__lista">
+      <li><a href="index.html" data-pagina="index"><span>01</span>Inicio</a></li>
+      <li><a href="productos.html" data-pagina="productos"><span>02</span>La franela</a></li>
+      <li><a href="catalogo.html" data-pagina="catalogo"><span>03</span>Catálogo</a></li>
+      <li><a href="pack.html" data-pagina="pack"><span>04</span>Arma tu pack</a></li>
+      <li><a href="galeria.html" data-pagina="galeria"><span>05</span>Galería</a></li>
+      <li><a href="nosotros.html" data-pagina="nosotros"><span>06</span>Sobre nosotros</a></li>
+      <li><a href="contacto.html" data-pagina="contacto"><span>07</span>Contacto</a></li>
+    </ol>
+    <a class="boton boton--wa menu__wa" data-wa-general href="#" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+  </nav>
+  <!-- PORTADA: probador de franelas -->
+  <header class="probador" id="probador">
+    <div class="fondo" aria-hidden="true"></div>
+    <div class="fantasma" aria-hidden="true"><span>Z</span><span>E</span><span>T</span><span>A</span></div>
+
+    <div class="marca">
+      <img class="marca__logo" src="img/logo-zeta-blanco.png" alt="ZETA" width="600" height="373">
+      <div>
+        <p class="marca__frase" data-campo="frase">Premium Wear</p>
+        <h1 class="marca__lema" data-campo="lema">Viste diferente. Viste ZETA.</h1>
+      </div>
+    </div>
+    <p class="envios" data-campo="envios"></p>
+
+    <div class="escenario" id="escenario" aria-label="Colores de la franela. Desliza para cambiar.">
+      <div class="arco" id="arco"></div>
+    </div>
+
+    <div class="modelo" aria-hidden="true">
+      <svg class="m-actual" id="mCur" viewBox="0 0 400 420"><use href="#franela"/></svg>
+      <svg class="m-siguiente" id="mNext" viewBox="0 0 400 420"><use href="#franela"/></svg>
+      <div class="rejilla" id="rejilla"></div>
+      <div class="escaneo" id="escaneo"></div>
+    </div>
+
+    <button class="flecha flecha--izq vidrio" id="ant" type="button" aria-label="Color anterior">
+      <svg viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="flecha flecha--der vidrio" id="sig" type="button" aria-label="Color siguiente">
+      <svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <p class="pista">Desliza para cambiar de color</p>
+
+    <!-- Tarjeta de pedido -->
+    <div class="pedido vidrio" id="pedido" data-tapa-flotante>
+      <div class="pedido__fila">
+        <div class="pedido__mini"><svg id="mini" viewBox="0 0 400 420"><use href="#franela"/></svg></div>
+        <div class="pedido__info">
+          <div class="ln pedido__nombre"><span id="pNombre">Franela oversized</span></div>
+          <div class="ln pedido__detalle"><span id="pColor">Color</span></div>
+        </div>
+        <div class="pedido__botones">
+          <button class="pedido__anadir" id="anadir" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+            <span>Añadir</span>
+          </button>
+          <a class="pedido__wa" data-wa-pedido href="#" target="_blank" rel="noopener" aria-label="Pedir solo esta franela por WhatsApp" title="Pedir solo esta por WhatsApp">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="pedido__fila pedido__opciones">
+        <div class="grupo">
+          <span class="grupo__titulo">Talla</span>
+          <div class="tallas" id="tallas"></div>
+        </div>
+        <div class="grupo">
+          <span class="grupo__titulo">Color</span>
+          <div class="puntos" id="puntos"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cursor" id="cursor" aria-hidden="true">
+      <div class="cursor__aro"></div><div class="cursor__punto"></div>
+      <span class="cursor__txt cursor__txt--probar">PROBAR</span>
+      <span class="cursor__txt cursor__txt--arrastra">ARRASTRA</span>
+    </div>
+  </header>
+  <main>
+    <!-- CÓMO COMPRAR -->
+    <section class="seccion pasos" aria-labelledby="tPasos">
+      <p class="etiqueta-seccion">Cómo comprar</p>
+      <h2 class="titulo" id="tPasos">Tres pasos. Sin vueltas.</h2>
+      <ol class="pasos__lista">
+        <li><span>1</span><b>Elige</b>Color y talla en el probador.</li>
+        <li><span>2</span><b>Añade</b>Todas las que quieras a tu pedido.</li>
+        <li><span>3</span><b>Envía</b>Tu pedido llega ya escrito a nuestro WhatsApp.</li>
+      </ol>
+    </section>
+    <!-- EXPLORA (inicio) -->
+    <section class="seccion explora" aria-labelledby="tExplora">
+      <p class="etiqueta-seccion">Explora</p>
+      <h2 class="titulo" id="tExplora">Todo ZETA, a un toque.</h2>
+      <ul class="explora__grid">
+        <li><a href="productos.html"><b>La franela</b><span>Corte, algodón y consejo de talla</span></a></li>
+        <li><a href="catalogo.html"><b>Catálogo</b><span>Los 6 colores con añadir rápido</span></a></li>
+        <li><a href="pack.html"><b>Arma tu pack</b><span>Tres colores, una talla</span></a></li>
+        <li><a href="galeria.html"><b>Galería</b><span>Todos los colores en grande</span></a></li>
+        <li><a href="nosotros.html"><b>Sobre nosotros</b><span>Quiénes somos</span></a></li>
+        <li><a href="contacto.html"><b>Contacto</b><span>Envíos y WhatsApp</span></a></li>
+      </ul>
+    </section>
+  </main>
+  <footer class="pie">
+    <img src="img/logo-zeta-blanco.png" alt="ZETA" width="600" height="373" loading="lazy">
+    <p><span data-campo="frase"></span> · <span data-campo="ciudad"></span></p>
+    <p class="pie__peq">© <span data-anio></span> ZETA</p>
+  </footer>
+  <!-- Mi pedido -->
+  <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+  <div class="velo" id="velo" hidden></div>
+  <aside class="lista" id="lista" role="dialog" aria-modal="true" aria-labelledby="listaTitulo" hidden>
+    <div class="lista__cabeza">
+      <h2 id="listaTitulo">Mi pedido</h2>
+      <button class="lista__cerrar" id="cerrarLista" type="button" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <ul class="lista__items" id="listaItems"></ul>
+    <p class="lista__vacia" id="listaVacia">Todavía no has añadido franelas. Elige color y talla, y toca «Añadir».</p>
+    <div class="lista__pie">
+      <p class="lista__total" id="listaTotal"></p>
+      <p class="lista__nota">Precio: Información próximamente. Te lo confirmamos por WhatsApp.</p>
+      <a class="lista__enviar" id="enviarLista" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+        <span>Enviar pedido por WhatsApp</span>
+      </a>
+    </div>
+  </aside>
+  <!-- Botón de WhatsApp fijo (móvil, aparece al bajar fuera de la portada) -->
+  <a class="wa-flotante" data-wa href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+  </a>
+  <script src="config.js"></script>
+  <script src="comun.js"></script>
+  <script src="probador.js"></script>
+  <script src="tienda.js"></script>
+</body>
+</html>
