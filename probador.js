@@ -44,6 +44,34 @@
   var cajaPuntos = document.getElementById("puntos");
   var cursor = document.getElementById("cursor");
 
+  // ---------- Fotos de las franelas (con respaldo: si una imagen falla, se ve la franela dibujada) ----------
+  var RUTA_FOTOS = "img/franelas/";
+  var grandes = [];
+  function vestir(svg, k, tam) {
+    if (!svg) return;
+    var im = svg.querySelector("image");
+    if (!im) {
+      im = document.createElementNS("http://www.w3.org/2000/svg", "image");
+      im.setAttribute("width", "400"); im.setAttribute("height", "420");
+      im.addEventListener("load", function () { svg.classList.add("con-foto"); });
+      im.addEventListener("error", function () { svg.classList.remove("con-foto"); im.removeAttribute("href"); });
+      svg.appendChild(im);
+    }
+    im.setAttribute("href", RUTA_FOTOS + tam + "-" + k + ".webp");
+  }
+  // Espera (como mucho 0,7 s) a que la foto grande esté lista antes de escanear
+  function cuandoLista(k, fn) {
+    var g = grandes[k];
+    if (!g) { g = grandes[k] = new Image(); g.src = RUTA_FOTOS + "g-" + k + ".webp"; }
+    if (g.complete) return fn();
+    var hecho = false;
+    function ya() { if (!hecho) { hecho = true; fn(); } }
+    g.addEventListener("load", ya); g.addEventListener("error", ya); setTimeout(ya, 700);
+  }
+  window.addEventListener("load", function () {
+    setTimeout(function () { COLORES.forEach(function (c, k) { cuandoLista(k, function () {}); }); }, 1200);
+  });
+
   pNombre.textContent = P.nombre || "Franela";
 
   // ---------- Tarjetas: dos vueltas de colores para que el arco no tenga fin ----------
@@ -62,6 +90,7 @@
       if (reducir) return;
       var el = this; el.classList.remove("brilla"); void el.offsetWidth; el.classList.add("brilla");
     });
+    vestir(t.querySelector("svg"), i % N, "t");
     arco.appendChild(t);
     tarjetas.push({ el: t, semilla: Math.random() * 6.28, visible: true });
   }
@@ -182,13 +211,17 @@
     animaciones.forEach(function (an) { an.cancel(); });
     animaciones = [];
     mNext.style.color = c.hex;
+    vestir(mNext, k, "g");
     var foto = document.getElementById("fotoProducto");
     if (foto) foto.style.color = c.hex;
 
     if (reducir || !mNext.animate) {
-      mCur.style.color = c.hex; mCur.style.visibility = "visible";
+      mCur.style.color = c.hex; vestir(mCur, k, "g"); mCur.style.visibility = "visible";
       return;
     }
+    cuandoLista(k, function () { if (mostrado === k) escanear(c, k); });
+  }
+  function escanear(c, k) {
     var revelar = mNext.animate([{ clipPath: "inset(0 0 100% 0)" }, { clipPath: "inset(0 0 0% 0)" }], { duration: 950, easing: EASE_ESCANEO, fill: "forwards" });
     animaciones.push(revelar);
     animaciones.push(rejilla.animate([{ clipPath: "inset(0 0 100% 0)" }, { clipPath: "inset(0 0 0 0)", offset: .5 }, { clipPath: "inset(100% 0 0 0)" }], { duration: 1092, easing: EASE_ESCANEO }));
@@ -200,7 +233,7 @@
     ], { duration: 950, easing: EASE_ESCANEO }));
     animaciones.push(mNext.animate([{ transform: "scale(1.012)" }, { transform: "scale(1)" }], { duration: 1250, easing: "ease-out" }));
     revelar.onfinish = function () {
-      mCur.style.color = c.hex; mCur.style.visibility = "visible";
+      mCur.style.color = c.hex; vestir(mCur, k, "g"); mCur.style.visibility = "visible";
       animaciones.forEach(function (an) { an.cancel(); });
       animaciones = [];
     };
@@ -223,6 +256,7 @@
   function actualizarPedido(c) {
     rodar(pColor, "Color · " + c.nombre + (P.material && !esMovil() ? " · " + P.material : ""));
     mini.style.color = c.hex;
+    vestir(mini, COLORES.indexOf(c), "t");
     if (!reducir && mini.animate) mini.animate([{ transform: "translateY(70%) scale(.8)" }, { transform: "none" }], { duration: 650, easing: "cubic-bezier(.2,.8,.2,1)" });
     cajaPuntos.querySelectorAll(".punto").forEach(function (b, k) { b.setAttribute("aria-pressed", k === estado.color ? "true" : "false"); });
   }
