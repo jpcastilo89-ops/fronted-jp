@@ -1084,3 +1084,18 @@ main { display: block; }
   .portada__girar { top: 0; right: -4px; width: 40px; padding: 0; justify-content: center; }
   .portada__girar span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 }
+
+/* ---------- Portada: franela en 3D (franela3d.js). Si no hay 3D, queda el giro de frente y espalda ---------- */
+.portada__3d {
+  position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; display: block;
+  touch-action: pan-y; cursor: grab; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent;
+  opacity: 0; transition: opacity .5s var(--ease);
+  filter: drop-shadow(14px 22px 22px rgba(70,54,34,.26)) drop-shadow(2px 4px 4px rgba(70,54,34,.18));
+}
+.portada__3d:focus-visible { outline: 2px solid var(--tinta-calida); outline-offset: 4px; border-radius: 8px; }
+.portada.girando .portada__3d { cursor: grabbing; }
+.portada.en-3d .portada__3d { opacity: 1; }
+.portada.en-3d .portada__giro { opacity: 0; transition: opacity .5s var(--ease) .1s; pointer-events: none; }
+.portada.en-3d .portada__img--nueva { display: none; }
+/* Mientras gira, sin la sombra (en teléfonos baratos la sombra en cada cuadro cuesta mucho) */
+.portada__3d.moviendo { filter: none; }

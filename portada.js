@@ -37,7 +37,7 @@
   }
   function textoNota(k) {
     if (modelo) return "";
-    var gira = " Desliza para girarla.";
+    var gira = t3 ? " En 3D: arrástrala para girarla." : " Desliza para girarla.";
     return COLORES[k].nombre === "Negro" ? "Fotografía real de la franela negra." + gira :
       "Referencia de color: el tono puede variar." + gira;
   }
@@ -77,6 +77,11 @@
   function cambiar(k) {
     if (k === actual) return;
     actual = k; marcar(k);
+    if (t3) {
+      t3.color(k, reducir ? 0 : DURA, function () { linea(); });
+      ponerCaras(k); // la foto de respaldo también queda en el color nuevo
+      return;
+    }
     if (!modelo) pintarGiro(false);
     var mio = ++pedido;
     var atras = !modelo && deEspaldas();
@@ -90,9 +95,7 @@
       poner(nueva, k, f);
       var ease = "cubic-bezier(.65,0,.35,1)";
       var a1 = nueva.animate([{ clipPath: "inset(0 0 100% 0)" }, { clipPath: "inset(0 0 0% 0)" }], { duration: DURA, easing: ease, fill: "forwards" });
-      var a2 = escaneo.animate([
-        { top: "0%", opacity: 0 }, { top: "6%", opacity: 1, offset: .08 },
-        { top: "94%", opacity: 1, offset: .9 }, { top: "100%", opacity: 0 }], { duration: DURA, easing: ease });
+      var a2 = linea();
       animando = [a1, a2];
       a1.onfinish = function () {
         ponerCaras(k);
@@ -102,6 +105,13 @@
       };
     };
     pre.decode ? pre.decode().then(listo, listo) : (pre.onload = pre.onerror = listo);
+  }
+
+  function linea() {
+    if (!escaneo.animate) return null;
+    return escaneo.animate([
+      { top: "0%", opacity: 0 }, { top: "6%", opacity: 1, offset: .08 },
+      { top: "94%", opacity: 1, offset: .9 }, { top: "100%", opacity: 0 }], { duration: DURA, easing: "cubic-bezier(.65,0,.35,1)" });
   }
 
   // Si una foto no carga, se ve la franela dibujada en ese color
@@ -163,6 +173,7 @@
   if (modelo) { btnGirar.hidden = true; }
   else {
     btnGirar.addEventListener("click", function () {
+      if (t3) { t3.girar(); return; }
       ang = cuadros(actual) ? ang + 360 / cuadros(actual).length : Math.round(ang / 180) * 180 + 180;
       pintarGiro(true);
     });
@@ -192,4 +203,53 @@
 
   marcar(0);
   if (!modelo) { if (cuadros(0)) ponerCaras(0); pintarGiro(false); }
+
+  // ---------- Franela en 3D (se gira libre con el mouse o el dedo) ----------
+  // Se carga después de la página. Si el equipo no tiene 3D (WebGL), queda el giro de frente y espalda.
+  var t3 = null;
+  function puede3D() {
+    if (modelo || cuadros(0) || !window.Promise || C.franela3d === false) return false;
+    var cn = navigator.connection; if (cn && cn.saveData) return false;
+    try {
+      var c = document.createElement("canvas"), g = c.getContext("webgl") || c.getContext("experimental-webgl");
+      if (!g) return false;
+      // Sin tarjeta gráfica (3D dibujado por el procesador) el teléfono se pondría lento: se queda el giro simple
+      var d = g.getExtension("WEBGL_debug_renderer_info"), r = d ? String(g.getParameter(d.UNMASKED_RENDERER_WEBGL)) : "";
+      var lose = g.getExtension("WEBGL_lose_context"); if (lose) lose.loseContext();
+      return !/swiftshader|llvmpipe|softpipe|software|basic render/i.test(r) || /[?&]3d=1/.test(location.search);
+    } catch (e) { return false; }
+  }
+  function iniciar3D() {
+    var s = document.createElement("script");
+    s.src = "franela3d.js"; s.async = true;
+    s.onload = function () {
+      if (!window.Franela3D) return;
+      var k0 = actual;
+      window.Franela3D($("pPrenda"), {
+        k: k0,
+        relieve: "img/franelas/3d-relieve.png",
+        frente: function (c) { return zeta.foto(c, "g"); },
+        espalda: function (c) { return zeta.foto(c, "3d-e"); },
+        tocar: function () { location.href = ver.href; },
+        cara: function (atras) {
+          btnGirar.setAttribute("aria-pressed", atras ? "true" : "false");
+          btnGirar.querySelector("span").textContent = atras ? "Ver frente" : "Ver espalda";
+        },
+        listo: function (api) {
+          t3 = api;
+          if (api.lienzo) api.lienzo.setAttribute("aria-label", base.alt + ". Vista en 3D: arrastra o usa las flechas para girarla.");
+          ang = 0; pintarGiro(false);
+          sec.classList.add("en-3d");
+          nota.textContent = textoNota(actual);
+          if (actual !== k0) api.color(actual, 0);
+          if (!reducir) setTimeout(function () { if (t3 && !sec.classList.contains("girando")) t3.invitar(); }, 500);
+        },
+        fallo: function () { t3 = null; sec.classList.remove("en-3d"); nota.textContent = textoNota(actual); }
+      });
+    };
+    document.head.appendChild(s);
+  }
+  // La revisión del 3D también espera a que la página cargue (no retrasa la primera foto)
+  var arrancar = function () { setTimeout(function () { if (puede3D()) iniciar3D(); }, intro ? 1400 : 200); };
+  if (!modelo) { if (document.readyState === "complete") arrancar(); else window.addEventListener("load", arrancar); }
 })();
