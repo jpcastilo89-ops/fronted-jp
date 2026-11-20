@@ -167,7 +167,7 @@ if(f&&navigation.activation.navigationType==="traverse"){var a=ix(f.url),b=ix(lo
     </section>
   </main>
   <nav class="sigue" aria-label="Seguir a la siguiente página">
-    <a class="sigue__a" href="index.html"><span class="sigue__k">Vuelve al comienzo</span><span class="sigue__t">Inicio</span><span class="sigue__flecha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sigue__barra" aria-hidden="true"><i></i></span></a>
+    <a class="sigue__a" href="index.html"><span class="sigue__k">Vuelve al comienzo</span><span class="sigue__t">Inicio</span><span class="sigue__flecha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sigue__barra" aria-hidden="true"><i></i></span><span class="sigue__pista">Toca para volver al comienzo</span></a>
     <a class="sigue__ant" href="valor.html">Volver a Por qué ZETA</a>
   </nav>
   <footer class="pie">
@@ -220,10 +220,10 @@ if(f&&navigation.activation.navigationType==="traverse"){var a=ix(f.url),b=ix(lo
   </aside>
   <!-- Botón de WhatsApp fijo (móvil) -->
   <a class="wa-flotante" data-wa href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg aria-hidden="true"><use href="#ico-wa"/></svg></a>
-  <!-- Transición para navegadores sin transición nativa: corte en diagonal con el nombre de la página -->
-  <div class="paso-pagina" id="pasoPagina" aria-hidden="true"><div class="paso-pagina__velo"><span class="paso-pagina__n"></span><span class="paso-pagina__t"></span></div></div>
+  <!-- Transición para navegadores sin transición nativa: las franjas de cine se cierran al salir -->
+  <div class="paso-pagina" id="pasoPagina" aria-hidden="true"><i class="paso-pagina__arriba"></i><i class="paso-pagina__abajo"></i><i class="paso-pagina__luz"></i></div>
   <nav class="recorrido" aria-label="Páginas de ZETA"><a href="index.html"><span>01 · Inicio</span></a><a href="catalogo.html"><span>02 · Catálogo</span></a><a href="valor.html"><span>03 · Por qué ZETA</span></a><a href="nosotros.html" aria-current="page"><span>04 · Sobre nosotros</span></a></nav>
-  <div class="rotulo" aria-hidden="true"><span class="rotulo__n">04</span><span class="rotulo__t">Sobre nosotros</span></div>
+  <div class="telon" aria-hidden="true"><i class="telon__arriba"></i><i class="telon__abajo"></i><i class="telon__luz"></i><i class="telon__grano"></i></div>
   <!-- Accesos rápidos (teléfono): siempre a mano, con WhatsApp en el centro -->
   <nav class="tabs" id="tabs" aria-label="Accesos rápidos">
     <a class="tabs__i" href="catalogo.html" data-pagina="catalogo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 4 4 6.5l1.8 4L8 9.6V20h8V9.6l2.2.9 1.8-4L15.5 4c-.8 1.2-2 1.8-3.5 1.8S9.3 5.2 8.5 4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span>Catálogo</span></a>
@@ -232,6 +232,7 @@ if(f&&navigation.activation.navigationType==="traverse"){var a=ix(f.url),b=ix(lo
     <button class="tabs__i" id="tabsPedido" type="button" aria-label="Ver mi pedido"><span class="tabs__ic"><svg aria-hidden="true"><use href="#ico-bolsa"/></svg><b class="tabs__n" id="tabsNum">0</b></span><span>Pedido</span></button>
     <a class="tabs__i" href="nosotros.html#contacto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="9.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span>Contacto</span></a>
   </nav>
+  <div class="progreso" aria-hidden="true"></div>
   <script src="config.js"></script>
   <script src="comun.js"></script>
   <script src="tienda.js"></script>

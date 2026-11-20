@@ -21,11 +21,55 @@
     cab.addEventListener("focusin", function () { cab.classList.remove("escondida"); });
   }
 
-  // Apariciones al bajar
+  var html = document.documentElement, liviano0 = html.classList.contains("liviano");
+
+  // Títulos grandes: cada palabra sube desde una ranura, una detrás de otra
+  if (!reducir && !liviano0) {
+    document.querySelectorAll(".cabeza-pag .titulo, .mega, .titulo[data-aparece], .sigue__t").forEach(function (h) {
+      if (h.hasAttribute("data-campo") || h.querySelector("[data-campo]")) return;
+      var i = 0, piezas = Array.prototype.slice.call(h.childNodes);
+      h.textContent = "";
+      piezas.forEach(function (nodo) {
+        var trozos = nodo.nodeType === 3 ? nodo.textContent.split(/(\s+)/) : [nodo];
+        trozos.forEach(function (tr) {
+          if (typeof tr === "string") {
+            if (!tr) return;
+            if (/^\s+$/.test(tr)) { h.appendChild(document.createTextNode(" ")); return; }
+          }
+          var pal = document.createElement("span"), dentro = document.createElement("span");
+          pal.className = "pal"; dentro.style.setProperty("--i", i++);
+          if (typeof tr === "string") dentro.textContent = tr; else dentro.appendChild(tr);
+          pal.appendChild(dentro); h.appendChild(pal);
+        });
+      });
+      h.classList.add("partido");
+      if (!h.hasAttribute("data-aparece")) h.setAttribute("data-aparece", "");
+    });
+  }
+
+  // La rayita del menú: marca el apartado actual y viaja al siguiente al cambiar de página
+  document.querySelectorAll(".cab__nav").forEach(function (nav) {
+    var actual = nav.querySelector('a[aria-current="page"]');
+    if (!actual) return;
+    var m = document.createElement("span");
+    m.className = "cab__marca"; m.setAttribute("aria-hidden", "true");
+    nav.appendChild(m); nav.classList.add("con-marca");
+    var poner = function () { m.style.left = actual.offsetLeft + "px"; m.style.width = actual.offsetWidth + "px"; };
+    poner();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(poner);
+    window.addEventListener("resize", poner);
+  });
+
+  // Apariciones al bajar (las que entran juntas, en cascada)
   var items = document.querySelectorAll("[data-aparece]");
   if (!reducir && "IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (ent) {
-      ent.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("visto"); io.unobserve(e.target); } });
+      var n = 0;
+      ent.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.style.setProperty("--cascada", (n++ * 90) + "ms");
+        e.target.classList.add("visto"); io.unobserve(e.target);
+      });
     }, { rootMargin: "0px 0px -8% 0px", threshold: .08 });
     items.forEach(function (el) { io.observe(el); });
   } else {
@@ -94,11 +138,7 @@
       var vino = sessionStorage.getItem(CLAVE);
       if (vino) {
         sessionStorage.removeItem(CLAVE);
-        var yo = ORDEN[aqui];
-        paso.querySelector(".paso-pagina__n").textContent = yo ? ("0" + (aqui + 1)).slice(-2) : "";
-        paso.querySelector(".paso-pagina__t").textContent = yo ? yo[1] : "";
-        paso.classList.add("entra");
-        setTimeout(function () { paso.classList.remove("entra"); }, 900);
+        if (!document.querySelector(".telon")) { paso.classList.add("entra"); setTimeout(function () { paso.classList.remove("entra"); }, 900); }
       }
     } catch (e) {}
   }
@@ -116,12 +156,51 @@
     if (nativa || !paso || reducir) return;          // el navegador hace la transición solo
     e.preventDefault();
     try { sessionStorage.setItem(CLAVE, "1"); } catch (err) {}
-    var destino = ORDEN[j];
-    paso.querySelector(".paso-pagina__n").textContent = destino ? ("0" + (j + 1)).slice(-2) : "";
-    paso.querySelector(".paso-pagina__t").textContent = destino ? destino[1] : "";
     paso.classList.remove("entra"); paso.classList.add("sale");
-    setTimeout(function () { location.href = a.href; }, liviano ? 200 : 460);
+    setTimeout(function () { location.href = a.href; }, liviano ? 200 : 520);
   });
+  // ---------- Bajar para pasar de página ----------
+  // Al llegar al final, seguir bajando (rueda del mouse o dedo) llena la línea y abre la página siguiente.
+  var siguiente = aqui >= 0 && aqui < ORDEN.length - 1 ? ORDEN[aqui + 1][0] : null;
+  if (siguiente && !reducir) {
+    var tiron = document.createElement("div");
+    tiron.className = "tiron"; tiron.setAttribute("aria-hidden", "true"); tiron.innerHTML = "<i></i>";
+    document.body.appendChild(tiron);
+    var carga = 0, yendo = false, alFondoDesde = 0, suelta = 0, sigA = document.querySelector(".sigue__a");
+    var alFondo = function () { return window.scrollY + innerHeight >= document.documentElement.scrollHeight - 4; };
+    var abierto = function () { var l = document.getElementById("lista"), m = document.getElementById("menu"); return (l && !l.hidden) || (m && !m.hidden); };
+    var pintar = function () {
+      tiron.style.setProperty("--t", carga.toFixed(3)); tiron.classList.toggle("activo", carga > .02);
+      if (sig) sig.style.setProperty("--p", Math.max(carga, parseFloat(sig.style.getPropertyValue("--p")) || 0).toFixed(3));
+    };
+    var ir = function () {
+      if (yendo) return; yendo = true; carga = 1; pintar();
+      if (sigA) sigA.click(); else { try { sessionStorage.setItem("zeta-dir", "sig"); } catch (e) {} location.href = siguiente; }
+    };
+    var soltar = function () { clearTimeout(suelta); suelta = setTimeout(function () { if (!yendo) { carga = 0; pintar(); } }, 700); };
+    window.addEventListener("scroll", function () { if (!alFondo()) { alFondoDesde = 0; if (!yendo && carga) { carga = 0; pintar(); } } else if (!alFondoDesde) alFondoDesde = Date.now(); }, { passive: true });
+    window.addEventListener("wheel", function (e) {
+      if (yendo || e.deltaY <= 0 || abierto() || !alFondo()) return;
+      if (!alFondoDesde) { alFondoDesde = Date.now(); return; }
+      if (Date.now() - alFondoDesde < 350) return;           // la inercia del gesto anterior no cuenta
+      carga = Math.min(1, carga + Math.min(e.deltaY, 120) / 900); pintar(); soltar();
+      if (carga >= 1) ir();
+    }, { passive: true });
+    var y0 = null;
+    window.addEventListener("touchstart", function (e) { y0 = alFondo() && !abierto() ? e.touches[0].clientY : null; }, { passive: true });
+    window.addEventListener("touchmove", function (e) {
+      if (y0 === null || yendo) return;
+      if (e.target.closest && e.target.closest(".perchero__lista, .ficha-p__galeria, .tabs")) { y0 = null; return; }
+      carga = Math.max(0, Math.min(1, (y0 - e.touches[0].clientY) / 170)); pintar();
+    }, { passive: true });
+    window.addEventListener("touchend", function () { if (y0 === null) return; y0 = null; if (carga >= 1) ir(); else { carga = 0; pintar(); } }, { passive: true });
+    window.addEventListener("pageshow", function (e) { if (e.persisted) { yendo = false; carga = 0; pintar(); } });
+    if (alFondo()) alFondoDesde = Date.now();
+  }
+
+  // El telón se quita del todo cuando termina
+  var telon = document.querySelector(".telon");
+  if (telon) telon.addEventListener("animationend", function (e) { if (e.target.classList.contains("telon__abajo")) telon.classList.add("fuera"); });
   // Si el usuario vuelve atrás, quitar el velo
   window.addEventListener("pageshow", function (e) { if (e.persisted && paso) paso.classList.remove("sale"); });
 })();

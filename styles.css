@@ -1637,3 +1637,168 @@ html.sin-vt .rotulo { display: none !important; } /* sin transición nativa el n
 .cabeza-pag--seccion { padding-top: 72px; border-top: 1px solid var(--linea); scroll-margin-top: var(--cab); }
 @media (min-width: 900px) { .cabeza-pag--seccion { padding-top: 96px; } }
 @media (max-width: 380px) { .cabecera .cab__nav { gap: 8px; } .cabecera .cab__nav a { font-size: 10px; letter-spacing: .05em; } }
+
+/* =========================================================
+   TRANSICIONES v2 (20-11-2026) · «Telón Z»
+   1) La página que dejas se aleja y se apaga.  2) Un telón negro entra en diagonal con el número
+   y el nombre de la página nueva.  3) El telón sale por el otro lado y la página nueva se arma:
+   los títulos suben palabra por palabra y los bloques aparecen en cascada.
+   La cabecera se queda quieta y su rayita viaja hasta el apartado nuevo.
+   ========================================================= */
+::view-transition-old(root) { animation: zAleja .62s cubic-bezier(.7,0,.3,1) both; }
+::view-transition-new(root) { animation: zDebajo 1.15s linear both; }
+html.dir-ant::view-transition-old(root) { animation-name: zAlejaAnt; }
+html.dir-ant::view-transition-new(root) { animation-name: zDebajo; }
+@keyframes zAleja { to { transform: scale(.9) translateX(-4vw); filter: brightness(.3) blur(2px); } }
+@keyframes zAlejaAnt { to { transform: scale(.9) translateX(4vw); filter: brightness(.3) blur(2px); } }
+@keyframes zDebajo { 0%, 46% { opacity: 0; } 47%, 100% { opacity: 1; } }
+/* el telón y la rayita del menú se dibujan aparte, encima */
+.telon { view-transition-name: zeta-telon; }
+::view-transition-group(zeta-telon), ::view-transition-old(zeta-telon), ::view-transition-new(zeta-telon) { animation: none; }
+.cab__marca { view-transition-name: zeta-marca; }
+::view-transition-group(zeta-marca) { animation-duration: .85s; animation-timing-function: cubic-bezier(.7,0,.2,1); }
+::view-transition-group(zeta-cabecera) { animation-duration: .5s; }
+html.liviano::view-transition-new(root) { animation: zFundeEntra .25s ease both; }
+html.liviano::view-transition-old(root) { animation: zFundeSale .2s ease both; }
+
+/* El telón (solo se ve al llegar desde otra página de ZETA) */
+.telon { display: none; }
+html.llega:not(.liviano) .telon {
+  display: block; position: fixed; z-index: 170; left: 0; right: 0; top: var(--cab); bottom: 0; pointer-events: none; overflow: hidden;
+}
+.telon.fuera { display: none !important; }
+.telon__panel {
+  position: absolute; inset: 0; background: #0b0b0b; color: #f5f5f3;
+  display: grid; place-content: center; justify-items: start; gap: 10px; padding: 0 var(--margen);
+  clip-path: polygon(118% 0, 200% 0, 200% 100%, 100% 100%);
+}
+html.llega.vt .telon__panel { animation: telonVa 1.15s cubic-bezier(.76,0,.24,1) both; }
+html.llega.vt.dir-ant .telon__panel { animation-name: telonVaAnt; }
+html.llega.sin-vt .telon__panel { animation: telonSale .7s cubic-bezier(.76,0,.24,1) .05s both; }
+html.llega.sin-vt.dir-ant .telon__panel { animation-name: telonSaleAnt; }
+/* entra (0–40%), se queda (40–55%), sale por el otro lado (55–100%) */
+@keyframes telonVa {
+  0% { clip-path: polygon(118% 0, 200% 0, 200% 100%, 100% 100%); }
+  40%, 55% { clip-path: polygon(-18% 0, 200% 0, 200% 100%, -36% 100%); }
+  100% { clip-path: polygon(-118% 0, -100% 0, -118% 100%, -136% 100%); }
+}
+@keyframes telonVaAnt {
+  0% { clip-path: polygon(-100% 0, 0 0, -18% 100%, -100% 100%); }
+  40%, 55% { clip-path: polygon(-100% 0, 136% 0, 118% 100%, -100% 100%); }
+  100% { clip-path: polygon(218% 0, 236% 0, 218% 100%, 200% 100%); }
+}
+@keyframes telonSale { from { clip-path: polygon(-18% 0, 200% 0, 200% 100%, -36% 100%); } to { clip-path: polygon(-118% 0, -100% 0, -118% 100%, -136% 100%); } }
+@keyframes telonSaleAnt { from { clip-path: polygon(-100% 0, 136% 0, 118% 100%, -100% 100%); } to { clip-path: polygon(218% 0, 236% 0, 218% 100%, 200% 100%); } }
+.telon__n { font-size: 12px; font-weight: 600; letter-spacing: .3em; color: #8c8a85; }
+.telon__t { font-weight: 800; font-stretch: 68%; text-transform: uppercase; line-height: .88; letter-spacing: -.01em; font-size: clamp(60px, 16vw, 220px); }
+.telon__linea { display: block; width: min(60vw, 520px); height: 2px; background: #f5f5f3; transform-origin: left; box-shadow: 0 0 16px 2px rgba(255,255,255,.45); }
+html.llega.vt .telon__n, html.llega.vt .telon__t { animation: telonTexto 1.15s cubic-bezier(.76,0,.24,1) both; }
+html.llega.vt .telon__t { animation-delay: .04s; }
+html.llega.vt .telon__linea { animation: telonLinea 1.15s cubic-bezier(.76,0,.24,1) both; }
+@keyframes telonTexto { 0%, 18% { opacity: 0; transform: translateX(14vw); } 42%, 56% { opacity: 1; transform: none; } 80%, 100% { opacity: 0; transform: translateX(-10vw); } }
+@keyframes telonLinea { 0%, 30% { transform: scaleX(0); } 52% { transform: scaleX(1); } 64%, 100% { transform: scaleX(1); opacity: 0; } }
+html.llega.sin-vt .telon__n, html.llega.sin-vt .telon__t, html.llega.sin-vt .telon__linea { animation: zFundeSale .3s ease both; }
+.rotulo { display: none !important; }   /* reemplazado por el telón */
+
+/* La rayita del menú */
+.cab__nav.con-marca { position: relative; }
+.cab__marca { position: absolute; bottom: 2px; height: 1px; background: currentColor; pointer-events: none; }
+@media (max-width: 899px) { .cab__marca { bottom: 6px; height: 2px; } }
+.cab__nav.con-marca a[aria-current="page"]::after { transform: scaleX(0); }
+@media (hover: hover) { .cab__nav.con-marca a[aria-current="page"]:hover::after { transform: scaleX(0); } }
+
+/* Títulos palabra por palabra */
+.partido .pal { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .02em .14em; margin: 0 -.02em -.14em; }
+.js .partido .pal > span { display: inline-block; translate: 0 108%; rotate: 4deg; transform-origin: 0 100%;
+  transition: translate 1s cubic-bezier(.2,.85,.2,1), rotate 1s cubic-bezier(.2,.85,.2,1);
+  transition-delay: calc(var(--entrada, 0s) + var(--cascada, 0ms) + var(--i, 0) * 70ms); }
+.js .partido.visto .pal > span { translate: 0 0; rotate: 0deg; }
+.js [data-aparece].partido { opacity: 1; translate: none; }
+/* Bloques: suben un poco y se aclaran, en cascada con los que entran a la vez */
+.js [data-aparece]:not([data-aparece="img"]):not(.partido) { opacity: 0; translate: 0 26px;
+  transition: opacity .9s var(--ease), translate 1s var(--ease); transition-delay: calc(var(--entrada, 0s) + var(--cascada, 0ms)); }
+.js [data-aparece]:not([data-aparece="img"]).visto { opacity: 1; translate: 0 0; }
+.js [data-aparece="img"] > img, .js [data-aparece="img"] > svg { transition-delay: calc(var(--entrada, 0s) + var(--cascada, 0ms) + .1s); }
+.js [data-aparece="img"] > img { scale: 1.12; transition: clip-path 1.2s var(--ease-escaneo), scale 1.6s var(--ease); }
+.js [data-aparece="img"].visto > img { scale: 1; }
+/* Al llegar con telón, lo primero espera a que el telón se abra */
+html.llega.vt:not(.liviano) { --entrada: .62s; }
+html.llega.sin-vt:not(.liviano) { --entrada: .35s; }
+html.liviano [data-aparece], html.liviano .partido .pal > span { transition-duration: .3s !important; }
+
+/* Línea de avance de lectura (navegadores que lo permiten, sin código) */
+.progreso { display: none; }
+@supports (animation-timeline: scroll()) {
+  .progreso { display: block; position: fixed; z-index: 95; top: 0; left: 0; right: 0; height: 2px; background: var(--texto); transform-origin: left;
+    transform: scaleX(0); animation: progresoLlena linear both; animation-timeline: scroll(root); opacity: .8; pointer-events: none; }
+  @keyframes progresoLlena { to { transform: scaleX(1); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .telon, .progreso { display: none !important; }
+  .js .partido .pal > span { translate: none !important; rotate: none !important; }
+  .js [data-aparece="img"] > img { scale: 1 !important; }
+}
+
+/* =========================================================
+   TRANSICIÓN DE CINE (20-11-2026, pedido de Juanpo: sin nombres, cinematográfica)
+   La imagen se acerca y se apaga, dos franjas negras se cierran como en el cine dejando una
+   rendija de luz, y se abren sobre la página nueva, que se asienta con un leve alejamiento.
+   ========================================================= */
+::view-transition-old(root) { animation: cineEntra .6s cubic-bezier(.6,0,.4,1) both; }
+::view-transition-new(root) { animation: cineAbre 1.25s cubic-bezier(.2,.7,.2,1) both; }
+html.dir-ant::view-transition-old(root) { animation-name: cineEntra; }
+html.dir-ant::view-transition-new(root) { animation-name: cineAbre; }
+@keyframes cineEntra { to { transform: scale(1.07); filter: brightness(.35) saturate(.6); } }
+@keyframes cineAbre {
+  0%, 44% { opacity: 0; transform: scale(1.1); filter: brightness(.4) saturate(.6) blur(3px); }
+  45% { opacity: 1; transform: scale(1.1); filter: brightness(.4) saturate(.6) blur(3px); }
+  100% { opacity: 1; transform: none; filter: none; }
+}
+html.liviano::view-transition-new(root) { animation: zFundeEntra .25s ease both; }
+html.liviano::view-transition-old(root) { animation: zFundeSale .2s ease both; }
+
+.telon { top: 0 !important; }
+.telon__panel, .telon__n, .telon__t, .telon__linea { display: none !important; }
+.telon__arriba, .telon__abajo { position: absolute; left: 0; right: 0; height: 50.5%; background: #050505; }
+.telon__arriba { top: 0; transform: translateY(-100%); }
+.telon__abajo { bottom: 0; transform: translateY(100%); }
+.telon__luz { position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; transform: scaleX(0); opacity: 0;
+  background: linear-gradient(90deg, transparent, #fff 25%, #fff 75%, transparent);
+  box-shadow: 0 0 24px 6px rgba(255,255,255,.6), 0 0 90px 24px rgba(255,236,210,.25); }
+.telon__grano { position: absolute; inset: 0; opacity: 0; mix-blend-mode: overlay; }
+html:not(.llega) .telon { display: none; }
+html.llega.vt:not(.liviano) .telon__grano { background: url(img/escena/grano.webp) 0 0 / 160px; }
+/* 0–40%: se cierran · 40–55%: rendija de luz · 55–100%: se abren hasta el formato de cine y desaparecen */
+html.llega.vt:not(.liviano) .telon__arriba { animation: cineArriba 1.25s cubic-bezier(.7,0,.25,1) both; }
+html.llega.vt:not(.liviano) .telon__abajo { animation: cineAbajo 1.25s cubic-bezier(.7,0,.25,1) both; }
+html.llega.vt:not(.liviano) .telon__luz { animation: cineLuz 1.25s cubic-bezier(.7,0,.25,1) both; }
+html.llega.vt:not(.liviano) .telon__grano { animation: cineGrano 1.25s linear both; }
+@keyframes cineArriba { 0% { transform: translateY(-100%); } 40%, 52% { transform: translateY(0); } 80% { transform: translateY(-88%); } 100% { transform: translateY(-100%); } }
+@keyframes cineAbajo { 0% { transform: translateY(100%); } 40%, 52% { transform: translateY(0); } 80% { transform: translateY(88%); } 100% { transform: translateY(100%); } }
+@keyframes cineLuz { 0%, 34% { opacity: 0; transform: scaleX(0); } 44% { opacity: 1; transform: scaleX(1); } 54% { opacity: 1; transform: scaleX(1) scaleY(3); } 64%, 100% { opacity: 0; transform: scaleX(1.2) scaleY(14); } }
+@keyframes cineGrano { 0%, 20% { opacity: 0; } 45% { opacity: .35; } 90%, 100% { opacity: 0; } }
+/* sin transición nativa: la página llega con las franjas cerradas y se abren */
+html.llega.sin-vt:not(.liviano) .telon__arriba { animation: cineAbreArriba .8s cubic-bezier(.7,0,.25,1) .05s both; }
+html.llega.sin-vt:not(.liviano) .telon__abajo { animation: cineAbreAbajo .8s cubic-bezier(.7,0,.25,1) .05s both; }
+@keyframes cineAbreArriba { from { transform: translateY(0); } to { transform: translateY(-100%); } }
+@keyframes cineAbreAbajo { from { transform: translateY(0); } to { transform: translateY(100%); } }
+html.llega.vt:not(.liviano) { --entrada: .75s; }
+
+/* velo de salida sin transición nativa: las mismas franjas que se cierran */
+.paso-pagina__velo { display: none !important; }
+.paso-pagina__arriba, .paso-pagina__abajo { position: absolute; left: 0; right: 0; height: 50.5%; background: #050505; }
+.paso-pagina__arriba { top: 0; transform: translateY(-100%); }
+.paso-pagina__abajo { bottom: 0; transform: translateY(100%); }
+.paso-pagina__luz { position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: #fff; box-shadow: 0 0 24px 6px rgba(255,255,255,.6); opacity: 0; }
+.paso-pagina.sale .paso-pagina__arriba, .paso-pagina.sale .paso-pagina__abajo { animation: cineCierra .5s cubic-bezier(.7,0,.25,1) forwards; }
+.paso-pagina.sale .paso-pagina__luz { animation: zFundeEntra .2s ease .38s both; }
+@keyframes cineCierra { to { transform: translateY(0); } }
+
+/* ---------- Bajar para pasar de página ---------- */
+.tiron { position: fixed; z-index: 96; left: 0; right: 0; bottom: 0; height: 3px; pointer-events: none; opacity: 0; transition: opacity .3s; }
+.tiron.activo { opacity: 1; }
+.tiron i { display: block; height: 100%; background: var(--texto, #f5f5f3); transform-origin: left; transform: scaleX(var(--t, 0)); box-shadow: 0 0 12px rgba(255,255,255,.4); }
+.pagina-inicio .tiron i { background: #f1e9de; }
+@media (max-width: 899px) { .con-tabs .tiron { bottom: calc(76px + env(safe-area-inset-bottom)); left: 14px; right: 14px; } }
+.sigue__pista { grid-column: 1 / -1; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--suave); }
+.sigue__barra i { transition: transform .12s linear; }
