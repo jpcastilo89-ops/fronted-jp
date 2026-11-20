@@ -29,6 +29,22 @@
   ponerWa("[data-wa], [data-wa-general]", Z.mensajeWhatsApp);
   ponerWa("[data-wa-talla]", "Hola ZETA, vengo de la web. Tengo dudas con la talla de la " + nombreProd.toLowerCase() + ". ¿Me ayudan a elegir entre S, M y L?");
 
+  // ---------- Imágenes de la franela (con respaldo dibujado si una imagen falla) ----------
+  var RUTA = "img/franelas/";
+  function foto(k, tipo) { return RUTA + (tipo || "g") + "-" + k + ".webp"; }
+  function imgFranela(k, tipo, alt, extra) {
+    return '<img src="' + foto(k, tipo) + '" alt="' + (alt ? "Franela " + alt.toLowerCase() : "") + '" loading="lazy" decoding="async" ' +
+      (extra || "") + ' onerror="Zeta.falloImg(this,' + k + ')">';
+  }
+  function falloImg(img, k) {
+    var c = COLORES[k] || COLORES[0];
+    var s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    s.setAttribute("viewBox", "0 0 400 420"); s.setAttribute("class", img.className); s.setAttribute("role", "img");
+    s.setAttribute("aria-label", img.alt || "Franela"); s.style.color = c ? c.hex : "#141414";
+    s.innerHTML = '<use href="#franela"/>';
+    if (img.parentNode) img.parentNode.replaceChild(s, img);
+  }
+
   // ---------- Aviso corto ----------
   var aviso = document.getElementById("aviso"), tAviso;
   function avisar(txt) {
@@ -80,7 +96,7 @@
       var li = document.createElement("li");
       li.className = "item";
       li.innerHTML =
-        '<div class="item__mini"><svg viewBox="0 0 400 420" style="color:' + c.hex + '"><use href="#franela"/></svg></div>' +
+        '<div class="item__mini">' + imgFranela(it.color, "t", c.nombre) + '</div>' +
         '<div class="item__texto"><div class="item__nombre">' + nombreProd + '</div>' +
         '<div class="item__detalle">' + c.nombre + ' · Talla ' + it.talla + '</div>' +
         '<button type="button" class="item__quitar">Quitar</button></div>' +
@@ -179,6 +195,10 @@
     enlaceWhatsApp: enlaceWhatsApp,
     anadir: anadir,
     avisar: avisar,
+    foto: foto,
+    imgFranela: imgFranela,
+    falloImg: falloImg,
+    colores: COLORES,
     abrirLista: abrirLista,
     reducir: reducir
   };

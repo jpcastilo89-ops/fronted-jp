@@ -357,7 +357,8 @@
     else if (t.closest && t.closest("button, a")) modo = "boton";
     else if (t.closest && t.closest(".escenario")) modo = "arrastra";
     if (arrastrando) modo = "arrastra";
-    cursor.className = "cursor" + (modo ? " " + modo : "") + (tocando ? " abajo" : "");
+    var fuera = !(t.closest && t.closest(".probador")) && !arrastrando;
+    cursor.className = "cursor" + (modo ? " " + modo : "") + (tocando ? " abajo" : "") + (fuera ? " fuera" : "");
     if (!cursorVivo) { cursorVivo = true; cx = tx; cy = ty; requestAnimationFrame(seguir); }
   }
   function seguir() {

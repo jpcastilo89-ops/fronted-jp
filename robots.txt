@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zeta-premium-wear.onrender.com/sitemap.xml
