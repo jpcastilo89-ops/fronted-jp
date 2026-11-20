@@ -48,29 +48,80 @@
     mover();
   }
 
-  // Escaneo entre páginas: una línea de luz cubre la página al salir y la descubre al llegar
-  var paso = document.getElementById("pasoPagina");
-  if (!paso || reducir) return;
-  var CLAVE = "zeta-escaneo";
-  try {
-    if (sessionStorage.getItem(CLAVE)) {
-      sessionStorage.removeItem(CLAVE);
-      paso.classList.add("entra");
-      setTimeout(function () { paso.classList.remove("entra"); }, 800);
+  // ---------- Recorrido entre páginas ----------
+  var d = document.documentElement, ORDEN = window.ZETA_ORDEN || [];
+  function indice(href) {
+    try { var u = new URL(href, location.href); if (u.origin !== location.origin) return -1;
+      var n = u.pathname.split("/").pop() || "index.html";
+      for (var i = 0; i < ORDEN.length; i++) if (ORDEN[i][0] === n) return i; } catch (e) {}
+    return -1;
+  }
+  var aqui = indice(location.href);
+
+  // Teléfono: barra de accesos rápidos (el pedido abre el mismo panel y muestra el mismo número)
+  var tabs = document.getElementById("tabs");
+  if (tabs) {
+    var tNum = document.getElementById("tabsNum"), bNum = document.getElementById("bolsaNum"), bolsa = document.getElementById("bolsa");
+    var copiar = function () { if (tNum && bNum) { tNum.textContent = bNum.textContent; tNum.hidden = bNum.textContent === "0"; } };
+    copiar();
+    if (bNum && "MutationObserver" in window) new MutationObserver(copiar).observe(bNum, { childList: true, characterData: true, subtree: true });
+    var tp = document.getElementById("tabsPedido");
+    if (tp && bolsa) tp.addEventListener("click", function () { bolsa.click(); });
+    // En la ficha, la barra de compra ocupa ese lugar cuando aparece
+    var compra = document.getElementById("fBarra");
+    if (compra && "MutationObserver" in window) {
+      var ver = function () { tabs.classList.toggle("tapada", compra.classList.contains("ver")); };
+      new MutationObserver(ver).observe(compra, { attributes: true, attributeFilter: ["class"] }); ver();
     }
-  } catch (e) {}
+  }
+
+  // «Sigue»: la línea se llena a medida que llegas al final de la página
+  var sig = document.querySelector(".sigue");
+  if (sig && !reducir) {
+    var llenar = function () {
+      var r = sig.getBoundingClientRect(), p = 1 - (r.top - innerHeight * .35) / (innerHeight * .55);
+      sig.style.setProperty("--p", Math.max(0, Math.min(1, p)).toFixed(3));
+    };
+    window.addEventListener("scroll", llenar, { passive: true }); llenar();
+  }
+
+  // Al tocar un enlace interno se guarda hacia dónde vamos (adelante o atrás en el recorrido)
+  var paso = document.getElementById("pasoPagina");
+  var nativa = d.classList.contains("vt"), liviano = d.classList.contains("liviano");
+  var CLAVE = "zeta-escaneo";
+  if (paso && !nativa && !reducir) {
+    try {
+      var vino = sessionStorage.getItem(CLAVE);
+      if (vino) {
+        sessionStorage.removeItem(CLAVE);
+        var yo = ORDEN[aqui];
+        paso.querySelector(".paso-pagina__n").textContent = yo ? ("0" + (aqui + 1)).slice(-2) : "";
+        paso.querySelector(".paso-pagina__t").textContent = yo ? yo[1] : "";
+        paso.classList.add("entra");
+        setTimeout(function () { paso.classList.remove("entra"); }, 900);
+      }
+    } catch (e) {}
+  }
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest("a[href]");
     if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
     if (a.target === "_blank" || a.hasAttribute("download")) return;
     var url = new URL(a.href, location.href);
     if (url.origin !== location.origin || !/\.html$|\/$/.test(url.pathname)) return;
-    if (url.pathname === location.pathname && url.hash) return;
+    if (url.pathname === location.pathname) return;
+    var j = indice(a.href);
+    var dir = j >= 0 && aqui >= 0 && j < aqui ? "ant" : "sig";
+    try { sessionStorage.setItem("zeta-dir", dir); } catch (err) {}
+    d.classList.remove("dir-sig", "dir-ant"); d.classList.add("dir-" + dir);
+    if (nativa || !paso || reducir) return;          // el navegador hace la transición solo
     e.preventDefault();
     try { sessionStorage.setItem(CLAVE, "1"); } catch (err) {}
+    var destino = ORDEN[j];
+    paso.querySelector(".paso-pagina__n").textContent = destino ? ("0" + (j + 1)).slice(-2) : "";
+    paso.querySelector(".paso-pagina__t").textContent = destino ? destino[1] : "";
     paso.classList.remove("entra"); paso.classList.add("sale");
-    setTimeout(function () { location.href = a.href; }, 400);
+    setTimeout(function () { location.href = a.href; }, liviano ? 200 : 460);
   });
   // Si el usuario vuelve atrás, quitar el velo
-  window.addEventListener("pageshow", function (e) { if (e.persisted) paso.classList.remove("sale"); });
+  window.addEventListener("pageshow", function (e) { if (e.persisted && paso) paso.classList.remove("sale"); });
 })();

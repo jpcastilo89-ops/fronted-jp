@@ -1477,3 +1477,129 @@ main { display: block; }
 /* Sin patas que tapen los bordes: las franelas pasan de lado a lado de la pantalla */
 .perchero__lista { left: 0; right: 0; }
 .percha__boton, .percha::after { will-change: transform, translate; } /* se mueven en su propia capa: no se repinta la sombra */
+
+/* =========================================================
+   RECORRIDO ENTRE PÁGINAS (20-11-2026) · «Corte Z»
+   La página nueva entra con un corte en diagonal, como el trazo de la Z, mientras la anterior
+   se hunde hacia atrás. Su número y nombre cruzan la pantalla. Hacia adelante entra por la
+   derecha; hacia atrás, por la izquierda. Teléfonos modestos: un fundido corto.
+   ========================================================= */
+@view-transition { navigation: auto; }
+.cabecera { view-transition-name: zeta-cabecera; }
+.tabs { view-transition-name: zeta-tabs; }
+.recorrido a[aria-current="page"] { view-transition-name: zeta-punto; }
+::view-transition-old(zeta-cabecera), ::view-transition-new(zeta-cabecera),
+::view-transition-old(zeta-tabs), ::view-transition-new(zeta-tabs) { animation-duration: .3s; }
+::view-transition-group(zeta-punto) { animation-duration: .7s; animation-timing-function: cubic-bezier(.7,0,.2,1); }
+::view-transition-image-pair(root) { isolation: auto; }
+::view-transition-old(root) { z-index: 1; animation: zHunde .8s cubic-bezier(.7,0,.2,1) both; }
+::view-transition-new(root) { z-index: 2; animation: zCorteSig .8s cubic-bezier(.7,0,.2,1) both; }
+html.dir-ant::view-transition-new(root) { animation-name: zCorteAnt; }
+html.dir-ant::view-transition-old(root) { animation-name: zHundeAnt; }
+@keyframes zHunde { to { transform: translateX(-8vw) scale(.92); filter: brightness(.35); } }
+@keyframes zHundeAnt { to { transform: translateX(8vw) scale(.92); filter: brightness(.35); } }
+/* el borde del corte va en diagonal «/», como la Z */
+@keyframes zCorteSig { from { clip-path: polygon(118% 0, 200% 0, 200% 100%, 100% 100%); } to { clip-path: polygon(0 0, 200% 0, 200% 100%, -18% 100%); } }
+@keyframes zCorteAnt { from { clip-path: polygon(-100% 0, 0 0, -18% 100%, -100% 100%); } to { clip-path: polygon(-100% 0, 118% 0, 100% 100%, -100% 100%); } }
+html.liviano::view-transition-old(root) { animation: zFundeSale .2s ease both; }
+html.liviano::view-transition-new(root) { animation: zFundeEntra .25s ease both; }
+@keyframes zFundeSale { to { opacity: 0; } }
+@keyframes zFundeEntra { from { opacity: 0; } }
+
+/* Número y nombre de la página que cruzan la pantalla al llegar */
+.rotulo { display: none; }
+html.llega:not(.liviano) .rotulo {
+  display: flex; position: fixed; z-index: 175; inset: 0; align-items: center; justify-content: center; gap: .3em;
+  pointer-events: none; color: var(--blanco); mix-blend-mode: difference;
+  font-weight: 800; font-stretch: 68%; text-transform: uppercase; line-height: .9; letter-spacing: -.01em;
+  font-size: clamp(56px, 15vw, 210px); white-space: nowrap;
+  animation: rotuloCruza 1.05s cubic-bezier(.7,0,.2,1) both;
+}
+html.llega.dir-ant:not(.liviano) .rotulo { animation-name: rotuloCruzaAnt; }
+.rotulo__n { font-size: .34em; font-stretch: 100%; font-weight: 600; letter-spacing: .14em; align-self: flex-start; margin-top: .2em; }
+@keyframes rotuloCruza { 0% { opacity: 0; transform: translateX(30vw); } 30% { opacity: 1; } 60% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(-12vw); } }
+@keyframes rotuloCruzaAnt { 0% { opacity: 0; transform: translateX(-30vw); } 30% { opacity: 1; } 60% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(12vw); } }
+
+/* Navegadores sin transición nativa: el mismo corte, hecho con un velo que lleva el nombre */
+.paso-pagina__velo { display: grid; place-content: center; grid-auto-flow: column; gap: .3em; align-items: start; color: var(--blanco);
+  font-weight: 800; font-stretch: 68%; text-transform: uppercase; line-height: .9; font-size: clamp(56px, 15vw, 210px);
+  clip-path: polygon(118% 0, 200% 0, 200% 100%, 100% 100%); }
+.paso-pagina__n { font-size: .34em; font-stretch: 100%; font-weight: 600; letter-spacing: .14em; margin-top: .2em; }
+.paso-pagina.sale .paso-pagina__velo { animation: veloCorta .46s cubic-bezier(.7,0,.2,1) forwards; }
+.paso-pagina.entra .paso-pagina__velo { clip-path: polygon(-18% 0, 200% 0, 200% 100%, -36% 100%); animation: veloDescorta .7s cubic-bezier(.7,0,.2,1) .12s forwards; }
+html.dir-ant .paso-pagina.sale .paso-pagina__velo { clip-path: polygon(-100% 0, 0 0, -18% 100%, -100% 100%); animation-name: veloCortaAnt; }
+html.dir-ant .paso-pagina.entra .paso-pagina__velo { animation-name: veloDescortaAnt; }
+@keyframes veloCorta { to { clip-path: polygon(-18% 0, 200% 0, 200% 100%, -36% 100%); } }
+@keyframes veloDescorta { to { clip-path: polygon(-118% 0, -100% 0, -118% 100%, -136% 100%); } }
+@keyframes veloCortaAnt { to { clip-path: polygon(-100% 0, 136% 0, 118% 100%, -100% 100%); } }
+@keyframes veloDescortaAnt { from { clip-path: polygon(-100% 0, 136% 0, 118% 100%, -100% 100%); } to { clip-path: polygon(218% 0, 236% 0, 218% 100%, 200% 100%); } }
+html.liviano .paso-pagina__velo > * { display: none; }
+html.liviano .paso-pagina.sale .paso-pagina__velo, html.liviano .paso-pagina.entra .paso-pagina__velo { animation-duration: .22s; }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+  html.llega .rotulo { display: none !important; }
+}
+
+/* ---------- Recorrido a la derecha (pantallas grandes) ---------- */
+.recorrido { position: fixed; z-index: 80; left: 16px; top: 50%; transform: translateY(-50%); display: none; flex-direction: column; align-items: flex-start; gap: 10px; }
+@media (min-width: 1100px) and (pointer: fine) { .recorrido { display: flex; } }
+.recorrido a { position: relative; display: block; width: 3px; height: 14px; border-radius: 2px; background: currentColor; opacity: .35; color: var(--texto, #f5f5f3); transition: height .35s var(--ease), opacity .2s; }
+.pagina-inicio .recorrido a { color: #f1e9de; }
+.recorrido a:hover, .recorrido a:focus-visible { opacity: .9; }
+.recorrido a[aria-current="page"] { height: 40px; opacity: 1; }
+.recorrido a span { position: absolute; left: 14px; top: 50%; translate: -6px -50%; opacity: 0; pointer-events: none; white-space: nowrap;
+  font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--fondo, #0b0b0b); background: var(--texto, #f5f5f3);
+  padding: 6px 10px; border-radius: 2px; transition: opacity .2s, translate .25s var(--ease); }
+.pagina-inicio .recorrido a span { color: #17130f; background: #f1e9de; }
+.recorrido a:hover span, .recorrido a:focus-visible span { opacity: 1; translate: 0 -50%; }
+
+/* ---------- «Sigue»: el final de cada página lleva a la siguiente ---------- */
+.sigue { position: relative; background: var(--fondo); color: var(--texto); border-top: 1px solid var(--linea); }
+.sigue__a { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 14px 24px; padding: clamp(48px, 7vw, 96px) var(--margen) clamp(28px, 4vw, 48px); color: inherit; text-decoration: none; }
+@media (min-width: 900px) { .sigue__a { padding-left: 48px; padding-right: 48px; } }
+.sigue__k { grid-column: 1 / -1; font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--suave); }
+.sigue__t { font-weight: 800; font-stretch: 68%; text-transform: uppercase; line-height: .86; letter-spacing: -.01em; font-size: clamp(54px, 13vw, 168px);
+  transform: translateX(calc(var(--p, 0) * 18px)); transition: transform .3s var(--ease); }
+.sigue__flecha { width: clamp(56px, 7vw, 96px); height: clamp(56px, 7vw, 96px); border-radius: 50%; display: grid; place-items: center;
+  border: 1px solid currentColor; transition: background .25s, color .25s, transform .35s var(--ease); margin-bottom: .4em; }
+.sigue__flecha svg { width: 40%; height: 40%; }
+.sigue__a:hover .sigue__flecha, .sigue__a:focus-visible .sigue__flecha { background: var(--texto); color: var(--fondo); transform: translateX(6px); }
+.sigue__barra { grid-column: 1 / -1; display: block; height: 2px; background: var(--linea); overflow: hidden; }
+.sigue__barra i { display: block; height: 100%; background: currentColor; transform-origin: left; transform: scaleX(var(--p, 0)); }
+.sigue__ant { display: inline-block; margin: 0 var(--margen) 40px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--suave); text-decoration: underline; text-underline-offset: 4px; }
+@media (min-width: 900px) { .sigue__ant { margin-left: 48px; margin-right: 48px; } }
+@media (prefers-reduced-motion: reduce) { .sigue__t { transform: none; } }
+
+/* ---------- Accesos rápidos en el teléfono ---------- */
+.tabs { display: none; }
+@media (max-width: 899px) {
+  .con-tabs .tabs {
+    display: grid; grid-template-columns: repeat(5, 1fr); align-items: end; position: fixed; z-index: 84;
+    left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom)); height: 60px; border-radius: 18px;
+    background: rgba(18,18,18,.92); color: #f5f5f3; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    box-shadow: 0 0 0 1px rgba(245,245,243,.1), 0 14px 30px -10px rgba(0,0,0,.6);
+    transition: transform .35s var(--ease), opacity .25s;
+  }
+  .con-tabs .tabs.tapada { transform: translateY(140%); opacity: 0; pointer-events: none; }
+  .tabs__i, .tabs__wa { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 4px; height: 60px; padding: 0 0 9px; min-width: 0;
+    background: none; border: 0; color: inherit; font-size: 10px; font-weight: 600; line-height: 1; font-family: inherit; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .tabs__i svg { width: 22px; height: 22px; }
+  .tabs__ic { position: relative; display: block; line-height: 0; }
+  .tabs__ic svg { fill: none; }
+  .tabs__n { position: absolute; top: -6px; right: -10px; min-width: 17px; height: 17px; padding: 0 4px; border-radius: 9px; background: #f5f5f3; color: #0b0b0b; font-size: 10px; line-height: 17px; text-align: center; }
+  .tabs__n[hidden] { display: none; }
+  .tabs__i[aria-current="page"]::before { content: ""; position: absolute; top: 6px; left: 50%; width: 16px; height: 2px; translate: -50% 0; background: currentColor; border-radius: 2px; }
+  .tabs__c { position: absolute; top: -20px; left: 50%; translate: -50% 0; width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center;
+    background: #25d366; box-shadow: 0 0 0 4px #121212, 0 10px 20px -6px rgba(37,211,102,.55); }
+  .tabs__c svg { width: 28px; height: 28px; fill: #fff; }
+  .tabs__i:active svg, .tabs__wa:active .tabs__c { scale: .92; }
+  /* la barra lleva WhatsApp: no hace falta el botón flotante, y el final de la página queda libre */
+  .con-tabs .wa-flotante { display: none; }
+  .con-tabs .pie { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+  .con-tabs .aviso { top: auto; bottom: calc(84px + env(safe-area-inset-bottom)); }
+}
+html.sin-vt .rotulo { display: none !important; } /* sin transición nativa el nombre ya va en el velo */
+/* El recorrido se ve igual sobre fondo claro u oscuro */
+.recorrido { mix-blend-mode: difference; }
+.recorrido a, .pagina-inicio .recorrido a { color: #fff; }
+.recorrido a span, .pagina-inicio .recorrido a span { color: #000; background: #fff; }
