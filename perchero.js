@@ -14,10 +14,10 @@
   // Gancho de metal y percha de madera (la madera asoma sobre los hombros, como en la tienda)
   var GANCHO = '<svg class="percha__gancho" viewBox="0 0 100 40" aria-hidden="true">' +
     '<defs><linearGradient id="madera" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#d6a873"/><stop offset=".55" stop-color="#a87443"/><stop offset="1" stop-color="#7a4f2a"/></linearGradient>' +
-    '<linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#5d5d5d"/><stop offset=".45" stop-color="#d9d9d6"/><stop offset="1" stop-color="#4a4a4a"/></linearGradient></defs>' +
-    '<path d="M50 23V11.5c0-1.6 1-2.6 2.6-3.4 2.4-1.2 3.6-3 3.6-5.1C56.2 .9 53.6-.2 50.6-.2 47.4-.2 45 1.6 45 4.2" fill="none" stroke="url(#metal)" stroke-width="1.15" stroke-linecap="round"/>' +
+    '<linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#2c2c2c"/><stop offset=".45" stop-color="#9a9a97"/><stop offset="1" stop-color="#262626"/></linearGradient></defs>' +
+    '<path d="M50 23V11.5c0-1.6 1-2.6 2.6-3.4 2.4-1.2 3.6-3 3.6-5.1C56.2 .9 53.6-.2 50.6-.2 47.4-.2 45 1.6 45 4.2" fill="none" stroke="url(#metal)" stroke-width="1.35" stroke-linecap="round"/>' +
     '<path d="M50 20.6c-1.3 0-2.4.5-3.4 1.1L20.2 36.2c-1.3.8-.9 2.5.6 2.5h0c.6 0 1.2-.2 1.8-.5L50 24.4l27.4 13.8c.6.3 1.2.5 1.8.5h0c1.5 0 1.9-1.7.6-2.5L53.4 21.7c-1-.6-2.1-1.1-3.4-1.1z" fill="url(#madera)"/>' +
-    '<rect x="47.6" y="19.4" width="4.8" height="3.2" rx="1" fill="#6e6e6b"/></svg>';
+    '<circle cx="50" cy="22.4" r="1.5" fill="#3b3b3a"/></svg>';
   var perchas = COLORES.map(function (c, k) {
     var li = document.createElement("li");
     li.className = "percha";
@@ -52,7 +52,8 @@
     nombre.textContent = c.nombre;
     notaF.textContent = c.nombre === "Negro" ? "Fotografía real" : "Referencia de color";
     ver.href = "productos.html?color=" + k;
-    ver.textContent = "Ver la franela en " + c.nombre.toLowerCase();
+    ver.textContent = "Ver ficha";
+    ver.setAttribute("aria-label", "Ver la franela en " + c.nombre.toLowerCase());
   }
   function irA(k, suave) {
     k = Math.max(0, Math.min(perchas.length - 1, k));
@@ -152,7 +153,8 @@
   window.addEventListener("resize", function () { irA(frente, false); });
   // Las fotos se piden solo cuando el perchero está cerca (no compiten con la foto de la portada)
   function cargarFotos() { lista.querySelectorAll("img[data-src]").forEach(function (i) { i.src = i.getAttribute("data-src"); i.removeAttribute("data-src"); }); }
-  if ("IntersectionObserver" in window) {
+  if (sec.getBoundingClientRect().top < innerHeight) cargarFotos();   // en el inicio se ve de una vez
+  else if ("IntersectionObserver" in window) {
     var cerca = new IntersectionObserver(function (ent) { if (ent[0].isIntersecting) { cerca.disconnect(); cargarFotos(); } }, { rootMargin: "400px 0px" });
     cerca.observe(sec);
   } else cargarFotos();

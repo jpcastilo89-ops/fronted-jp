@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="styles.css">
   <script>document.documentElement.className="js";</script>
   <script>try{if(sessionStorage.getItem("zeta-intro")||matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.className+=" sin-intro";sessionStorage.setItem("zeta-intro","1")}catch(e){}</script>
-  <link rel="preload" as="image" href="img/franelas/g-0.webp" imagesrcset="img/franelas/g-0.webp 800w, img/franelas/z-0.webp 1200w" imagesizes="(min-width: 900px) 46vw, 92vw" fetchpriority="high">
+  <link rel="preload" as="image" href="img/franelas/g-0.webp" fetchpriority="high">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ClothingStore", "name": "ZETA Premium Wear", "url": "https://zeta-premium-wear.onrender.com/", "logo": "https://zeta-premium-wear.onrender.com/img/icono-192.png", "image": "https://zeta-premium-wear.onrender.com/img/compartir.jpg", "address": {"@type": "PostalAddress", "addressLocality": "Carora", "addressRegion": "Lara", "addressCountry": "VE"}, "sameAs": ["https://www.instagram.com/zetabox_ve"]}</script>
 </head>
 <body class="tema-noche pagina-inicio">
@@ -98,48 +98,14 @@
     </div>
   </nav>
   <main id="contenido">
-  <!-- PORTADA: campaña «The Essential Collection». La foto y el color salen de config.js (portada.js) -->
-  <section class="portada" id="portada" aria-labelledby="pTitulo">
-    <div class="portada__fondo" id="pFondo" aria-hidden="true"><span class="portada__luz-ventana"></span><span class="portada__grano"></span></div>
-
-    <div class="portada__texto">
-      <p class="portada__marca">ZETA Premium Wear</p>
-      <h1 class="portada__titulo" id="pTitulo"><span>The Essential</span> <span>Collection</span></h1>
-      <p class="portada__frase">Designed for everyday. Made to stand out.</p>
-    </div>
-
-    <figure class="portada__prenda" id="pPrenda">
-      <span class="portada__sombra" aria-hidden="true"></span>
-      <div class="portada__giro" id="pGiro">
-        <img class="portada__img portada__cara" id="pBase" src="img/franelas/g-0.webp" srcset="img/franelas/g-0.webp 800w, img/franelas/z-0.webp 1200w"
-          sizes="(min-width: 900px) 46vw, 92vw" alt="Franela oversized ZETA en negro, fotografía real" width="800" height="840" fetchpriority="high" draggable="false">
-        <img class="portada__img portada__cara portada__cara--atras" id="pEspalda" src="img/franelas/e-0.webp" alt="" width="800" height="840" loading="lazy" draggable="false">
-      </div>
-      <img class="portada__img portada__img--nueva" id="pNueva" alt="" width="800" height="840" aria-hidden="true">
-      <span class="portada__escaneo" id="pEscaneo" aria-hidden="true"></span>
-      <button class="portada__girar" id="pGirar" type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#ico-giro"/></svg><span>Ver espalda</span></button>
-      <figcaption class="portada__nota" id="pNota">Fotografía real de la franela negra.</figcaption>
-    </figure>
-
-    <div class="portada__compra">
-      <div class="portada__colores">
-        <p class="portada__color-nombre"><span class="oculto">Color: </span><b id="pColorNombre" aria-live="polite">Negro</b></p>
-        <div class="portada__puntos" id="pPuntos" role="group" aria-label="Elige el color de la franela"></div>
-      </div>
-      <p class="portada__ficha"><span>Oversized T-shirt</span><span>220 GSM</span><span id="pPrecio">Precio próximamente</span></p>
-      <div class="portada__botones">
-        <a class="boton portada__boton" href="catalogo.html">Discover the collection</a>
-        <a class="enlace portada__ver" id="pVer" href="productos.html?color=0">Ver la franela en negro</a>
-      </div>
-    </div>
-  </section>
     <!-- PERCHERO: las 6 franelas colgadas como en la tienda (perchero.js) -->
     <section class="perchero" id="perchero" aria-labelledby="tPerchero">
       <div class="perchero__escena">
         <div class="perchero__cabeza">
         <div>
           <p class="perchero__marca">Colores</p>
-          <h2 class="perchero__titulo" id="tPerchero">Seis colores. Elige el tuyo.</h2>
+          <h1 class="perchero__titulo" id="tPerchero">Seis colores. Elige el tuyo.</h1>
+          <p class="perchero__desliza">Desliza para pasar las franelas. Toca una para traerla al frente.</p>
         </div>
         <div class="perchero__flechas">
           <button class="perchero__flecha" id="percheroAtras" type="button" aria-label="Franela anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -149,20 +115,10 @@
         <span class="esc__pared" aria-hidden="true"></span>
         <span class="esc__ventana" aria-hidden="true"><i></i><i></i><i></i></span>
         <span class="esc__luz" aria-hidden="true"></span>
+        <span class="esc__grano" aria-hidden="true"></span>
         <span class="esc__piso" aria-hidden="true"></span>
-        <span class="esc__alfombra" aria-hidden="true"></span>
+        <span class="esc__alfombra-plano" aria-hidden="true"><span class="esc__alfombra"></span></span>
         <span class="esc__rack" aria-hidden="true"><i class="r-barra"></i><i class="r-pata r-izq"></i><i class="r-pata r-der"></i><i class="r-pie r-izq"></i><i class="r-pie r-der"></i></span>
-        <span class="esc__cesta-pos" aria-hidden="true">
-          <svg class="esc__cesta" viewBox="0 0 120 100" aria-hidden="true">
-            <defs><pattern id="tejidoCesta" width="10" height="8" patternUnits="userSpaceOnUse"><rect width="10" height="8" fill="#b8955f"/><path d="M0 4h10M5 0v8" stroke="#8a6a3d" stroke-width="1.2"/><path d="M0 2h5M5 6h5" stroke="#d1b07a" stroke-width="1"/></pattern>
-            <linearGradient id="sombraCesta" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".05"/><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></linearGradient></defs>
-            <ellipse cx="60" cy="94" rx="54" ry="6" fill="rgba(30,24,16,.28)"/>
-            <path d="M12 26h96l-8 62c-1 5-5 8-10 8H30c-5 0-9-3-10-8z" fill="url(#tejidoCesta)"/>
-            <path d="M12 26h96l-8 62c-1 5-5 8-10 8H30c-5 0-9-3-10-8z" fill="url(#sombraCesta)"/>
-            <ellipse cx="60" cy="26" rx="48" ry="7" fill="#7d5f36"/><ellipse cx="60" cy="25" rx="48" ry="6" fill="none" stroke="#c9a46b" stroke-width="3"/>
-            <path d="M34 24c0-14 52-14 52 0" fill="none" stroke="#a9874f" stroke-width="3.5" stroke-linecap="round"/>
-          </svg>
-        </span>
         <ul class="perchero__lista" id="percheroLista" aria-label="Franelas colgadas en el perchero. Desliza para pasarlas."></ul>
       </div>
       <div class="perchero__ficha" id="percheroFicha">
@@ -177,112 +133,8 @@
           <a class="enlace" id="percheroVer" href="productos.html?color=0">Ver la franela</a>
         </div>
       </div>
-      <p class="perchero__ayuda">Desliza para pasar las franelas. Toca una para traerla al frente.</p>
-    </section>
-
-    <!-- 01 LA FRANELA -->
-    <section class="bloque" aria-labelledby="tFranela">
-      <div class="editorial">
-        <div class="editorial__img" data-aparece="img">
-          <img src="img/franelas/g-0.webp" alt="Franela oversized ZETA en negro" width="800" height="840" loading="lazy" onerror="Zeta.falloImg(this,0)">
-          <p class="nota">Fotografía real de la franela negra.</p>
-        </div>
-        <div class="editorial__texto">
-          <p class="etiqueta" data-aparece><b>La franela</b></p>
-          <h2 class="titulo" id="tFranela" data-aparece>Corte perfecto. Caída exacta.</h2>
-          <p class="texto--grande suave" data-campo="producto.descripcion" data-aparece></p>
-          <ul class="ficha-datos" data-aparece>
-            <li><div><b>Material</b><em data-campo="producto.material"></em></div></li>
-            <li><div><b>Corte</b><em data-campo="producto.corte"></em></div></li>
-            <li><div><b>Tallas</b><em>S, M y L</em></div></li>
-            <li><div><b>Al tacto</b><em data-campo="producto.materialDetalle"></em></div></li>
-          </ul>
-          <div class="contacto-cta" data-aparece>
-            <a class="boton" href="productos.html">Ver la franela</a>
-            <a class="boton boton--borde" href="catalogo.html">Ir a la tienda</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 DE CERCA -->
-    <section class="bloque" aria-labelledby="tCerca" style="background:#111">
-      <div class="lupa-bloque">
-        <div class="editorial__texto">
-          <p class="etiqueta" data-aparece><b>De cerca</b></p>
-          <h2 class="titulo titulo--m" id="tCerca" data-aparece>Mira la tela de cerca.</h2>
-          <p class="texto suave" data-aparece>En la ficha de cada color puedes girar la franela, ver la espalda y acercarte con la lupa a la tela y al cuello.</p>
-          <p class="nota">Fotografía real del cuello de la franela negra.</p>
-          <div data-aparece><a class="boton boton--borde" href="productos.html#lupa">Abrir la lupa</a></div>
-        </div>
-        <div class="lupa-bloque__img" data-aparece="img">
-          <img src="img/franelas/d-cuello-0.webp" alt="Detalle del cuello de la franela negra" width="900" height="600" loading="lazy">
-          <span class="lupa-bloque__marco"></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- 04 PACK -->
-    <section class="bloque" aria-labelledby="tPackInicio">
-      <div class="editorial editorial--inversa">
-        <div class="editorial__img" data-aparece="img" style="aspect-ratio:16/11">
-          <img src="img/franelas/composicion-6-peq.webp" alt="Las seis franelas ZETA juntas" width="900" height="562" loading="lazy" style="inset:4%;width:92%;height:92%">
-        </div>
-        <div class="editorial__texto">
-          <p class="etiqueta" data-aparece><b>Arma tu pack</b></p>
-          <h2 class="titulo titulo--m" id="tPackInicio" data-aparece>Tres colores. Una talla.</h2>
-          <p class="texto suave" data-aparece>Combina tus tres colores favoritos y pide el pack completo en un solo mensaje.</p>
-          <div data-aparece><a class="boton" href="pack.html">Armar mi pack</a></div>
-        </div>
-      </div>
-    </section>
-    <!-- CÓMO COMPRAR -->
-    <section class="bloque" aria-labelledby="tPasos" style="border-top:1px solid var(--linea)">
-      <p class="etiqueta" data-aparece><b>Cómo comprar</b></p>
-      <h2 class="titulo titulo--m" id="tPasos" style="margin-top:14px" data-aparece>Tres pasos. Sin vueltas.</h2>
-      <ol class="pasos-lista">
-        <li data-aparece><span>01</span><div><b>Elige</b><em>Color y talla de tu franela.</em></div></li>
-        <li data-aparece><span>02</span><div><b>Añade</b><em>Todas las que quieras a tu pedido.</em></div></li>
-        <li data-aparece><span>03</span><div><b>Envía</b><em>Tu pedido llega ya escrito a nuestro WhatsApp. Te confirmamos disponibilidad y precio.</em></div></li>
-      </ol>
-    </section>
-    <!-- 06 CAMPAÑA -->
-    <section class="camp-portada" aria-labelledby="tCampInicio" style="min-height:90svh">
-      <img class="camp-portada__img" src="img/franelas/composicion-6.webp" alt="" width="1600" height="1000" loading="lazy" data-parallax>
-      <div class="camp-portada__texto">
-        <p class="etiqueta" data-aparece><b>Campaña</b></p>
-        <h2 class="mega" id="tCampInicio" data-aparece>Una <span class="serif">actitud.</span></h2>
-        <div data-aparece><a class="boton boton--borde" href="galeria.html">Ver la campaña</a></div>
-      </div>
     </section>
   </main>
-  <footer class="pie">
-    <div class="pie__arriba">
-      <p class="pie__lema" data-campo="lema">Viste diferente. Viste ZETA.</p>
-      <div class="pie__cols">
-        <div><h2 class="pie__tit">Tienda</h2><ul>
-          <li><a href="catalogo.html">Todos los colores</a></li>
-          <li><a href="productos.html">La franela</a></li>
-          <li><a href="pack.html">Arma tu pack</a></li>
-        </ul></div>
-        <div><h2 class="pie__tit">Ayuda</h2><ul>
-          <li><a href="contacto.html">Contacto y envíos</a></li>
-          <li><a href="productos.html#guia">Guía de tallas</a></li>
-          <li><a data-wa-general href="#" target="_blank" rel="noopener">WhatsApp</a></li>
-        </ul></div>
-        <div><h2 class="pie__tit">ZETA</h2><ul>
-          <li><a href="nosotros.html">Historia</a></li>
-          <li><a href="galeria.html">Campaña</a></li>
-          <li><a data-instagram href="#" target="_blank" rel="noopener">Instagram</a></li>
-        </ul></div>
-      </div>
-    </div>
-    <div class="pie__abajo">
-      <img class="pie__logo" src="img/logo-zeta-blanco.webp" alt="ZETA" width="600" height="373" loading="lazy">
-      <p><span data-campo="frase"></span> · <span data-campo="ciudad"></span></p>
-      <p>© <span data-anio></span> ZETA</p>
-    </div>
-  </footer>
   <!-- Mi pedido -->
   <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
   <div class="velo" id="velo" hidden></div>
@@ -309,7 +161,6 @@
   <div class="paso-pagina" id="pasoPagina" aria-hidden="true"><div class="paso-pagina__velo"></div><span class="linea-luz"></span></div>
   <script src="config.js"></script>
   <script src="comun.js"></script>
-  <script src="portada.js"></script>
   <script src="perchero.js"></script>
   <script src="tienda.js"></script>
   <script src="efectos.js"></script>

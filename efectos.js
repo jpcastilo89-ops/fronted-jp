@@ -5,7 +5,7 @@
 
   // Cabecera: se vuelve sólida al bajar (en el inicio, al salir de la portada)
   if (cab) {
-    var portada = document.getElementById("portada") || document.getElementById("probador");
+    var portada = document.getElementById("portada") || document.getElementById("perchero") || document.getElementById("probador");
     var limite = function () { return portada ? portada.offsetHeight - 80 : 20; };
     var solida = function () { cab.classList.toggle("solida", window.scrollY > limite()); };
     window.addEventListener("scroll", solida, { passive: true });
