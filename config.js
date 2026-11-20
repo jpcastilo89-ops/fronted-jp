@@ -52,6 +52,14 @@ window.ZETA = {
   // (negro, blanco, gris, verde, rojo, azul), por ejemplo "img/campana/modelo-0.webp".
   // Deben ser el mismo modelo, misma pose, misma luz y mismo fondo: así al cambiar de color solo cambia la franela.
   // Mientras falte alguna, la portada muestra la foto real de la franela sobre el fondo de estudio.
+  // Perchero del inicio con FOTOS REALES (ver FOTOS-PROFESIONALES.md). Mientras estén vacías se ve la tienda dibujada.
+  //  fondo / fondoMovil: foto de la pared y el perchero VACÍO (horizontal para computadora, vertical para teléfono).
+  //  barra: a qué altura está el tubo en esa foto, en % desde arriba (para colgar las franelas justo ahí).
+  //  colgadas: foto de cada franela colgada en su percha, con fondo quitado (0 negro … 5 azul).
+  perchero: {
+    fondo: "", fondoMovil: "", barra: 30,
+    colgadas: ["", "", "", "", "", ""]
+  },
   campana: {
     modelo: ["", "", "", "", "", ""],
     encuadreMovil: "50% 30%",  // qué parte de la foto del modelo se ve en el teléfono (horizontal vertical)

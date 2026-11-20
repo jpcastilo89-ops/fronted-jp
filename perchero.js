@@ -11,19 +11,27 @@
   var tallas = sec.querySelectorAll(".perchero__talla"), talla = "M";
 
   // ---------- Las perchas ----------
-  // Gancho de metal y percha de madera (la madera asoma sobre los hombros, como en la tienda)
+  // Gancho de metal y percha de nogal oscuro (la madera asoma sobre los hombros, como en la tienda)
   var GANCHO = '<svg class="percha__gancho" viewBox="0 0 100 40" aria-hidden="true">' +
-    '<defs><linearGradient id="madera" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#d6a873"/><stop offset=".55" stop-color="#a87443"/><stop offset="1" stop-color="#7a4f2a"/></linearGradient>' +
-    '<linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#2c2c2c"/><stop offset=".45" stop-color="#9a9a97"/><stop offset="1" stop-color="#262626"/></linearGradient></defs>' +
+    '<defs><linearGradient id="madera" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#7a5234"/><stop offset=".5" stop-color="#55371f"/><stop offset="1" stop-color="#2f1d10"/></linearGradient>' +
+    '<linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#2c2c2c"/><stop offset=".45" stop-color="#c9b59a"/><stop offset="1" stop-color="#262626"/></linearGradient></defs>' +
     '<path d="M50 23V11.5c0-1.6 1-2.6 2.6-3.4 2.4-1.2 3.6-3 3.6-5.1C56.2 .9 53.6-.2 50.6-.2 47.4-.2 45 1.6 45 4.2" fill="none" stroke="url(#metal)" stroke-width="1.35" stroke-linecap="round"/>' +
     '<path d="M50 20.6c-1.3 0-2.4.5-3.4 1.1L20.2 36.2c-1.3.8-.9 2.5.6 2.5h0c.6 0 1.2-.2 1.8-.5L50 24.4l27.4 13.8c.6.3 1.2.5 1.8.5h0c1.5 0 1.9-1.7.6-2.5L53.4 21.7c-1-.6-2.1-1.1-3.4-1.1z" fill="url(#madera)"/>' +
     '<circle cx="50" cy="22.4" r="1.5" fill="#3b3b3a"/></svg>';
+  // Fotos reales (config.js → perchero): si hay foto de la franela colgada, ya trae su percha
+  var PF = (window.ZETA && window.ZETA.perchero) || {}, colgadas = PF.colgadas || [];
+  var fondo = matchMedia("(max-width: 899px)").matches && PF.fondoMovil ? PF.fondoMovil : PF.fondo;
+  if (fondo) {
+    sec.classList.add("con-foto");
+    sec.querySelector(".perchero__escena").style.setProperty("--foto-fondo", "url(" + fondo + ")");
+    if (PF.barra) sec.style.setProperty("--barra", "calc(var(--alto) * " + (PF.barra / 100) + ")");
+  }
   var perchas = COLORES.map(function (c, k) {
     var li = document.createElement("li");
     li.className = "percha";
     li.innerHTML = '<button type="button" class="percha__boton" aria-label="Franela ' + c.nombre.toLowerCase() + '">' +
-      '<span class="percha__mueve">' + GANCHO +
-      '<img class="percha__img" data-src="' + zeta.foto(k, "g") + '" alt="" width="800" height="840" loading="lazy" decoding="async" draggable="false">' +
+      '<span class="percha__mueve">' + (colgadas[k] ? "" : GANCHO) +
+      '<img class="percha__img' + (colgadas[k] ? ' percha__img--foto' : '') + '" data-src="' + (colgadas[k] || zeta.foto(k, "g")) + '" alt="" width="800" height="840" loading="lazy" decoding="async" draggable="false">' +
       '</span></button>';
     var img = li.querySelector("img");
     img.addEventListener("error", function () { zeta.falloImg(img, k); });
