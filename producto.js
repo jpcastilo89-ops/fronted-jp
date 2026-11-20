@@ -48,9 +48,10 @@
   }
   function detalles(k) {
     $("fCuello").src = zeta.foto(k, "d-cuello");
-    $("fManga").src = zeta.foto(k, "d-manga");
-    $("fRuedo").src = zeta.foto(k, "d-ruedo");
     $("fEspalda2").src = zeta.foto(k, "e");
+    var nota = $("fNotaFoto");
+    if (nota) nota.textContent = COLORES[k].nombre === "Negro" ? "Fotografía real de la franela negra." :
+      "Imagen de referencia hecha con la foto real de la franela negra. El tono real del " + COLORES[k].nombre.toLowerCase() + " puede variar un poco.";
     lupa.style.backgroundImage = "url(" + zeta.foto(k, "z") + ")";
   }
 
@@ -134,7 +135,7 @@
   // ---------- Comprar ----------
   $("fAnadir").addEventListener("click", function () {
     zeta.anadir(estado.color, estado.talla, 1);
-    zeta.avisar("Añadida · " + COLORES[estado.color].nombre + " · Talla " + estado.talla);
+    zeta.avisar("Añadida: " + COLORES[estado.color].nombre.toLowerCase() + ", talla " + estado.talla);
   });
   $("fGuiaBoton").addEventListener("click", function () {
     var g = $("guia"); g.open = true; g.scrollIntoView({ behavior: reducir ? "auto" : "smooth", block: "center" });

@@ -371,7 +371,7 @@
   // ---------- Añadir a Mi pedido ----------
   document.getElementById("anadir").addEventListener("click", function () {
     window.Zeta.anadir(estado.color, estado.talla, 1);
-    window.Zeta.avisar("Añadida: " + COLORES[estado.color].nombre + " · Talla " + estado.talla);
+    window.Zeta.avisar("Añadida: " + COLORES[estado.color].nombre.toLowerCase() + ", talla " + estado.talla);
   });
 
   // Permite que otras páginas abran el probador en un color: probador.html#color=3

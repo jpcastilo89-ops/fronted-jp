@@ -31,24 +31,24 @@
       li.className = "prod";
       li.setAttribute("data-aparece", "");
       li.innerHTML =
-        '<a class="prod__img" href="' + ficha(k) + '" aria-label="' + nombreProd + ' ' + c.nombre + '">' +
-          zeta.imgFranela(k, "t", c.nombre, 'class="prod__frente" width="280" height="294"') +
-          zeta.imgFranela(k, "te", c.nombre + " espalda", 'class="prod__espalda" width="280" height="294"') +
-          '<span class="prod__etq">' + num(k) + '</span></a>' +
+        '<a class="prod__img" href="' + ficha(k) + '">' +
+          zeta.imgFranela(k, "t", "oversized " + c.nombre, 'class="prod__frente" width="280" height="294"') +
+          zeta.imgFranela(k, "te", "", 'class="prod__espalda" width="280" height="294"') +
+          '<span class="prod__etq" aria-hidden="true">' + num(k) + '</span></a>' +
         '<div class="prod__info"><a class="prod__nombre" href="' + ficha(k) + '">' + nombreProd + '</a>' +
           '<span class="prod__precio">' + precioTxt + '</span></div>' +
-        '<p class="prod__color">' + c.nombre + ' · Algodón 220 gr</p>' +
+        '<p class="prod__color">' + c.nombre + ', algodón 220 gr</p>' +
         '<div class="prod__rapido"><div class="tallas" role="group" aria-label="Talla ' + c.nombre + '"></div>' +
           '<button type="button" class="prod__mas" aria-label="Añadir ' + c.nombre + ' a mi pedido">+ Añadir</button></div>';
       botonesTalla(li.querySelector(".tallas"), talla, function (t) { talla = t; });
       li.querySelector(".prod__mas").addEventListener("click", function () {
         zeta.anadir(k, talla, 1);
-        zeta.avisar("Añadida · " + c.nombre + " · Talla " + talla);
+        zeta.avisar("Añadida: " + c.nombre.toLowerCase() + ", talla " + talla);
       });
       grid.appendChild(li);
     });
     var cuenta = document.getElementById("tiendaCuenta");
-    if (cuenta) cuenta.textContent = COLORES.length + " colores · " + nombreProd;
+    if (cuenta) cuenta.textContent = nombreProd + " en " + COLORES.length + " colores";
     // Vista de columnas (se recuerda en el teléfono)
     var botones = document.querySelectorAll(".vista-botones button");
     var movil = matchMedia("(max-width: 899px)");
@@ -77,7 +77,7 @@
       a.style.transitionDelay = (k * 60) + "ms";
       a.innerHTML = '<span class="color-tarj__img" style="--c:' + c.hex + '">' +
         zeta.imgFranela(k, "t", c.nombre, 'width="280" height="294"') + '<span class="color-tarj__num">' + num(k) + '</span></span>' +
-        '<span class="color-tarj__pie"><b>' + c.nombre + '</b><span>Ver →</span></span>';
+        '<span class="color-tarj__pie"><b>' + c.nombre + '</b><span>Ver</span></span>';
       tira.appendChild(a);
     });
   }
@@ -94,7 +94,7 @@
         '<div style="display:grid;gap:18px">' +
           '<p class="capitulo__num" data-aparece>Capítulo ' + num(k) + ' / ' + num(COLORES.length - 1) + '</p>' +
           '<p class="capitulo__nombre" data-aparece>' + c.nombre + '</p>' +
-          '<p class="texto suave" data-aparece>' + nombreProd + ' · ' + (P.material || "") + ' · ' + (k % 2 ? "Vista de espalda" : "Vista de frente") + '</p>' +
+          '<p class="texto suave" data-aparece>' + (k % 2 ? "Vista de espalda. " : "Vista de frente. ") + (P.material || "") + '</p>' +
           '<div data-aparece><a class="enlace" href="' + ficha(k) + '">Ver en ' + c.nombre.toLowerCase() + '</a></div>' +
         '</div>';
       caps.appendChild(s);
@@ -181,7 +181,7 @@
     botonesTalla(document.getElementById("packTallas"), tallaPack, function (t) { tallaPack = t; pintar(); });
     btnAnadir.addEventListener("click", function () {
       pack.forEach(function (k) { zeta.anadir(k, tallaPack, 1); });
-      zeta.avisar("Pack añadido · " + TAM + " franelas talla " + tallaPack);
+      zeta.avisar("Pack añadido: " + TAM + " franelas talla " + tallaPack);
       pack = []; ultimo = -1; pintar();
     });
     pintar();

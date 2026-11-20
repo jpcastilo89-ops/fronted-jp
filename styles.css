@@ -22,7 +22,7 @@
   --CW: 150px;
 }
 .tema-noche { --fondo: var(--tinta); --texto: var(--blanco); --suave: #a3a19c; --linea: rgba(245,245,243,.14); --superficie: var(--grafito); --boton: var(--blanco); --boton-txt: var(--tinta); }
-.tema-papel { --fondo: var(--papel); --texto: var(--tinta); --suave: #6f6d68; --linea: rgba(11,11,11,.14); --superficie: #e2dfd8; --boton: var(--tinta); --boton-txt: var(--blanco); }
+.tema-papel { --fondo: var(--papel); --texto: var(--tinta); --suave: #5f5d58; --linea: rgba(11,11,11,.14); --superficie: #e2dfd8; --boton: var(--tinta); --boton-txt: var(--blanco); }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; }
@@ -79,7 +79,7 @@ a { color: inherit; }
 }
 .boton:active { transform: scale(.98); }
 .boton--borde { background: transparent; color: var(--texto); border-color: var(--texto); }
-.boton--wa { background: var(--wa); border-color: var(--wa); color: #fff; }
+.boton--wa { background: var(--wa); border-color: var(--wa); color: var(--tinta); }
 .boton--wa svg { width: 20px; height: 20px; fill: currentColor; }
 .boton--peq { min-height: 40px; padding: 0 16px; font-size: 11px; }
 .boton:disabled, .boton[aria-disabled="true"] { opacity: .32; pointer-events: none; }
@@ -502,7 +502,7 @@ main { display: block; }
   max-height: 86vh; max-height: 86svh;
   display: flex; flex-direction: column;
   background: var(--papel); color: var(--tinta);
-  --texto: var(--tinta); --fondo: var(--papel); --linea: rgba(11,11,11,.14); --suave: #6f6d68;
+  --texto: var(--tinta); --fondo: var(--papel); --linea: rgba(11,11,11,.14); --suave: #5f5d58;
   padding: 20px var(--margen) calc(16px + env(safe-area-inset-bottom));
   animation: subir .45s var(--ease);
 }
@@ -529,7 +529,7 @@ main { display: block; }
 .lista__enviar {
   display: flex; align-items: center; justify-content: center; gap: 10px;
   min-height: 56px; border-radius: 2px;
-  background: var(--wa); color: #fff; text-decoration: none;
+  background: var(--wa); color: var(--tinta); text-decoration: none;
   font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
 }
 .lista__enviar svg { width: 22px; height: 22px; fill: currentColor; }
@@ -550,7 +550,7 @@ main { display: block; }
 .editorial__img .nota { position: absolute; left: 14px; bottom: 12px; }
 .editorial__texto { display: grid; gap: 22px; align-content: center; }
 .ficha-datos { list-style: none; border-top: 1px solid var(--linea); }
-.ficha-datos li { display: grid; grid-template-columns: 40px 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--linea); }
+.ficha-datos li { display: grid; grid-template-columns: 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--linea); }
 .ficha-datos span { font-size: 11px; color: var(--suave); letter-spacing: .1em; padding-top: 3px; }
 .ficha-datos b { display: block; font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
 .ficha-datos em { font-style: normal; color: var(--suave); font-size: 15px; }
@@ -811,7 +811,7 @@ main { display: block; }
 .pie__arriba { display: grid; gap: 40px; padding-bottom: 48px; border-bottom: 1px solid var(--linea); }
 .pie__lema { font-stretch: 68%; font-weight: 800; text-transform: uppercase; font-size: clamp(44px, 8vw, 120px); line-height: .88; }
 .pie__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-.pie__cols h3 { font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--suave); margin-bottom: 12px; }
+.pie__cols .pie__tit { font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--suave); margin-bottom: 12px; }
 .pie__cols ul { list-style: none; display: grid; gap: 8px; }
 .pie__cols a { text-decoration: none; font-size: 15px; }
 @media (hover: hover) { .pie__cols a:hover { text-decoration: underline; text-underline-offset: 4px; } }
@@ -829,8 +829,6 @@ main { display: block; }
 /* =========================================================
    MOVIMIENTO · apariciones y escaneo entre páginas (firma)
    ========================================================= */
-.js [data-aparece] { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
-.js [data-aparece].visto { opacity: 1; transform: none; }
 .js [data-aparece="img"] { opacity: 1; transform: none; }
 .js [data-aparece="img"] > img, .js [data-aparece="img"] > svg { clip-path: inset(0 0 100% 0); transition: clip-path 1.2s var(--ease-escaneo) .1s; }
 .js [data-aparece="img"].visto > img, .js [data-aparece="img"].visto > svg { clip-path: inset(-10% -10% -10% -10%); }

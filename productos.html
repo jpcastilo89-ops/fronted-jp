@@ -24,6 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>document.documentElement.className="js";</script>
+  <script>try{var m=/color=(\d+)/.exec(location.search+location.hash),l=document.createElement("link");l.rel="preload";l.as="image";l.href="img/franelas/g-"+(m?m[1]:0)+".webp";l.setAttribute("fetchpriority","high");document.head.appendChild(l)}catch(e){}</script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "Franela oversized ZETA", "brand": {"@type": "Brand", "name": "ZETA"}, "material": "Algodón jersey 20/1 (220 gr)", "description": "Diseñada con el corte perfecto, con la caída exacta y la densidad ideal, para que tus outfits se vean completos sin esfuerzo.", "color": ["Negro", "Blanco", "Gris", "Verde", "Rojo", "Azul"], "size": ["S", "M", "L"], "image": ["https://zeta-premium-wear.onrender.com/img/franelas/g-0.webp", "https://zeta-premium-wear.onrender.com/img/franelas/g-1.webp", "https://zeta-premium-wear.onrender.com/img/franelas/g-2.webp", "https://zeta-premium-wear.onrender.com/img/franelas/g-3.webp", "https://zeta-premium-wear.onrender.com/img/franelas/g-4.webp", "https://zeta-premium-wear.onrender.com/img/franelas/g-5.webp"]}</script>
 </head>
 <body class="tema-papel pagina-ficha">
@@ -70,7 +71,7 @@
         <a href="nosotros.html" data-pagina="nosotros">Historia</a>
       </nav>
     </div>
-    <a class="cab__logo" href="index.html" aria-label="ZETA, ir al inicio"><img src="img/logo-zeta-blanco.png" alt="ZETA" width="600" height="373"></a>
+    <a class="cab__logo" href="index.html" aria-label="ZETA, ir al inicio"><img src="img/logo-zeta-blanco.webp" alt="ZETA" width="600" height="373"></a>
     <div class="cab__der">
       <a class="cab__link" href="contacto.html" data-pagina="contacto">Contacto</a>
       <button class="bolsa" id="bolsa" type="button" aria-label="Ver mi pedido" aria-haspopup="dialog">
@@ -115,9 +116,7 @@
             </div>
             <figcaption id="fVistaTxt">Frente</figcaption>
           </figure>
-          <figure class="vista vista--detalle"><img id="fCuello" src="img/franelas/d-cuello-0.webp" alt="Detalle del cuello" width="660" height="440" loading="lazy"><figcaption>Cuello</figcaption></figure>
-          <figure class="vista vista--detalle"><img id="fManga" src="img/franelas/d-manga-0.webp" alt="Detalle de la manga" width="660" height="440" loading="lazy"><figcaption>Manga</figcaption></figure>
-          <figure class="vista vista--detalle"><img id="fRuedo" src="img/franelas/d-ruedo-0.webp" alt="Detalle del ruedo" width="660" height="380" loading="lazy"><figcaption>Ruedo</figcaption></figure>
+          <figure class="vista vista--detalle"><img id="fCuello" src="img/franelas/d-cuello-0.webp" alt="Detalle del cuello" width="900" height="600" loading="lazy"><figcaption>Cuello</figcaption></figure>
           <figure class="vista"><img id="fEspalda2" src="img/franelas/e-0.webp" alt="Espalda de la franela" width="800" height="840" loading="lazy"><figcaption>Espalda</figcaption></figure>
         </div>
         <div class="puntos-galeria" id="fPuntos" aria-hidden="true"></div>
@@ -167,7 +166,7 @@
               <p>Añade tus franelas y envía el pedido por WhatsApp. Te confirmamos disponibilidad y precio.</p>
             </div></details>
         </div>
-        <p class="nota">Imágenes: ilustración 3D del producto, no fotos. Fotos reales: próximamente.</p>
+        <p class="nota" id="fNotaFoto">Fotografía real de la franela negra.</p>
         <div class="otros-colores"><a href="#" id="fAnterior">← Anterior</a><a href="#" id="fSiguiente">Siguiente →</a></div>
       </div>
     </section>
@@ -180,17 +179,17 @@
     <div class="pie__arriba">
       <p class="pie__lema" data-campo="lema">Viste diferente. Viste ZETA.</p>
       <div class="pie__cols">
-        <div><h3>Tienda</h3><ul>
+        <div><h2 class="pie__tit">Tienda</h2><ul>
           <li><a href="catalogo.html">Todos los colores</a></li>
           <li><a href="productos.html">La franela</a></li>
           <li><a href="pack.html">Arma tu pack</a></li>
         </ul></div>
-        <div><h3>Ayuda</h3><ul>
+        <div><h2 class="pie__tit">Ayuda</h2><ul>
           <li><a href="contacto.html">Contacto y envíos</a></li>
           <li><a href="productos.html#guia">Guía de tallas</a></li>
           <li><a data-wa-general href="#" target="_blank" rel="noopener">WhatsApp</a></li>
         </ul></div>
-        <div><h3>ZETA</h3><ul>
+        <div><h2 class="pie__tit">ZETA</h2><ul>
           <li><a href="nosotros.html">Historia</a></li>
           <li><a href="galeria.html">Campaña</a></li>
           <li><a data-instagram href="#" target="_blank" rel="noopener">Instagram</a></li>
@@ -198,7 +197,7 @@
       </div>
     </div>
     <div class="pie__abajo">
-      <img class="pie__logo" src="img/logo-zeta-blanco.png" alt="ZETA" width="600" height="373" loading="lazy">
+      <img class="pie__logo" src="img/logo-zeta-blanco.webp" alt="ZETA" width="600" height="373" loading="lazy">
       <p><span data-campo="frase"></span> · <span data-campo="ciudad"></span></p>
       <p>© <span data-anio></span> ZETA</p>
     </div>

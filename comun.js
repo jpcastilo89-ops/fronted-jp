@@ -87,7 +87,7 @@
     if (bolsa) {
       bolsaNum.textContent = n;
       bolsa.classList.toggle("tiene", n > 0);
-      bolsa.setAttribute("aria-label", n ? "Ver mi pedido, " + plural(n) : "Ver mi pedido, vacío");
+      bolsa.setAttribute("aria-label", n ? "Pedido " + plural(n) : "Pedido 0, vacío");
     }
     if (!items) return;
     items.innerHTML = "";
@@ -98,7 +98,7 @@
       li.innerHTML =
         '<div class="item__mini">' + imgFranela(it.color, "t", c.nombre) + '</div>' +
         '<div class="item__texto"><div class="item__nombre">' + nombreProd + '</div>' +
-        '<div class="item__detalle">' + c.nombre + ' · Talla ' + it.talla + '</div>' +
+        '<div class="item__detalle">' + c.nombre + ', talla ' + it.talla + '</div>' +
         '<button type="button" class="item__quitar">Quitar</button></div>' +
         '<div class="cantidad"><button type="button" aria-label="Una menos">−</button><span>' + it.cant +
         '</span><button type="button" aria-label="Una más">+</button></div>';
