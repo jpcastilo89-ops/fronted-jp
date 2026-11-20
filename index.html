@@ -110,10 +110,14 @@
 
     <figure class="portada__prenda" id="pPrenda">
       <span class="portada__sombra" aria-hidden="true"></span>
-      <img class="portada__img" id="pBase" src="img/franelas/g-0.webp" srcset="img/franelas/g-0.webp 800w, img/franelas/z-0.webp 1200w"
-        sizes="(min-width: 900px) 46vw, 92vw" alt="Franela oversized ZETA en negro, fotografía real" width="800" height="840" fetchpriority="high">
+      <div class="portada__giro" id="pGiro">
+        <img class="portada__img portada__cara" id="pBase" src="img/franelas/g-0.webp" srcset="img/franelas/g-0.webp 800w, img/franelas/z-0.webp 1200w"
+          sizes="(min-width: 900px) 46vw, 92vw" alt="Franela oversized ZETA en negro, fotografía real" width="800" height="840" fetchpriority="high" draggable="false">
+        <img class="portada__img portada__cara portada__cara--atras" id="pEspalda" src="img/franelas/e-0.webp" alt="" width="800" height="840" loading="lazy" draggable="false">
+      </div>
       <img class="portada__img portada__img--nueva" id="pNueva" alt="" width="800" height="840" aria-hidden="true">
       <span class="portada__escaneo" id="pEscaneo" aria-hidden="true"></span>
+      <button class="portada__girar" id="pGirar" type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#ico-giro"/></svg><span>Ver espalda</span></button>
       <figcaption class="portada__nota" id="pNota">Fotografía real de la franela negra.</figcaption>
     </figure>
 

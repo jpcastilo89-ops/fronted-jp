@@ -54,6 +54,10 @@ window.ZETA = {
   // Mientras falte alguna, la portada muestra la foto real de la franela sobre el fondo de estudio.
   campana: {
     modelo: ["", "", "", "", "", ""],
-    encuadreMovil: "50% 30%"  // qué parte de la foto del modelo se ve en el teléfono (horizontal vertical)
+    encuadreMovil: "50% 30%",  // qué parte de la foto del modelo se ve en el teléfono (horizontal vertical)
+    // Giro 360 de verdad: fotos de la franela girando, una por ángulo (mínimo 8, mejor 24), por color.
+    // Ejemplo para el negro: ["img/360/negro-01.webp", "img/360/negro-02.webp", ...].
+    // Mientras un color no tenga sus fotos, se gira entre las fotos reales de frente y espalda.
+    giro360: [[], [], [], [], [], []]
   }
 };

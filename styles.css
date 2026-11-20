@@ -1060,3 +1060,27 @@ main { display: block; }
 @media (min-width: 900px) { .barra-compra { display: none; } }
 @media (prefers-reduced-motion: reduce) { .barra-compra, .cabecera { transition: none; } }
 @media (max-width: 899px) { .pagina-ficha .pie { padding-bottom: 84px; } }
+
+/* ---------- Portada: girar la franela (frente y espalda reales, o fotos 360 si existen) ---------- */
+.portada__prenda { perspective: 1800px; }
+.portada__giro { position: absolute; inset: 0; transform-style: preserve-3d; touch-action: pan-y; cursor: grab; -webkit-user-select: none; user-select: none; }
+.portada.girando .portada__giro { cursor: grabbing; }
+.portada__cara { -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+.portada__cara--atras { transform: rotateY(180deg); }
+.portada.giro-fotos .portada__cara--atras { display: none; }
+.portada__girar {
+  position: absolute; z-index: 3; right: 0; top: 2%;
+  display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px;
+  border: 1px solid rgba(27,23,18,.35); border-radius: 999px; background: rgba(243,239,232,.55);
+  font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--tinta-calida);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.portada__girar svg { width: 16px; height: 16px; }
+@media (hover: hover) { .portada__girar:hover { background: rgba(243,239,232,.9); } }
+.js .portada .portada__girar { opacity: 0; transition: opacity .8s var(--ease) .6s; }
+.js .portada.ya .portada__girar { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .js .portada .portada__girar { opacity: 1; } }
+@media (max-width: 899px) {
+  .portada__girar { top: 0; right: -4px; width: 40px; padding: 0; justify-content: center; }
+  .portada__girar span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
