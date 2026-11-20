@@ -135,7 +135,8 @@
   </section>
     <!-- PERCHERO: las 6 franelas colgadas como en la tienda (perchero.js) -->
     <section class="perchero" id="perchero" aria-labelledby="tPerchero">
-      <div class="perchero__cabeza">
+      <div class="perchero__escena">
+        <div class="perchero__cabeza">
         <div>
           <p class="perchero__marca">Colores</p>
           <h2 class="perchero__titulo" id="tPerchero">Seis colores. Elige el tuyo.</h2>
@@ -145,8 +146,23 @@
           <button class="perchero__flecha" id="percheroAdelante" type="button" aria-label="Franela siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
       </div>
-      <div class="perchero__tienda">
-        <span class="perchero__riel" aria-hidden="true"><span></span><span></span></span>
+        <span class="esc__pared" aria-hidden="true"></span>
+        <span class="esc__ventana" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="esc__luz" aria-hidden="true"></span>
+        <span class="esc__piso" aria-hidden="true"></span>
+        <span class="esc__alfombra" aria-hidden="true"></span>
+        <span class="esc__rack" aria-hidden="true"><i class="r-barra"></i><i class="r-pata r-izq"></i><i class="r-pata r-der"></i><i class="r-pie r-izq"></i><i class="r-pie r-der"></i></span>
+        <span class="esc__cesta-pos" aria-hidden="true">
+          <svg class="esc__cesta" viewBox="0 0 120 100" aria-hidden="true">
+            <defs><pattern id="tejidoCesta" width="10" height="8" patternUnits="userSpaceOnUse"><rect width="10" height="8" fill="#b8955f"/><path d="M0 4h10M5 0v8" stroke="#8a6a3d" stroke-width="1.2"/><path d="M0 2h5M5 6h5" stroke="#d1b07a" stroke-width="1"/></pattern>
+            <linearGradient id="sombraCesta" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".05"/><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></linearGradient></defs>
+            <ellipse cx="60" cy="94" rx="54" ry="6" fill="rgba(30,24,16,.28)"/>
+            <path d="M12 26h96l-8 62c-1 5-5 8-10 8H30c-5 0-9-3-10-8z" fill="url(#tejidoCesta)"/>
+            <path d="M12 26h96l-8 62c-1 5-5 8-10 8H30c-5 0-9-3-10-8z" fill="url(#sombraCesta)"/>
+            <ellipse cx="60" cy="26" rx="48" ry="7" fill="#7d5f36"/><ellipse cx="60" cy="25" rx="48" ry="6" fill="none" stroke="#c9a46b" stroke-width="3"/>
+            <path d="M34 24c0-14 52-14 52 0" fill="none" stroke="#a9874f" stroke-width="3.5" stroke-linecap="round"/>
+          </svg>
+        </span>
         <ul class="perchero__lista" id="percheroLista" aria-label="Franelas colgadas en el perchero. Desliza para pasarlas."></ul>
       </div>
       <div class="perchero__ficha" id="percheroFicha">

@@ -11,8 +11,13 @@
   var tallas = sec.querySelectorAll(".perchero__talla"), talla = "M";
 
   // ---------- Las perchas ----------
-  var GANCHO = '<svg class="percha__gancho" viewBox="0 0 40 64" aria-hidden="true">' +
-    '<path d="M20 64V30c0-4 2-6 6-8 5-2.6 7-6.4 7-10.6C33 5.4 27.4 1 21 1S9 5 9 11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg>';
+  // Gancho de metal y percha de madera (la madera asoma sobre los hombros, como en la tienda)
+  var GANCHO = '<svg class="percha__gancho" viewBox="0 0 100 40" aria-hidden="true">' +
+    '<defs><linearGradient id="madera" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#d6a873"/><stop offset=".55" stop-color="#a87443"/><stop offset="1" stop-color="#7a4f2a"/></linearGradient>' +
+    '<linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#5d5d5d"/><stop offset=".45" stop-color="#d9d9d6"/><stop offset="1" stop-color="#4a4a4a"/></linearGradient></defs>' +
+    '<path d="M50 23V11.5c0-1.6 1-2.6 2.6-3.4 2.4-1.2 3.6-3 3.6-5.1C56.2 .9 53.6-.2 50.6-.2 47.4-.2 45 1.6 45 4.2" fill="none" stroke="url(#metal)" stroke-width="1.15" stroke-linecap="round"/>' +
+    '<path d="M50 20.6c-1.3 0-2.4.5-3.4 1.1L20.2 36.2c-1.3.8-.9 2.5.6 2.5h0c.6 0 1.2-.2 1.8-.5L50 24.4l27.4 13.8c.6.3 1.2.5 1.8.5h0c1.5 0 1.9-1.7.6-2.5L53.4 21.7c-1-.6-2.1-1.1-3.4-1.1z" fill="url(#madera)"/>' +
+    '<rect x="47.6" y="19.4" width="4.8" height="3.2" rx="1" fill="#6e6e6b"/></svg>';
   var perchas = COLORES.map(function (c, k) {
     var li = document.createElement("li");
     li.className = "percha";
