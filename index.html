@@ -6,12 +6,12 @@
 <title>U.E. Instituto María Inmaculada · Carora</title>
 <meta name="description" content="U.E. Instituto María Inmaculada, Carora, Estado Lara. Educación Inicial, Primaria y Secundaria. Escríbenos por WhatsApp.">
 <meta name="theme-color" content="#23238E">
-<link rel="icon" href="assets/favicon.png">
-<link rel="preload" href="assets/fachada-1280.webp" as="image">
-<link rel="preload" href="assets/fonts/urbanist.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preload" href="/assets/fachada-1280.webp" as="image">
+<link rel="preload" href="/assets/fonts/urbanist.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-@font-face{font-family:Urbanist;src:url(assets/fonts/urbanist.woff2) format('woff2');font-weight:100 900;font-display:swap}
-@font-face{font-family:'Gilda Display';src:url(assets/fonts/gilda.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:Urbanist;src:url(/assets/fonts/urbanist.woff2) format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'Gilda Display';src:url(/assets/fonts/gilda.woff2) format('woff2');font-weight:400;font-display:swap}
 
 :root{
   --azul:#4040FF; --indigo:#23238E; --celeste:#4E91C9; --coral:#F27474;
@@ -73,7 +73,7 @@ img{display:block;max-width:100%}
 .stack{position:absolute;inset:0;will-change:transform}
 .slide{position:absolute;inset:0;overflow:hidden}
 .slide .frame{position:absolute;inset:0;transform:scale(var(--z,1));transform-origin:var(--o,50% 50%)}
-.slide .photo{position:absolute;inset:-3%;background:var(--indigo) url(assets/fachada-1280.webp) var(--pos,center 50%)/cover no-repeat;transform:scale(1.04);will-change:transform}
+.slide .photo{position:absolute;inset:-3%;background:var(--indigo) url(/assets/fachada-1280.webp) var(--pos,center 50%)/cover no-repeat;transform:scale(1.04);will-change:transform}
 .slide .tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(35,35,142,.55) 0%,rgba(35,35,142,.12) 26%,transparent 46%)}
 .title{position:absolute;left:2.6vw;top:calc(74px + 3.2vh);font-weight:700;text-transform:uppercase;line-height:.9;white-space:nowrap;font-size:6.9vw;letter-spacing:-.01em;z-index:2}
 .title .ln{display:block}
@@ -90,7 +90,7 @@ img{display:block;max-width:100%}
 /* Nubes */
 .clouds{position:absolute;left:-4%;right:-4%;bottom:-6%;height:66%;z-index:7;pointer-events:none;will-change:transform;transform-origin:50% 100%}
 .clouds::after{content:"";position:absolute;left:0;right:0;top:calc(100% - 2px);height:120%;background:#fff}
-.cl{position:absolute;inset:0;background:url(assets/nubes.webp) center bottom/cover no-repeat;
+.cl{position:absolute;inset:0;background:url(/assets/nubes.webp) center bottom/cover no-repeat;
   -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 38%);mask-image:linear-gradient(180deg,transparent 0%,#000 38%)}
 .cl.back{transform:scaleX(-1);opacity:.85}
 .fx .cl.front{animation:drift1 26s ease-in-out infinite alternate}
@@ -98,7 +98,7 @@ img{display:block;max-width:100%}
 @keyframes drift1{from{transform:translateX(-2.5%)}to{transform:translateX(2.5%)}}
 @keyframes drift2{from{transform:scaleX(-1) translate(3%,0)}to{transform:scaleX(-1) translate(-3%,-4%)}}
 .clouds-top{position:absolute;left:-4%;right:-4%;top:-30%;height:80%;z-index:7;pointer-events:none;opacity:0;
-  background:url(assets/nubes.webp) center bottom/cover no-repeat;transform:scaleY(-1);
+  background:url(/assets/nubes.webp) center bottom/cover no-repeat;transform:scaleY(-1);
   -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 38%);mask-image:linear-gradient(180deg,transparent 0%,#000 38%)}
 .fade{position:absolute;left:0;right:0;bottom:0;height:46%;z-index:8;pointer-events:none;
   background:linear-gradient(180deg,rgba(238,243,252,0) 0%,rgba(238,243,252,.45) 45%,rgba(238,243,252,.92) 82%,var(--cielo) 100%)}
@@ -347,21 +347,25 @@ img{display:block;max-width:100%}
 }
 @media (prefers-reduced-motion:reduce){ *{transition-duration:.01ms!important;animation:none!important} }
 </style>
+<link rel="stylesheet" href="/estilos.css">
+<script>try{if(sessionStorage.getItem('imi-pt'))document.documentElement.classList.add('pt-in')}catch(e){}</script>
 </head>
 <body>
+<div class="pt" id="pt" aria-hidden="true"><i></i><i></i><i></i><div class="lb"><img src="/assets/escudo.webp" alt=""><b></b><span></span></div></div>
 <div class="cur" aria-hidden="true"></div>
 
 <header class="nav" id="nav">
   <div class="nav-l">
-    <a href="#inicio" class="logo" data-hot><img src="assets/escudo.webp" alt="Escudo IMI" width="34" height="34"><span data-c="nombreLogo">Instituto María Inmaculada</span></a>
+    <a href="./" class="logo" data-hot><img src="/assets/escudo.webp" alt="Escudo IMI" width="34" height="34"><span data-c="nombreLogo">Instituto María Inmaculada</span></a>
     <span class="div"></span>
     <span class="place" data-c="ciudad"></span>
   </div>
   <nav class="links" aria-label="Secciones">
-    <a href="#noticias" data-hot>Noticias</a>
-    <a href="#galeria" data-hot>Galería</a>
-    <a href="#nosotros" data-hot>Nosotros</a>
-    <a href="#contacto" data-hot>Contacto</a>
+    <a href="./" data-pg="index" data-hot>Inicio</a>
+    <a href="noticias.html" data-pg="noticias" data-hot>Noticias</a>
+    <a href="noticias.html#galeria" data-hot>Galería</a>
+    <a href="nosotros.html" data-pg="nosotros" data-hot>Nosotros</a>
+    <a href="contacto.html" data-pg="contacto" data-hot>Contacto</a>
   </nav>
   <div class="nav-r">
     <a class="ico" id="ig" target="_blank" rel="noopener" aria-label="Instagram" data-hot>
@@ -372,8 +376,22 @@ img{display:block;max-width:100%}
       <span class="dot"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4.2"/><path d="M3.5 21c.8-4.4 4.2-7 8.5-7s7.7 2.6 8.5 7z"/></svg></span>
       <div class="menu" id="intraMenu"><p>Acceso a la intranet</p></div>
     </button>
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mm" data-hot><i></i><i></i><i></i></button>
   </div>
 </header>
+
+<div class="mm" id="mm" aria-label="Menú">
+  <a href="./" data-pg="index"><small>01</small>Inicio</a>
+  <a href="noticias.html" data-pg="noticias"><small>02</small>Noticias y galería</a>
+  <a href="nosotros.html" data-pg="nosotros"><small>03</small>Sobre nosotros</a>
+  <a href="contacto.html" data-pg="contacto"><small>04</small>Visítanos</a>
+  <div class="mm-b">
+    <a class="btn wa3" id="mmWa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.5 21.5l1.4-5.1A9.5 9.5 0 1 1 7.7 20zm5.6-3.4.3.2a7.9 7.9 0 1 0-2.7-2.7l.2.3-.8 3z"/></svg>Escríbenos por WhatsApp</a>
+    <a class="btn out" id="mmIg" target="_blank" rel="noopener" style="border-color:rgba(255,255,255,.4);margin:0">Instagram</a>
+    <p>Intranet</p>
+    <div class="mm-in" id="mmIn"></div>
+  </div>
+</div>
 
 <section class="hero" id="inicio" aria-label="Portada">
   <div class="stack" id="stack">
@@ -398,9 +416,9 @@ img{display:block;max-width:100%}
 
   <div class="rail" id="rail">
     <div class="ring" id="r1"></div><div class="ring" id="r2"></div>
-    <button class="thumb" data-s="2" aria-label="Familia IMI" style="background-image:url(assets/thumb-busto.webp)" data-hot></button>
-    <button class="thumb" data-s="1" aria-label="Educación integral" style="background-image:url(assets/thumb-puertas.webp)" data-hot></button>
-    <button class="thumb" data-s="0" aria-label="Bienvenidos al IMI" style="background-image:url(assets/thumb-letrero.webp)" data-hot></button>
+    <button class="thumb" data-s="2" aria-label="Familia IMI" style="background-image:url(/assets/thumb-busto.webp)" data-hot></button>
+    <button class="thumb" data-s="1" aria-label="Educación integral" style="background-image:url(/assets/thumb-puertas.webp)" data-hot></button>
+    <button class="thumb" data-s="0" aria-label="Bienvenidos al IMI" style="background-image:url(/assets/thumb-letrero.webp)" data-hot></button>
     <div class="conn" id="conn"></div>
     <div class="cap" id="cap"><span class="bar"></span><div class="txt"><h3></h3><p></p></div></div>
   </div>
@@ -427,489 +445,37 @@ img{display:block;max-width:100%}
   </form>
 </section>
 
-<section class="next" id="noticias">
-  <div class="sec-h"><h2>Noticias y galería</h2><button class="see" id="seeAll" data-hot>Ver todo</button></div>
-  <div class="grid" id="grid"></div>
-  <span id="galeria"></span>
-</section>
-
-<section class="about" id="nosotros" aria-labelledby="abTitle">
-  <div class="ab-top">
-    <div class="up">
-      <span class="eyebrow">Sobre nosotros</span>
-      <h2 class="big" id="abTitle">Familia IMI, <em>educando desde 1961</em></h2>
-      <p class="lead" id="abHist"></p>
-      <div class="years"><b id="abYears"></b><span>años formando a niños, niñas y adolescentes de Carora</span></div>
-    </div>
-    <div class="ab-ph up">
-      <img src="assets/fachada-1280.webp" alt="Fachada del Instituto María Inmaculada" loading="lazy">
-      <div class="badge"><img src="assets/escudo.webp" alt=""><div><b>Instituto María Inmaculada</b><span id="abDea"></span></div></div>
-    </div>
-  </div>
-
-  <ol class="tl up" id="tl">
-    <li><b>1961</b><strong>Fundación</strong><p>El 10 de enero de 1961 la educadora María Ermila Álvarez Perera funda el primer preescolar organizado del Distrito Escolar N° 7.</p></li>
-    <li><b>1970</b><strong>Llega la Primaria</strong><p>La institución amplía su oferta académica e incorpora la educación primaria.</p></li>
-    <li><b>Después</b><strong>Secundaria</strong><p>Posteriormente se suma la secundaria o bachillerato, desde Educación Inicial hasta Media General.</p></li>
-  </ol>
-
-  <div class="mvv">
-    <article class="mv up">
-      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/></svg></div>
-      <h3>Misión</h3>
-      <p>Contribuir a la formación integral de niños, niñas y adolescentes sujetos de derecho y protagonistas activos de su propio aprendizaje<span class="more-tx">, brindándole una atención desde el subsistema de Educación Inicial hasta el subsistema de educación secundaria, educarlos mediante un proceso de interacción entre familia-institución y la comunidad en un ambiente plenamente democrático, participativo, de convivencia y de compromiso respondiendo a las necesidades de un colectivo y brindar una educación de calidad. Fundamentada en valores para enfrentarse a una sociedad cambiante</span>.</p>
-      <button class="rd" data-hot>Leer completa</button>
-    </article>
-    <article class="mv up">
-      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
-      <h3>Visión</h3>
-      <p>Llegar a ser una institución educativa cónsona con las exigencias actuales, orientada a la formación integral de niños, niñas y adolescentes<span class="more-tx"> del subsistema de Educación Inicial, primaria y secundaria vinculada en todo momento a la familia y a la comunidad, fortaleciendo los valores de convivencia basados en el desarrollo ético, académico, tecnológico, deportivo, espiritual y sociocultural, con el fin de formar académicamente al educando para proyectarse profesionalmente y formarse integralmente, asumiendo compromisos, retos y responsabilidades dentro de la sociedad y del país</span>.</p>
-      <button class="rd" data-hot>Leer completa</button>
-    </article>
-    <article class="mv up">
-      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7.5-4.6-9.3-9.2C1.4 8.4 3.6 5 7 5c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3.4 0 5.6 3.4 4.3 6.8C19.5 16.4 12 21 12 21z"/></svg></div>
-      <h3>Valores</h3>
-      <p>La educación en valores es el sustento de la enseñanza y el marco de la convivencia escolar y familiar. El educador debe <b>ser</b>, <b>estar</b> y <b>compartir</b>, con estas actitudes:</p>
-      <div class="chips"><span>Respeto</span><span>Exigencia</span><span>Confianza</span></div>
-    </article>
-  </div>
-
-  <div class="lv up">
-    <div><h3>Nuestros niveles</h3><p>Desde Educación Inicial hasta Secundaria. Toca un nivel y escríbenos por WhatsApp.</p></div>
-    <div class="lvs" id="lvs"></div>
-  </div>
-</section>
-
-<section class="visit" id="contacto" aria-labelledby="viTitle">
-  <div class="sec-h"><div><span class="eyebrow">Visítanos</span><h2 id="viTitle" style="margin-top:10px">Te esperamos en Carora</h2></div></div>
-  <div class="vi-grid">
-    <div class="vi-card up">
-      <div class="vi-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><small>Dirección</small><span data-v="direccion"></span></div></div>
-      <div class="vi-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><small>Horario</small><span data-v="horario"></span></div></div>
-      <div class="vi-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg></span><div><small>Teléfono</small><a data-v="telefono"></a></div></div>
-      <div class="vi-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><small>Correo</small><a data-v="correo"></a></div></div>
-      <div class="vi-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></span><div><small>Instagram</small><a data-v="instagram" target="_blank" rel="noopener"></a></div></div>
-      <div class="vi-btns">
-        <a class="btn wa3" id="viWa" target="_blank" rel="noopener" data-hot><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.5 21.5l1.4-5.1A9.5 9.5 0 1 1 7.7 20zm5.6-3.4.3.2a7.9 7.9 0 1 0-2.7-2.7l.2.3-.8 3z"/></svg>WhatsApp</a>
-        <a class="btn ink" id="viDir" target="_blank" rel="noopener" data-hot><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l18-8-8 18-2-8z"/></svg>Cómo llegar</a>
-      </div>
-    </div>
-    <div class="map up" id="map">
-      <div class="ld">
-        <div class="pin"><img src="assets/escudo.webp" alt=""></div>
-        <b>Instituto María Inmaculada</b>
-        <button class="btn ink" id="mapBtn" data-hot>Ver mapa</button>
-      </div>
-    </div>
+<section class="next pg" id="explora">
+  <div class="sec-h"><h2>Conoce el IMI</h2></div>
+  <div class="pgc">
+    <a href="noticias.html" data-hot><div class="im" style="--img:url(/assets/galeria/2102-4.webp)"></div>
+      <div class="tx"><small>01</small><b>Noticias y galería</b><p>Avisos, actos y fotos de la familia IMI.</p><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+    <a href="nosotros.html" data-hot><div class="im" style="--img:url(/assets/fachada-760.webp);--pos:96% 50%"></div>
+      <div class="tx"><small>02</small><b>Sobre nosotros</b><p>Nuestra historia desde 1961, misión, visión y valores.</p><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+    <a href="contacto.html" data-hot><div class="im" style="--img:url(/assets/fachada-760.webp);--pos:40% 60%"></div>
+      <div class="tx"><small>03</small><b>Visítanos</b><p>Dirección, horario, teléfono y mapa.</p><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
   </div>
 </section>
 
 <footer class="foot">
   <div class="ft">
     <div>
-      <div class="brand"><img src="assets/escudo.webp" alt="Escudo IMI"><b>U.E. Instituto<br>María Inmaculada</b></div>
+      <div class="brand"><img src="/assets/escudo.webp" alt="Escudo IMI"><b>U.E. Instituto<br>María Inmaculada</b></div>
       <p id="ftDea"></p>
     </div>
-    <div><h4>Secciones</h4><a href="#inicio">Inicio</a><a href="#noticias">Noticias y galería</a><a href="#nosotros">Sobre nosotros</a><a href="#contacto">Visítanos</a></div>
+    <div><h4>Secciones</h4><a href="./">Inicio</a><a href="noticias.html">Noticias y galería</a><a href="nosotros.html">Sobre nosotros</a><a href="contacto.html">Visítanos</a></div>
     <div><h4>Intranet</h4><div id="ftIntra"></div></div>
     <div><h4>Contacto</h4><a id="ftWa" target="_blank" rel="noopener">WhatsApp</a><a id="ftTel"></a><a id="ftMail"></a><a id="ftIg" target="_blank" rel="noopener"></a></div>
   </div>
   <div class="copy"><span id="ftCopy"></span><span>Carora, Estado Lara, Venezuela</span></div>
 </footer>
 
-<div class="dt" id="dt" role="dialog" aria-modal="true" aria-label="Detalle">
-  <div class="dt-in">
-    <nav class="crumb rise"><a href="#inicio" data-home data-hot>Inicio</a><span>›</span><span id="dtType"></span><span>›</span><span id="dtCrumb"></span></nav>
-    <div class="cols">
-      <div>
-        <div class="mainph wait" id="mainph"><img id="mainimg" alt=""></div>
-        <div class="thumbs rise" id="dtThumbs"></div>
-        <div class="allph" id="allph"></div>
-      </div>
-      <div>
-        <h1 class="rise" id="dtTitle"></h1>
-        <div class="by rise"><img src="assets/escudo.webp" alt=""><span id="dtBy"></span></div>
-        <div class="rise" id="dtText"></div>
-        <div class="ask rise">
-          <b>¿Tienes alguna pregunta?</b>
-          <p>Escríbenos y te respondemos por WhatsApp.</p>
-          <a class="btn wa2" id="dtWa" target="_blank" rel="noopener" data-hot>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.5 21.5l1.4-5.1A9.5 9.5 0 1 1 7.7 20zm5.6-3.4.3.2a7.9 7.9 0 1 0-2.7-2.7l.2.3-.8 3zM9 7.4c.2 0 .4 0 .6.4l.8 1.9c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.2.3 0 .5.5.9 1.2 1.7 2 2.3.6.5 1.2.8 1.6 1 .2.1.4.1.5-.1l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.3 0 1-.4 1.5-.4.5-1.3.9-1.9.9-.6 0-1.4-.1-3.3-1-2.3-1.1-3.8-3.4-3.9-3.6-.1-.2-1-1.3-1-2.5 0-1.2.6-1.8.9-2 .2-.3.4-.3.6-.3z"/></svg>
-            Preguntar por WhatsApp</a>
-          <a class="btn out" id="dtAdj" target="_blank" rel="noopener" data-hot>Descargar adjunto</a>
-        </div>
-      </div>
-    </div>
-    <div class="sim rise">
-      <div class="sec-h"><h2>Más publicaciones</h2></div>
-      <div class="grid" id="simGrid"></div>
-    </div>
-  </div>
-</div>
-
 <a class="wa" id="waFloat" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" data-hot>
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.5 21.5l1.4-5.1A9.5 9.5 0 1 1 7.7 20zm5.6-3.4.3.2a7.9 7.9 0 1 0-2.7-2.7l.2.3-.8 3zM9 7.4c.2 0 .4 0 .6.4l.8 1.9c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.2.3 0 .5.5.9 1.2 1.7 2 2.3.6.5 1.2.8 1.6 1 .2.1.4.1.5-.1l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.3 0 1-.4 1.5-.4.5-1.3.9-1.9.9-.6 0-1.4-.1-3.3-1-2.3-1.1-3.8-3.4-3.9-3.6-.1-.2-1-1.3-1-2.5 0-1.2.6-1.8.9-2 .2-.3.4-.3.6-.3z"/></svg>
 </a>
 
-<script src="config.js"></script>
-<script src="contenido.js"></script>
-<script>
-(function(){
-var C = window.IMI_CONFIG || {}, D = document, H = D.documentElement;
-var $ = function(s,r){return (r||D).querySelector(s)}, $$ = function(s,r){return [].slice.call((r||D).querySelectorAll(s))};
-
-/* ---------- ¿Teléfono sencillo o datos lentos? → versión ligera ---------- */
-var nc = navigator.connection || {};
-var lite = matchMedia('(prefers-reduced-motion: reduce)').matches || nc.saveData ||
-  /(^|-)2g|3g/.test(nc.effectiveType||'') || (navigator.deviceMemory && navigator.deviceMemory <= 2) ||
-  (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) || /[?&]lite/.test(location.search);
-if (/[?&]fx/.test(location.search)) lite = false;
-if (!lite) H.classList.add('fx');
-
-/* ---------- Datos desde config.js ---------- */
-var wa = function(msg){ return 'https://wa.me/' + (C.whatsapp||'') + '?text=' + encodeURIComponent(msg); };
-$$('[data-c="ciudad"]').forEach(function(e){ e.textContent = C.ciudad || ''; });
-$('#ig').href = C.instagram || '#';
-$('#waFloat').href = wa('Hola, quisiera información sobre el ' + (C.nombre||'colegio') + '.');
-var menu = $('#intraMenu');
-Object.keys(C.intranet||{}).forEach(function(k){ var a=D.createElement('a'); a.href=C.intranet[k]; a.target='_blank'; a.rel='noopener'; a.textContent=k; a.setAttribute('data-hot',''); menu.appendChild(a); });
-$('#intraBtn').addEventListener('click', function(e){ if(e.target.closest('.menu a')) return; e.stopPropagation(); menu.classList.toggle('open'); closePops(); });
-
-/* ---------- Barra de inscripción → WhatsApp ---------- */
-var sel = { nivel:'', motivo:(C.motivos||['Inscripción'])[0] };
-function fillPop(key, list){
-  var p = $('#pop-'+key);
-  list.forEach(function(v){ var b=D.createElement('button'); b.type='button'; b.textContent=v; b.setAttribute('data-hot','');
-    if(sel[key]===v) b.className='sel';
-    b.addEventListener('click', function(e){ e.stopPropagation(); sel[key]=v; $('#'+key+'Txt').textContent=v;
-      $$('button',p).forEach(function(x){x.className=x===b?'sel':''}); closePops();
-      if(key==='nivel' && !sel._m){ sel._m=1; openPop('motivo'); } });
-    p.appendChild(b); });
-}
-fillPop('nivel', C.niveles||[]); fillPop('motivo', C.motivos||[]);
-function closePops(){ $$('.pop.open').forEach(function(p){p.classList.remove('open')}); }
-function openPop(k){ closePops(); $$('.field').forEach(function(f){f.classList.toggle('on', f.getAttribute('data-pop')===k)}); $('#pop-'+k).classList.add('open'); }
-$$('[data-pop]').forEach(function(f){ f.addEventListener('click', function(e){ e.stopPropagation(); var k=f.getAttribute('data-pop'), p=$('#pop-'+k);
-  if(p.classList.contains('open')) closePops(); else openPop(k); menu.classList.remove('open'); }); });
-$('#nombre').addEventListener('focus', function(){ closePops(); $$('.field').forEach(function(f){f.classList.remove('on')}); this.closest('.field').classList.add('on'); });
-D.addEventListener('click', function(){ closePops(); menu.classList.remove('open'); });
-$('#search').addEventListener('submit', function(e){
-  e.preventDefault();
-  var n = $('#nombre').value.trim();
-  var msg = 'Hola' + (n ? ', soy ' + n : '') + '. Me gustaría recibir información sobre: ' + sel.motivo.toLowerCase() +
-    (sel.nivel ? ', para ' + sel.nivel : '') + ', en el ' + (C.nombre||'colegio') + '. ¡Gracias!';
-  window.open(wa(msg), '_blank', 'noopener');
-});
-
-/* ---------- Cursor ---------- */
-var cur = $('.cur');
-if (!lite && matchMedia('(hover:hover) and (pointer:fine)').matches){
-  D.addEventListener('pointermove', function(e){ cur.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)';
-    cur.classList.toggle('on', !!e.target.closest('[data-hot],a,button,input')); }, {passive:true});
-  D.addEventListener('pointerdown', function(){ cur.classList.add('down') });
-  D.addEventListener('pointerup', function(){ cur.classList.remove('down') });
-}
-
-/* ---------- Portada: diapositivas ---------- */
-var CAPS = [
-  ['Familia IMI', 'Una educación integral que forja ciudadanos globales, inclusivos y con pensamiento crítico.'],
-  ['De Inicial a Secundaria', 'Formación de niños, niñas y adolescentes junto a la familia y la comunidad.'],
-  ['Valores', 'Respeto, exigencia y confianza: la base de la convivencia escolar y familiar.']
-];
-var slides = $$('.slide'), photos = slides.map(function(s){return $('.photo',s)}), thumbs = $$('.thumb');
-var cur_i = 0, busy = false, timer = null, kbStart = performance.now(), px = 0, py = 0;
-var hero = $('.hero'), mist = $('#mist');
-slides.forEach(function(s,i){ s.style.zIndex = i===0 ? 2 : 1; s.style.visibility = i===0 ? 'visible' : 'hidden'; });
-
-function vw(){ return innerWidth/100; }
-function layoutRail(){
-  var W = innerWidth, Hh = hero.offsetHeight, mob = W <= 640;
-  var A = Math.max(mob?84:96, Math.min(190, W*.113)), I = Math.max(mob?42:46, Math.min(92, W*.054)), G = Math.max(8, W*.009);
-  var cx = W*.855, y = 74 + Hh*.085;
-  if (mob){
-    var hr = hero.getBoundingClientRect(), tb = $('.title', slides[cur_i]).getBoundingClientRect().bottom - hr.top + 16;
-    var sTop = $('#search').getBoundingClientRect().top - hr.top - 14 - (H.classList.contains('ready')?0:30);
-    y = Math.max(y, tb); var room = sTop - y, need = A + 2*I + 2*G;
-    if (room < need){ var k = Math.max(.55, room/need); A*=k; I*=k; }
-    cx = W - A/2 - 14;
-  }
-  var act;
-  thumbs.forEach(function(t){ var on = +t.getAttribute('data-s') === cur_i, s = on ? A : I;
-    t.style.width = t.style.height = s+'px'; t.style.left = (cx - s/2)+'px'; t.style.top = y+'px';
-    t.classList.toggle('act', on); if (on) act = {y:y + s/2}; y += s + G; });
-  [['#r1', A/2 + W*.05], ['#r2', A/2 + W*.108]].forEach(function(r){ var e=$(r[0]); e.style.width=e.style.height=(r[1]*2)+'px'; e.style.left=(cx-r[1])+'px'; e.style.top=(act.y-r[1])+'px'; });
-  var cl = Math.max(40, W*.047), connR = cx - A/2 - W*.008, conn = $('#conn');
-  conn.style.width = cl+'px'; conn.style.left = (connR - cl)+'px'; conn.style.top = (act.y - 1.5)+'px';
-  var cap = $('#cap'); cap.style.right = (W - (connR - cl - 16))+'px'; cap.style.left = 'auto'; cap.style.top = act.y+'px';
-  $('.bar', cap).style.height = Math.max(84, W*.065)+'px';
-}
-function showCap(i){ var cap=$('#cap'); $('h3',cap).textContent=CAPS[i][0]; $('p',cap).textContent=CAPS[i][1]; cap.classList.add('show'); $('#conn').classList.add('show'); }
-function hideCap(){ $('#cap').classList.remove('show'); $('#conn').classList.remove('show'); }
-
-var ease = function(t){ return t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2; };
-function setMask(el, p){
-  var a = p*135-35, b = p*135, m = (a+b)/2;
-  var g = 'linear-gradient(to left,#000 '+a+'%,rgba(0,0,0,.6) '+m+'%,transparent '+b+'%)';
-  el.style.webkitMaskImage = g; el.style.maskImage = g;
-}
-function clearMask(el){ el.style.webkitMaskImage = el.style.maskImage = ''; }
-
-function go(n){
-  if (busy || n === cur_i) return;
-  var from = cur_i, inS = slides[n], outS = slides[from];
-  cur_i = n; layoutRail(); hideCap(); restart();
-  $$('.title .w>span', inS).forEach(function(s){ s.style.transition='none'; s.style.transform='none'; });
-  if (lite){ // versión ligera: cambio directo, sin animación
-    outS.style.visibility='hidden'; inS.style.visibility='visible'; inS.style.zIndex=2; outS.style.zIndex=1;
-    showCap(n); return;
-  }
-  busy = true;
-  inS.style.zIndex = 3; inS.style.visibility = 'visible'; setMask(inS, 0);
-  var pin = photos[n], pout = photos[from], t0 = performance.now(), D_ = 1250;
-  setTimeout(function(){ showCap(n); }, 650);
-  (function step(now){
-    var t = Math.min(1, (now - t0)/D_), p = ease(t);
-    setMask(inS, p);
-    pin.style.transform = 'translateX('+(2-2*p)+'%) scale('+(1.12 - .08*p)+')';
-    pout.style.transform = 'translateX('+(-2*p)+'%) scale('+(1.04 + .05*p)+')';
-    var edge = 100 - (p*135 - 17.5);
-    mist.style.left = edge+'%'; mist.style.opacity = (Math.sin(Math.PI*t)*.95).toFixed(3);
-    if (t < 1) requestAnimationFrame(step);
-    else {
-      clearMask(inS); inS.style.zIndex = 2; outS.style.zIndex = 1; outS.style.visibility = 'hidden';
-      pout.style.transform = 'scale(1.04)'; mist.style.opacity = 0; busy = false; kbStart = performance.now();
-    }
-  })(t0);
-}
-function restart(){ clearInterval(timer); if (!lite) timer = setInterval(function(){ go((cur_i+1)%3); }, 5200); }
-thumbs.forEach(function(t){ t.addEventListener('click', function(){ go(+t.getAttribute('data-s')); }); });
-
-/* Ken Burns lento + paralaje con el puntero */
-if (!lite){
-  D.addEventListener('pointermove', function(e){ px = (e.clientX/innerWidth - .5)*2; py = (e.clientY/innerHeight - .5)*2; }, {passive:true});
-  (function kb(now){
-    if (!busy){ var s = 1.04 + Math.min(12, (now-kbStart)/1000)*.0035;
-      photos[cur_i].style.transform = 'translate('+(px*-.6)+'%,'+(py*-.5)+'%) scale('+s+')'; }
-    requestAnimationFrame(kb);
-  })(performance.now());
-}
-
-/* ---------- Scroll ---------- */
-var nav = $('#nav'), stack = $('#stack'), clouds = $('#clouds'), ct = $('#cloudsTop'), rail = $('#rail'), ticking = false;
-function onScroll(){
-  var y = scrollY, vh = innerHeight;
-  nav.classList.toggle('solid', y > vh*.3);
-  if (!lite && y < vh*1.3){
-    stack.style.transform = 'translateY('+(y*.42)+'px)';
-    clouds.style.transform = 'translateY('+(-y*.38)+'px) scale('+(1 + .35*y/vh)+')';
-    ct.style.opacity = Math.min(1, y/(.45*vh)); ct.style.transform = 'scaleY(-1) translateY('+(y*.25)+'px)';
-    rail.style.transform = 'translateY('+(y*.2)+'px)'; rail.style.opacity = Math.max(0, 1 - y/(.5*vh));
-  }
-  ticking = false;
-}
-addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(onScroll); } }, {passive:true});
-addEventListener('resize', layoutRail);
-
-/* ---------- Entrada ---------- */
-layoutRail(); onScroll();
-var words = $$('.slide[data-i="0"] .title .w>span');
-words.forEach(function(s,i){ s.style.transitionDelay = (i*90)+'ms'; });
-thumbs.slice().reverse().forEach(function(t,i){ t.style.transitionDelay = (350 + i*140)+'ms'; });
-setTimeout(function(){ H.classList.add('ready'); D.body.classList.add('ready'); }, lite ? 0 : 250);
-setTimeout(function(){ thumbs.forEach(function(t){ t.style.transitionDelay=''; }); showCap(0); restart(); }, lite ? 50 : 900);
-if (D.fonts && D.fonts.ready) D.fonts.ready.then(layoutRail);
-})();
-</script>
-<script>
-/* ---------- Noticias y galería + ficha de detalle ---------- */
-(function(){
-var C = window.IMI_CONFIG || {}, ITEMS = window.IMI_CONTENIDO || [], D = document, H = D.documentElement;
-var $ = function(s,r){return (r||D).querySelector(s)}, $$ = function(s,r){return [].slice.call((r||D).querySelectorAll(s))};
-var fx = function(){ return H.classList.contains('fx'); };
-var WA = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.5 21.5l1.4-5.1A9.5 9.5 0 1 1 7.7 20zm5.6-3.4.3.2a7.9 7.9 0 1 0-2.7-2.7l.2.3-.8 3zM9 7.4c.2 0 .4 0 .6.4l.8 1.9c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.2.3 0 .5.5.9 1.2 1.7 2 2.3.6.5 1.2.8 1.6 1 .2.1.4.1.5-.1l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.3 0 1-.4 1.5-.4.5-1.3.9-1.9.9-.6 0-1.4-.1-3.3-1-2.3-1.1-3.8-3.4-3.9-3.6-.1-.2-1-1.3-1-2.5 0-1.2.6-1.8.9-2 .2-.3.4-.3.6-.3z"/></svg>';
-var CAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>';
-var CAM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h4l2-3h6l2 3h4v12H3z"/><circle cx="12" cy="13" r="3.5"/></svg>';
-var esc = function(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
-var cover = function(it){ return it.fotos[it.portada||0]; };
-var waTo = function(msg){ return 'https://wa.me/' + (C.whatsapp||'') + '?text=' + encodeURIComponent(msg); };
-var link = function(it){ return location.origin + location.pathname + '#ver-' + it.id; };
-
-function cardHTML(it, i){
-  var news = it.tipo === 'noticia', img = cover(it);
-  return '<article class="card ' + (news?'news':'album') + '" data-id="' + it.id + '" tabindex="0" role="button" aria-label="' + esc(it.titulo) + '" data-hot>' +
-    '<div class="ph">' + (news ? '<img class="bg" src="' + img + '" alt="" loading="lazy">' : '') +
-      '<img class="fg" src="' + img + '" alt="" loading="lazy" decoding="async"></div>' +
-    '<span class="tag">' + (news ? 'Noticia <span>· ' + esc(it.autor) + '</span>' : 'Galería <span>· ' + it.fotos.length + ' fotos</span>') + '</span>' +
-    '<button class="share" aria-label="Compartir por WhatsApp" data-hot>' + WA + '</button>' +
-    '<div class="info"><h3>' + esc(it.titulo) + '</h3><div class="meta">' + (news ? CAL + esc(it.fecha) : CAM + 'Álbum de fotos') + '</div></div>' +
-  '</article>';
-}
-function render(el, list){
-  el.innerHTML = list.map(cardHTML).join('');
-  $$('.card', el).forEach(function(c, i){
-    var it = ITEMS.filter(function(x){ return x.id === c.getAttribute('data-id'); })[0];
-    c.addEventListener('click', function(e){
-      if (e.target.closest('.share')){ e.stopPropagation();
-        window.open('https://wa.me/?text=' + encodeURIComponent(it.titulo + ' · ' + (C.nombre||'') + ' ' + link(it)), '_blank', 'noopener'); return; }
-      open(it, c);
-    });
-    c.addEventListener('keydown', function(e){ if (e.key === 'Enter') open(it, c); });
-  });
-  reveal(el);
-}
-
-/* Entrada al hacer scroll */
-var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){
-  es.forEach(function(e){ if (e.isIntersecting){ var c = e.target; io.unobserve(c);
-    var cols = getComputedStyle(c.parentNode).gridTemplateColumns.split(' ').length;
-    var idx = [].indexOf.call(c.parentNode.children, c);
-    setTimeout(function(){ c.classList.remove('pre'); }, (idx % cols) * 90); } });
-}, {threshold:.15}) : null;
-function reveal(el){ if (!io || !fx()) return; $$('.card', el).forEach(function(c){ c.classList.add('pre'); io.observe(c); }); }
-
-/* Rejilla principal: 8 tarjetas (4 en el móvil) + «Ver todo» */
-var grid = $('#grid'), seeAll = $('#seeAll'), all = false;
-render(grid, ITEMS);
-function limit(){ var n = innerWidth <= 640 ? 4 : 8;
-  $$('.card', grid).forEach(function(c, i){ c.classList.toggle('hide', !all && i >= n); });
-  seeAll.textContent = all ? 'Ver menos' : 'Ver todo'; seeAll.style.display = ITEMS.length > n ? '' : 'none'; }
-seeAll.addEventListener('click', function(){ all = !all; limit(); if (!all) grid.scrollIntoView({block:'nearest'}); });
-addEventListener('resize', limit); limit();
-
-/* Ficha de detalle */
-var dt = $('#dt'), mainph = $('#mainph'), mainimg = $('#mainimg'), nav = $('#nav'), cur = null, flying = null;
-var ease = function(t){ return t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2; };
-function fill(it){
-  var news = it.tipo === 'noticia';
-  $('#dtType').textContent = news ? 'Noticias' : 'Galería';
-  $('#dtCrumb').textContent = it.titulo;
-  $('#dtTitle').textContent = it.titulo;
-  $('#dtBy').textContent = news ? ('Publicado por ' + it.autor + ' · ' + it.fecha) : ('Álbum de fotos · ' + it.fotos.length + ' fotos');
-  $('#dtText').innerHTML = news ? '<h2>Sobre esta publicación</h2>' + it.texto.map(function(t){ return '<p class="tx">' + esc(t) + '</p>'; }).join('') : '';
-  mainph.style.aspectRatio = it.ancho + ' / ' + it.alto;
-  mainimg.src = cover(it); mainimg.alt = it.titulo;
-  var rest = it.fotos.filter(function(f, i){ return i !== (it.portada||0); });
-  var th = $('#dtThumbs'), ap = $('#allph');
-  th.innerHTML = rest.slice(0,3).map(function(f, i){
-    var more = (i === 2 && rest.length > 3) ? ' class="more" data-n="+' + (rest.length - 2) + '"' : '';
-    return '<button' + more + ' data-src="' + f + '" data-hot><img src="' + f + '" alt="" loading="lazy"></button>'; }).join('');
-  th.style.display = rest.length ? '' : 'none';
-  ap.classList.remove('on');
-  ap.innerHTML = it.fotos.map(function(f){ return '<img src="' + f + '" alt="" loading="lazy" data-hot>'; }).join('');
-  $$('button', th).forEach(function(b){ b.addEventListener('click', function(){
-    if (b.classList.contains('more')){ ap.classList.add('on'); ap.scrollIntoView({behavior:'smooth', block:'nearest'}); return; }
-    mainimg.src = b.getAttribute('data-src'); }); });
-  $$('img', ap).forEach(function(im){ im.addEventListener('click', function(){ mainimg.src = im.src; mainph.scrollIntoView({behavior:'smooth', block:'center'}); }); });
-  $('#dtWa').href = waTo('Hola, vi en la web la publicación «' + it.titulo + '» del ' + (C.nombre||'colegio') + ' y quisiera más información.');
-  var adj = $('#dtAdj'); adj.style.display = it.adjunto ? '' : 'none'; if (it.adjunto) adj.href = it.adjunto;
-  var others = ITEMS.filter(function(x){ return x.id !== it.id; }).slice(0, 4);
-  render($('#simGrid'), others);
-  $$('.rise', dt).forEach(function(r, i){ r.style.transitionDelay = (250 + i*70) + 'ms'; });
-}
-function open(it, fromCard, noHistory){
-  cur = it; fill(it); dt.scrollTop = 0;
-  H.style.overflow = 'hidden'; nav.classList.add('solid');
-  if (!noHistory && location.hash !== '#ver-' + it.id) history.pushState({ver:it.id}, '', '#ver-' + it.id);
-  dt.classList.add('open'); dt.classList.remove('shown');
-  requestAnimationFrame(function(){ requestAnimationFrame(function(){ dt.classList.add('shown'); }); });
-  var src = fromCard && $('.ph img.fg', fromCard);
-  if (!src || !fx()){ mainph.classList.remove('wait'); return; }
-  mainph.classList.add('wait');
-  requestAnimationFrame(function(){
-    var a = src.getBoundingClientRect(), b = mainph.getBoundingClientRect();
-    if (flying) flying.remove();
-    var f = flying = D.createElement('img'); f.src = src.currentSrc || src.src; f.className = 'flight';
-    f.style.objectFit = fromCard.classList.contains('news') ? 'contain' : 'cover';
-    D.body.appendChild(f);
-    var t0 = performance.now();
-    (function step(now){
-      var t = Math.min(1, (now - t0)/900), p = ease(t);
-      f.style.left = (a.left + (b.left - a.left)*p) + 'px'; f.style.top = (a.top + (b.top - a.top)*p) + 'px';
-      f.style.width = (a.width + (b.width - a.width)*p) + 'px'; f.style.height = (a.height + (b.height - a.height)*p) + 'px';
-      f.style.borderRadius = (12 - 2*p) + 'px';
-      if (t < 1) requestAnimationFrame(step);
-      else { mainph.classList.remove('wait'); setTimeout(function(){ f.remove(); if (flying === f) flying = null; }, 60); }
-    })(t0);
-  });
-}
-function close(noHistory){
-  if (!cur) return; cur = null;
-  dt.classList.remove('open','shown'); H.style.overflow = '';
-  if (flying){ flying.remove(); flying = null; }
-  dispatchEvent(new Event('scroll'));
-  if (!noHistory && /^#ver-/.test(location.hash)) history.back();
-}
-$$('[data-home]').forEach(function(a){ a.addEventListener('click', function(e){ if (cur){ e.preventDefault(); close(); } }); });
-$('.logo').addEventListener('click', function(e){ if (cur){ e.preventDefault(); close(); } });
-addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
-function fromHash(){
-  var m = location.hash.match(/^#ver-(.+)$/), it = m && ITEMS.filter(function(x){ return x.id === m[1]; })[0];
-  if (it) open(it, null, true); else close(true);
-}
-addEventListener('popstate', fromHash);
-if (/^#ver-/.test(location.hash)) fromHash();
-})();
-</script>
-<script>
-/* ---------- Sobre nosotros ---------- */
-(function(){
-var C = window.IMI_CONFIG || {}, D = document, fx = D.documentElement.classList.contains('fx');
-var $ = function(s){ return D.querySelector(s); }, $$ = function(s){ return [].slice.call(D.querySelectorAll(s)); };
-$('#abHist').textContent = C.historia || 'Información próximamente.';
-$('#abDea').textContent = C.codigoDEA ? 'Código D.E.A. ' + C.codigoDEA : (C.ciudad || '');
-// Años desde la fundación (10 de enero de 1961), calculado con la fecha de hoy
-var now = new Date(), y = now.getFullYear() - 1961; if (now < new Date(now.getFullYear(), 0, 10)) y--;
-$('#abYears').textContent = y;
-$$('.mv .rd').forEach(function(b){ b.addEventListener('click', function(){
-  var c = b.closest('.mv'); c.classList.toggle('open'); b.textContent = c.classList.contains('open') ? 'Leer menos' : 'Leer completa'; }); });
-var ARROW = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.5 21.5l1.4-5.1A9.5 9.5 0 1 1 7.7 20zm5.6-3.4.3.2a7.9 7.9 0 1 0-2.7-2.7l.2.3-.8 3z"/></svg>';
-$('#lvs').innerHTML = (C.niveles || []).map(function(n){
-  var msg = 'Hola, quisiera información sobre ' + n + ' en el ' + (C.nombre || 'colegio') + '.';
-  return '<a href="https://wa.me/' + (C.whatsapp||'') + '?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener" data-hot><b>' + n + '</b><span>' + ARROW + 'Pedir información</span></a>';
-}).join('');
-// Aparición al hacer scroll
-var els = $$('.about .up');
-if (fx && 'IntersectionObserver' in window){
-  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ var t = e.target; t.classList.remove('pre'); io.unobserve(t); setTimeout(function(){ t.style.transitionDelay = ''; }, 1200); } }); }, {threshold:.2});
-  els.forEach(function(el, i){ el.classList.add('pre'); io.observe(el); });
-  var tl = $('#tl'); tl.classList.add('pre');
-  var io2 = new IntersectionObserver(function(es){ if (es[0].isIntersecting){ setTimeout(function(){ tl.classList.remove('pre'); }, 250); io2.disconnect(); } }, {threshold:.3});
-  io2.observe(tl);
-  $$('.mvv .up').forEach(function(el, i){ el.style.transitionDelay = (i*90) + 'ms'; });
-}
-})();
-</script>
-<script>
-/* ---------- Visítanos y pie ---------- */
-(function(){
-var C = window.IMI_CONFIG || {}, D = document, fx = D.documentElement.classList.contains('fx');
-var $ = function(s){ return D.querySelector(s); }, $$ = function(s){ return [].slice.call(D.querySelectorAll(s)); };
-var PROX = 'Información próximamente';
-var wa = 'https://wa.me/' + (C.whatsapp||'') + '?text=' + encodeURIComponent('Hola, quisiera información sobre el ' + (C.nombre||'colegio') + '.');
-var tel = (C.telefono||'').replace(/[^+0-9]/g,'');
-$$('[data-v]').forEach(function(el){ var k = el.getAttribute('data-v'), v = C[k];
-  if (!v){ el.textContent = PROX; el.removeAttribute('href'); return; }
-  if (k === 'telefono'){ el.textContent = v; el.href = 'tel:' + tel; }
-  else if (k === 'correo'){ el.textContent = v; el.href = 'mailto:' + v; }
-  else if (k === 'instagram'){ el.textContent = C.instagramUsuario || v; el.href = v; }
-  else el.textContent = v; });
-$('#viWa').href = wa; $('#viDir').href = C.comoLlegar || C.mapa || '#';
-/* El mapa solo se carga al tocar «Ver mapa», para ahorrar datos móviles */
-$('#mapBtn').addEventListener('click', function(){
-  var f = D.createElement('iframe'); f.src = C.mapaEmbed; f.title = 'Mapa del Instituto María Inmaculada'; f.referrerPolicy = 'no-referrer-when-downgrade';
-  $('#map').appendChild(f); setTimeout(function(){ $('#map .ld').classList.add('gone'); }, 900); });
-/* Pie de página */
-$('#ftDea').textContent = (C.codigoDEA ? 'Código D.E.A. ' + C.codigoDEA + ' · ' : '') + (C.horario ? 'Horario: ' + C.horario : '');
-$('#ftIntra').innerHTML = Object.keys(C.intranet||{}).map(function(k){ return '<a href="' + C.intranet[k] + '" target="_blank" rel="noopener">' + k + '</a>'; }).join('');
-$('#ftWa').href = wa; $('#ftTel').textContent = C.telefono || ''; $('#ftTel').href = 'tel:' + tel;
-$('#ftMail').textContent = C.correo || ''; $('#ftMail').href = 'mailto:' + (C.correo||'');
-$('#ftIg').textContent = C.instagramUsuario || 'Instagram'; $('#ftIg').href = C.instagram || '#';
-$('#ftCopy').textContent = '© ' + new Date().getFullYear() + ' ' + (C.nombre||'');
-if (fx && 'IntersectionObserver' in window){
-  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); e.target.classList.toggle('pre', false); io.unobserve(e.target); } }); }, {threshold:.15});
-  $$('.visit .up').forEach(function(el){ el.classList.add('pre'); io.observe(el); });
-}
-})();
-</script>
+<script src="/config.js"></script>
+<script src="/js/comun.js"></script>
+<script src="/js/portada.js"></script>
 </body>
 </html>
