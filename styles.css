@@ -1603,3 +1603,37 @@ html.sin-vt .rotulo { display: none !important; } /* sin transición nativa el n
 .recorrido { mix-blend-mode: difference; }
 .recorrido a, .pagina-inicio .recorrido a { color: #fff; }
 .recorrido a span, .pagina-inicio .recorrido a span { color: #000; background: #fff; }
+
+/* =========================================================
+   4 APARTADOS (20-11-2026): Inicio · Catálogo · Por qué ZETA · Sobre nosotros
+   Los nombres van siempre arriba. En el teléfono, en una segunda fila de la cabecera.
+   ========================================================= */
+.cab__nav a { white-space: nowrap; }
+@media (min-width: 900px) {
+  .cabecera:not(.cabecera--campana) .cab__nav { grid-column: 1; grid-row: 1; justify-self: start; }
+  .cabecera:not(.cabecera--campana) .cab__izq { grid-column: 1; grid-row: 1; }
+}
+@media (max-width: 899px) {
+  :root { --cab: 100px; }
+  .cabecera { grid-template-rows: 60px 40px; align-items: center; }
+  .cabecera > .cab__izq, .cabecera > .cab__logo, .cabecera > .cab__der { grid-row: 1; }
+  .cabecera .cab__nav {
+    display: flex; grid-row: 2; grid-column: 1 / -1; justify-content: space-between; align-self: stretch; align-items: center;
+    margin: 0 calc(var(--margen) * -1); padding: 0 var(--margen); border-top: 1px solid var(--linea);
+    overflow-x: auto; scrollbar-width: none; gap: 14px;
+  }
+  .cabecera .cab__nav::-webkit-scrollbar { display: none; }
+  .cabecera .cab__nav a { font-size: 10.5px; letter-spacing: .1em; padding: 10px 0; }
+  .cabecera--campana:not(.solida) .cab__nav { border-top-color: rgba(241,233,222,.16); }
+  /* el inicio no tiene fondo detrás de la cabecera: la fila de nombres lleva un velo suave */
+  .pagina-inicio .cabecera:not(.solida) .cab__nav { background: linear-gradient(rgba(14,11,8,.5), rgba(14,11,8,0)); }
+}
+@media (max-width: 899px) { .cabecera--campana .cab__logo, .cabecera--campana .cab__der { grid-row: 1; } }
+/* Menú del teléfono: los 4 apartados y, debajo, el resto de la tienda */
+.menu__extra { list-style: none; display: grid; gap: 2px; margin-top: 18px; }
+.menu__extra a { display: block; padding: 9px 0; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #bdbab4; text-decoration: none; }
+.menu__extra a[aria-current="page"] { color: #8c8a85; }
+/* Contacto dentro de Sobre nosotros */
+.cabeza-pag--seccion { padding-top: 72px; border-top: 1px solid var(--linea); scroll-margin-top: var(--cab); }
+@media (min-width: 900px) { .cabeza-pag--seccion { padding-top: 96px; } }
+@media (max-width: 380px) { .cabecera .cab__nav { gap: 8px; } .cabecera .cab__nav a { font-size: 10px; letter-spacing: .05em; } }

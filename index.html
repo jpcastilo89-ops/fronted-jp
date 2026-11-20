@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>document.documentElement.className="js";</script>
-  <script>window.ZETA_ORDEN=[["index.html", "Inicio"], ["catalogo.html", "Tienda"], ["productos.html", "La franela"], ["pack.html", "Arma tu pack"], ["galeria.html", "Campaña"], ["nosotros.html", "Historia"], ["contacto.html", "Contacto"]];
+  <script>window.ZETA_ORDEN=[["index.html", "Inicio"], ["catalogo.html", "Catálogo"], ["valor.html", "Por qué ZETA"], ["nosotros.html", "Sobre nosotros"]];
 (function(){var d=document.documentElement,O=window.ZETA_ORDEN.map(function(x){return x[0]}),c=navigator.connection;
 d.classList.add("CSSViewTransitionRule" in window?"vt":"sin-vt");
 try{if((navigator.deviceMemory&&navigator.deviceMemory<=2)||(c&&(c.saveData||/2g/.test(c.effectiveType))))d.classList.add("liviano")}catch(e){}
@@ -81,10 +81,11 @@ if(f&&navigation.activation.navigationType==="traverse"){var a=ix(f.url),b=ix(lo
   <a class="saltar" href="#contenido">Saltar al contenido</a>
   <header class="cabecera cabecera--campana" id="cabecera">
     <a class="cab__logo" href="index.html" aria-label="ZETA, ir al inicio"><img src="img/logo-zeta-blanco.webp" alt="ZETA" width="600" height="373"></a>
-    <nav class="cab__nav" aria-label="Principal">
+    <nav class="cab__nav" aria-label="Apartados">
       <a href="index.html" data-pagina="index">Inicio</a>
-      <a href="catalogo.html" data-pagina="catalogo">Colección</a>
-      <a href="nosotros.html" data-pagina="nosotros">Sobre ZETA</a>
+      <a href="catalogo.html" data-pagina="catalogo">Catálogo</a>
+      <a href="valor.html" data-pagina="valor">Por qué ZETA</a>
+      <a href="nosotros.html" data-pagina="nosotros">Sobre nosotros</a>
     </nav>
     <div class="cab__der">
       <button class="bolsa" id="bolsa" type="button" aria-label="Ver mi pedido" aria-haspopup="dialog">
@@ -100,13 +101,16 @@ if(f&&navigation.activation.navigationType==="traverse"){var a=ix(f.url),b=ix(lo
     <button class="menu__cerrar" id="cerrarMenu" type="button" aria-label="Cerrar menú"><svg aria-hidden="true"><use href="#ico-cerrar"/></svg></button>
     <ol class="menu__lista">
       <li><a href="index.html" data-pagina="index"><span>01</span>Inicio</a></li>
-      <li><a href="catalogo.html" data-pagina="catalogo"><span>02</span>Tienda</a></li>
-      <li><a href="productos.html" data-pagina="productos"><span>03</span>La franela</a></li>
-      <li><a href="pack.html" data-pagina="pack"><span>04</span>Arma tu pack</a></li>
-      <li><a href="galeria.html" data-pagina="galeria"><span>05</span>Campaña</a></li>
-      <li><a href="nosotros.html" data-pagina="nosotros"><span>06</span>Historia</a></li>
-      <li><a href="contacto.html" data-pagina="contacto"><span>07</span>Contacto</a></li>
+      <li><a href="catalogo.html" data-pagina="catalogo"><span>02</span>Catálogo</a></li>
+      <li><a href="valor.html" data-pagina="valor"><span>03</span>Por qué ZETA</a></li>
+      <li><a href="nosotros.html" data-pagina="nosotros"><span>04</span>Sobre nosotros</a></li>
     </ol>
+    <ul class="menu__extra">
+      <li><a href="productos.html" data-pagina="productos">La franela, en detalle</a></li>
+      <li><a href="pack.html" data-pagina="pack">Arma tu pack</a></li>
+      <li><a href="galeria.html" data-pagina="galeria">Campaña</a></li>
+      <li><a href="nosotros.html#contacto">Contacto</a></li>
+    </ul>
     <div class="menu__pie">
       <a class="boton boton--wa" data-wa-general href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#ico-wa"/></svg>Escríbenos por WhatsApp</a>
       <a class="boton boton--borde" data-instagram href="#" target="_blank" rel="noopener">Instagram</a>
@@ -173,7 +177,7 @@ if(f&&navigation.activation.navigationType==="traverse"){var a=ix(f.url),b=ix(lo
   <a class="wa-flotante" data-wa href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg aria-hidden="true"><use href="#ico-wa"/></svg></a>
   <!-- Transición para navegadores sin transición nativa: corte en diagonal con el nombre de la página -->
   <div class="paso-pagina" id="pasoPagina" aria-hidden="true"><div class="paso-pagina__velo"><span class="paso-pagina__n"></span><span class="paso-pagina__t"></span></div></div>
-  <nav class="recorrido" aria-label="Páginas de ZETA"><a href="index.html" aria-current="page"><span>01 · Inicio</span></a><a href="catalogo.html"><span>02 · Tienda</span></a><a href="productos.html"><span>03 · La franela</span></a><a href="pack.html"><span>04 · Arma tu pack</span></a><a href="galeria.html"><span>05 · Campaña</span></a><a href="nosotros.html"><span>06 · Historia</span></a><a href="contacto.html"><span>07 · Contacto</span></a></nav>
+  <nav class="recorrido" aria-label="Páginas de ZETA"><a href="index.html" aria-current="page"><span>01 · Inicio</span></a><a href="catalogo.html"><span>02 · Catálogo</span></a><a href="valor.html"><span>03 · Por qué ZETA</span></a><a href="nosotros.html"><span>04 · Sobre nosotros</span></a></nav>
   <div class="rotulo" aria-hidden="true"><span class="rotulo__n">01</span><span class="rotulo__t">Inicio</span></div>
   <script src="config.js"></script>
   <script src="comun.js"></script>
