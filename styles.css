@@ -1099,3 +1099,82 @@ main { display: block; }
 .portada.en-3d .portada__img--nueva { display: none; }
 /* Mientras gira, sin la sombra (en teléfonos baratos la sombra en cada cuadro cuesta mucho) */
 .portada__3d.moviendo { filter: none; }
+
+/* ---------- Inicio: perchero de tienda (perchero.js). Mismo estudio beige de la portada ---------- */
+.perchero {
+  --arena: #dcd4c7; --arena-luz: #ebe5da; --tinta-calida: #1b1712; --texto-calido: #4d463c;
+  --ancho-percha: min(58vw, 300px);
+  position: relative; overflow: hidden; color: var(--tinta-calida);
+  background: radial-gradient(120% 80% at 30% 0%, var(--arena-luz), var(--arena) 60%, #cfc6b7);
+  padding: 64px 0 48px; border-top: 1px solid rgba(27,23,18,.08);
+}
+@media (min-width: 900px) { .perchero { --ancho-percha: clamp(220px, 19vw, 300px); padding: 96px 0 72px; } }
+.perchero__cabeza { display: flex; justify-content: space-between; align-items: end; gap: 20px; padding: 0 var(--margen); }
+.perchero__marca { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--texto-calido); }
+.perchero__titulo { margin-top: 4px; font-size: clamp(30px, 5.4vw, 72px); line-height: .92; font-weight: 800; font-stretch: 72%; text-transform: uppercase; letter-spacing: -.01em; }
+.perchero__flechas { display: none; gap: 10px; }
+@media (hover: hover) and (pointer: fine) { .perchero__flechas { display: flex; } }
+.perchero__flecha { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(27,23,18,.3); display: grid; place-items: center; color: var(--tinta-calida); background: transparent; transition: background .2s; }
+.perchero__flecha:hover { background: rgba(255,255,255,.45); }
+.perchero__flecha svg { width: 20px; height: 20px; }
+
+/* El tubo y la fila de franelas */
+.perchero__tienda { position: relative; margin-top: 28px; }
+.perchero__riel {
+  position: absolute; left: 0; right: 0; top: 13px; height: 7px; z-index: 0; pointer-events: none;
+  background: linear-gradient(#f4f1ec, #9d978e 45%, #5f5a53 80%, #8b857c);
+  box-shadow: 0 6px 10px -4px rgba(60,48,32,.35);
+}
+.perchero__riel span { position: absolute; top: -10px; width: 6px; height: 34px; background: linear-gradient(90deg, #5f5a53, #a8a299, #5f5a53); border-radius: 2px; }
+.perchero__riel span:first-child { left: 6%; } .perchero__riel span:last-child { right: 6%; }
+.perchero__lista {
+  position: relative; z-index: 1; list-style: none; margin: 0; padding: 0 calc(50% - var(--ancho-percha) / 2) 18px;
+  display: flex; gap: 0; overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+}
+.perchero__lista::-webkit-scrollbar { display: none; }
+.perchero.arrastrando .perchero__lista { scroll-snap-type: none; cursor: grabbing; }
+@media (hover: hover) and (pointer: fine) { .perchero__lista { cursor: grab; } }
+.percha { flex: 0 0 var(--ancho-percha); scroll-snap-align: center; margin: 0 calc(var(--ancho-percha) * -.08); }
+.percha:first-child { margin-left: 0; } .percha:last-child { margin-right: 0; }
+.percha__boton { display: block; width: 100%; padding: 0; border: 0; background: none; color: #2a2521; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.percha__boton:focus-visible { outline: none; }
+.percha__boton:focus-visible .percha__img { outline: 2px solid var(--tinta-calida); outline-offset: 6px; border-radius: 6px; }
+.percha__mueve { display: block; position: relative; transform-origin: 50% 3px; will-change: transform; }
+.percha__gancho { display: block; width: 15%; max-width: 40px; height: auto; margin: 0 auto; position: relative; z-index: 0; }
+.percha__img {
+  display: block; width: 100%; height: auto; margin-top: -10%; position: relative; z-index: 1;
+  filter: drop-shadow(10px 18px 16px rgba(70,54,34,.24)) drop-shadow(1px 3px 3px rgba(70,54,34,.16));
+  transform: scale(.86); transform-origin: 50% 6%; opacity: .72;
+  transition: transform .55s var(--ease), opacity .55s var(--ease);
+  -webkit-user-select: none; user-select: none; pointer-events: none;
+}
+.percha.al-frente { position: relative; z-index: 2; }
+.percha.al-frente .percha__img { transform: scale(1); opacity: 1; }
+@media (hover: hover) { .percha:not(.al-frente) .percha__boton:hover .percha__img { opacity: .9; } }
+
+/* Ficha de la que está al frente */
+.perchero__ficha { display: grid; justify-items: center; gap: 14px; margin-top: 14px; padding: 0 var(--margen); text-align: center; }
+.perchero__nombre { font-size: 14px; color: var(--texto-calido); }
+.perchero__nombre b { display: block; font-size: 22px; font-weight: 700; color: var(--tinta-calida); letter-spacing: .01em; }
+.perchero__tallas { display: flex; gap: 8px; }
+.perchero__talla { width: 48px; height: 44px; border: 1px solid rgba(27,23,18,.3); border-radius: 2px; background: transparent; color: var(--tinta-calida); font-weight: 600; }
+.perchero__talla[aria-pressed="true"] { background: var(--tinta-calida); color: #f3efe8; border-color: var(--tinta-calida); }
+.perchero__acciones { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 22px; }
+.perchero__anadir { --boton: var(--tinta-calida); --boton-txt: #f3efe8; }
+.perchero .enlace { color: var(--tinta-calida); }
+.perchero__ayuda { margin-top: 18px; text-align: center; font-size: 12px; color: var(--texto-calido); padding: 0 var(--margen); }
+
+/* Entrada: las franelas bajan al tubo una tras otra */
+.js .perchero .percha__mueve { opacity: 0; translate: 0 -18px; transition: opacity .7s var(--ease), translate .7s var(--ease); }
+.js .perchero.ya .percha__mueve { opacity: 1; translate: 0 0; }
+.js .perchero.ya .percha:nth-child(2) .percha__mueve { transition-delay: .07s; }
+.js .perchero.ya .percha:nth-child(3) .percha__mueve { transition-delay: .14s; }
+.js .perchero.ya .percha:nth-child(4) .percha__mueve { transition-delay: .21s; }
+.js .perchero.ya .percha:nth-child(5) .percha__mueve { transition-delay: .28s; }
+.js .perchero.ya .percha:nth-child(6) .percha__mueve { transition-delay: .35s; }
+@media (prefers-reduced-motion: reduce) {
+  .js .perchero .percha__mueve { opacity: 1; translate: none; transition: none; }
+  .percha__img { transition: none; }
+  .perchero__lista { scroll-behavior: auto; }
+}

@@ -133,6 +133,37 @@
       </div>
     </div>
   </section>
+    <!-- PERCHERO: las 6 franelas colgadas como en la tienda (perchero.js) -->
+    <section class="perchero" id="perchero" aria-labelledby="tPerchero">
+      <div class="perchero__cabeza">
+        <div>
+          <p class="perchero__marca">Colores</p>
+          <h2 class="perchero__titulo" id="tPerchero">Seis colores. Elige el tuyo.</h2>
+        </div>
+        <div class="perchero__flechas">
+          <button class="perchero__flecha" id="percheroAtras" type="button" aria-label="Franela anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="perchero__flecha" id="percheroAdelante" type="button" aria-label="Franela siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+      <div class="perchero__tienda">
+        <span class="perchero__riel" aria-hidden="true"><span></span><span></span></span>
+        <ul class="perchero__lista" id="percheroLista" aria-label="Franelas colgadas en el perchero. Desliza para pasarlas."></ul>
+      </div>
+      <div class="perchero__ficha" id="percheroFicha">
+        <p class="perchero__nombre"><b id="percheroNombre">Negro</b> <span id="percheroNota">Fotografía real</span></p>
+        <div class="perchero__tallas" role="group" aria-label="Talla">
+          <button type="button" class="perchero__talla" data-talla="S" aria-pressed="false">S</button>
+          <button type="button" class="perchero__talla" data-talla="M" aria-pressed="true">M</button>
+          <button type="button" class="perchero__talla" data-talla="L" aria-pressed="false">L</button>
+        </div>
+        <div class="perchero__acciones">
+          <button type="button" class="boton perchero__anadir" id="percheroAnadir">Añadir a mi pedido</button>
+          <a class="enlace" id="percheroVer" href="productos.html?color=0">Ver la franela</a>
+        </div>
+      </div>
+      <p class="perchero__ayuda">Desliza para pasar las franelas. Toca una para traerla al frente.</p>
+    </section>
+
     <!-- 01 LA FRANELA -->
     <section class="bloque" aria-labelledby="tFranela">
       <div class="editorial">
@@ -156,18 +187,6 @@
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- 02 COLORES -->
-    <section class="bloque bloque--sin-arriba" aria-labelledby="tColores" style="padding-left:0;padding-right:0">
-      <div class="contenedor" style="display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:28px">
-        <div>
-          <p class="etiqueta" data-aparece><b>Colores</b></p>
-          <h2 class="titulo" id="tColores" style="margin-top:14px" data-aparece>Seis colores.</h2>
-        </div>
-        <a class="enlace" href="catalogo.html">Ver todos</a>
-      </div>
-      <div class="colores-tira" id="coloresTira"></div>
     </section>
 
     <!-- 03 DE CERCA -->
@@ -275,6 +294,7 @@
   <script src="config.js"></script>
   <script src="comun.js"></script>
   <script src="portada.js"></script>
+  <script src="perchero.js"></script>
   <script src="tienda.js"></script>
   <script src="efectos.js"></script>
 </body>
