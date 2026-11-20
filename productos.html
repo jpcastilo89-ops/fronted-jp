@@ -58,6 +58,7 @@
     </defs>
   </svg>
   <!-- Cabecera fija: menú (móvil) o enlaces (ordenador), logo y pedido -->
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
   <header class="cabecera" id="cabecera">
     <div class="cab__izq">
       <button class="cab__menu" id="botonMenu" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
@@ -141,10 +142,9 @@
           <a class="boton boton--wa" id="fWa" href="#" target="_blank" rel="noopener" aria-label="Pedir esta franela por WhatsApp"><svg aria-hidden="true"><use href="#ico-wa"/></svg></a>
         </div>
         <p class="ficha-p__envio" data-campo="envios"></p>
+        <a class="enlace ficha-p__pack" id="fPack" href="pack.html?color=0">Arma un pack de 3 con este color</a>
 
         <div class="acordeon">
-          <details open><summary>Descripción</summary>
-            <div class="acordeon__cuerpo"><p data-campo="producto.descripcion"></p></div></details>
           <details><summary>Material y corte</summary>
             <div class="acordeon__cuerpo">
               <p><b>Material:</b> <span data-campo="producto.material"></span></p>
@@ -170,6 +170,13 @@
         <div class="otros-colores"><a href="#" id="fAnterior">← Anterior</a><a href="#" id="fSiguiente">Siguiente →</a></div>
       </div>
     </section>
+    <!-- Barra de compra fija en el teléfono: aparece cuando los botones de compra ya no se ven -->
+    <div class="barra-compra" id="fBarra" data-tapa-flotante>
+      <img class="barra-compra__img" id="fBarraImg" src="img/franelas/t-0.webp" alt="" width="280" height="294">
+      <p class="barra-compra__txt"><b data-campo="producto.nombre">Franela oversized</b><span id="fBarraTxt">Negro, talla M</span></p>
+      <button class="boton barra-compra__anadir" id="fBarraAnadir" type="button" tabindex="-1">Añadir</button>
+      <a class="boton boton--wa barra-compra__wa" id="fBarraWa" href="#" target="_blank" rel="noopener" tabindex="-1" aria-label="Pedir por WhatsApp"><svg aria-hidden="true"><use href="#ico-wa"/></svg></a>
+    </div>
     <div class="visor" id="fVisor" hidden role="dialog" aria-label="Ver de cerca">
       <button class="vista__boton visor__cerrar" id="fVisorCerrar" type="button">Cerrar</button>
       <img id="fVisorImg" alt="Franela de cerca" width="1600" height="1680">

@@ -45,5 +45,15 @@ window.ZETA = {
       { nombre: "Rojo", hex: "#b3261e" },
       { nombre: "Azul", hex: "#1f3f8f" }
     ]
+  },
+
+  // Portada «The Essential Collection».
+  // Cuando existan las fotos del modelo, pon aquí una por color, EN EL MISMO ORDEN que los colores
+  // (negro, blanco, gris, verde, rojo, azul), por ejemplo "img/campana/modelo-0.webp".
+  // Deben ser el mismo modelo, misma pose, misma luz y mismo fondo: así al cambiar de color solo cambia la franela.
+  // Mientras falte alguna, la portada muestra la foto real de la franela sobre el fondo de estudio.
+  campana: {
+    modelo: ["", "", "", "", "", ""],
+    encuadreMovil: "50% 30%"  // qué parte de la foto del modelo se ve en el teléfono (horizontal vertical)
   }
 };

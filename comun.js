@@ -122,6 +122,7 @@
     if (ya) ya.cant = Math.min(99, ya.cant + cant);
     else lista.push({ color: color, talla: talla, cant: cant });
     cambio();
+    var cabe = document.getElementById("cabecera"); if (cabe) cabe.classList.remove("escondida");
     if (bolsa && !reducir) { bolsa.classList.remove("salta"); void bolsa.offsetWidth; bolsa.classList.add("salta"); }
   }
 

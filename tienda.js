@@ -179,6 +179,9 @@
       cajaSug.appendChild(b);
     });
     botonesTalla(document.getElementById("packTallas"), tallaPack, function (t) { tallaPack = t; pintar(); });
+    // Si llega desde la ficha (pack.html?color=N), ese color ya entra en el pack
+    var desde = /color=(\d+)/.exec(location.search);
+    if (desde && COLORES[+desde[1]]) { pack = [+desde[1]]; ultimo = 0; }
     btnAnadir.addEventListener("click", function () {
       pack.forEach(function (k) { zeta.anadir(k, tallaPack, 1); });
       zeta.avisar("Pack añadido: " + TAM + " franelas talla " + tallaPack);

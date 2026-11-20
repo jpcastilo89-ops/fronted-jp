@@ -41,6 +41,10 @@
     $("fColores").querySelectorAll(".punto").forEach(function (b, k) { b.setAttribute("aria-pressed", k === estado.color ? "true" : "false"); });
     $("fTallas").querySelectorAll(".talla").forEach(function (b) { b.setAttribute("aria-pressed", b.textContent === estado.talla ? "true" : "false"); });
     $("fWa").href = zeta.enlaceWhatsApp(mensaje());
+    $("fBarraWa").href = $("fWa").href;
+    $("fBarraTxt").textContent = c.nombre + ", talla " + estado.talla;
+    $("fBarraImg").src = zeta.foto(estado.color, "t");
+    $("fPack").href = "pack.html?color=" + estado.color;
     $("fAnterior").href = "productos.html?color=" + ((estado.color - 1 + N) % N);
     $("fSiguiente").href = "productos.html?color=" + ((estado.color + 1) % N);
     $("fAnterior").textContent = "← " + COLORES[(estado.color - 1 + N) % N].nombre;
@@ -137,6 +141,18 @@
     zeta.anadir(estado.color, estado.talla, 1);
     zeta.avisar("Añadida: " + COLORES[estado.color].nombre.toLowerCase() + ", talla " + estado.talla);
   });
+  $("fBarraAnadir").addEventListener("click", function () { $("fAnadir").click(); });
+
+  // Barra fija de compra (teléfono): se muestra cuando los botones principales quedan arriba, fuera de la vista
+  var barra = $("fBarra"), botonesCompra = document.querySelector(".ficha-p__botones");
+  if (barra && botonesCompra && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (ent) {
+      var e = ent[0], ver = !e.isIntersecting && e.boundingClientRect.top < 0;
+      barra.classList.toggle("ver", ver);
+      barra.querySelectorAll("button, a").forEach(function (x) { x.tabIndex = ver ? 0 : -1; });
+    }).observe(botonesCompra);
+  }
+
   $("fGuiaBoton").addEventListener("click", function () {
     var g = $("guia"); g.open = true; g.scrollIntoView({ behavior: reducir ? "auto" : "smooth", block: "center" });
   });

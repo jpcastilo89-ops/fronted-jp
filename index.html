@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="styles.css">
   <script>document.documentElement.className="js";</script>
   <script>try{if(sessionStorage.getItem("zeta-intro")||matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.className+=" sin-intro";sessionStorage.setItem("zeta-intro","1")}catch(e){}</script>
-  <link rel="preload" as="image" href="img/franelas/g-0.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="img/franelas/g-0.webp" imagesrcset="img/franelas/g-0.webp 800w, img/franelas/z-0.webp 1200w" imagesizes="(min-width: 900px) 46vw, 92vw" fetchpriority="high">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ClothingStore", "name": "ZETA Premium Wear", "url": "https://zeta-premium-wear.onrender.com/", "logo": "https://zeta-premium-wear.onrender.com/img/icono-192.png", "image": "https://zeta-premium-wear.onrender.com/img/compartir.jpg", "address": {"@type": "PostalAddress", "addressLocality": "Carora", "addressRegion": "Lara", "addressCountry": "VE"}, "sameAs": ["https://www.instagram.com/zetabox_ve"]}</script>
 </head>
 <body class="tema-noche pagina-inicio">
@@ -62,25 +62,21 @@
       <symbol id="ico-lupa" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m15.5 15.5 5 5M8 10.5h5M10.5 8v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
     </defs>
   </svg>
-  <!-- Cabecera fija: menú (móvil) o enlaces (ordenador), logo y pedido -->
-  <header class="cabecera" id="cabecera">
-    <div class="cab__izq">
+  <!-- Cabecera de la portada: logo a la izquierda, tres enlaces, pedido y menú. Transparente sobre la campaña -->
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+  <header class="cabecera cabecera--campana" id="cabecera">
+    <a class="cab__logo" href="index.html" aria-label="ZETA, ir al inicio"><img src="img/logo-zeta-blanco.webp" alt="ZETA" width="600" height="373"></a>
+    <nav class="cab__nav" aria-label="Principal">
+      <a href="index.html" data-pagina="index">Inicio</a>
+      <a href="catalogo.html" data-pagina="catalogo">Colección</a>
+      <a href="nosotros.html" data-pagina="nosotros">Sobre ZETA</a>
+    </nav>
+    <div class="cab__der">
+      <button class="bolsa" id="bolsa" type="button" aria-label="Ver mi pedido" aria-haspopup="dialog">
+        <svg aria-hidden="true"><use href="#ico-bolsa"/></svg><span class="bolsa__num" id="bolsaNum">0</span>
+      </button>
       <button class="cab__menu" id="botonMenu" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h18M3 16h18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-      </button>
-      <nav class="cab__nav" aria-label="Principal">
-        <a href="catalogo.html" data-pagina="catalogo">Tienda</a>
-        <a href="productos.html" data-pagina="productos">La franela</a>
-        <a href="pack.html" data-pagina="pack">Arma tu pack</a>
-        <a href="galeria.html" data-pagina="galeria">Campaña</a>
-        <a href="nosotros.html" data-pagina="nosotros">Historia</a>
-      </nav>
-    </div>
-    <a class="cab__logo" href="index.html" aria-label="ZETA, ir al inicio"><img src="img/logo-zeta-blanco.webp" alt="ZETA" width="600" height="373"></a>
-    <div class="cab__der">
-      <a class="cab__link" href="contacto.html" data-pagina="contacto">Contacto</a>
-      <button class="bolsa" id="bolsa" type="button" aria-label="Ver mi pedido" aria-haspopup="dialog">
-        <svg aria-hidden="true"><use href="#ico-bolsa"/></svg><span class="bolsa__txt">Pedido</span><span class="bolsa__num" id="bolsaNum">0</span>
       </button>
     </div>
   </header>
@@ -102,71 +98,35 @@
     </div>
   </nav>
   <main id="contenido">
-  <!-- PORTADA: probador de franelas -->
-  <section class="probador" id="probador" aria-label="Probador de colores">
-    <div class="fondo" aria-hidden="true"></div>
-    <div class="fantasma" aria-hidden="true"><span>Z</span><span>E</span><span>T</span><span>A</span></div>
+  <!-- PORTADA: campaña «The Essential Collection». La foto y el color salen de config.js (portada.js) -->
+  <section class="portada" id="portada" aria-labelledby="pTitulo">
+    <div class="portada__fondo" id="pFondo" aria-hidden="true"><span class="portada__luz-ventana"></span><span class="portada__grano"></span></div>
 
-    <div class="marca">
-      <p class="marca__frase" data-campo="frase">Premium Wear</p>
-      <h1 class="marca__lema">Viste<br>diferente.</h1>
-    </div>
-    <p class="envios" data-campo="envios"></p>
-
-    <div class="escenario" id="escenario" aria-label="Colores de la franela. Desliza para cambiar.">
-      <div class="arco" id="arco"></div>
+    <div class="portada__texto">
+      <p class="portada__marca">ZETA Premium Wear</p>
+      <h1 class="portada__titulo" id="pTitulo"><span>The Essential</span> <span>Collection</span></h1>
+      <p class="portada__frase">Designed for everyday. Made to stand out.</p>
     </div>
 
-    <div class="modelo" aria-hidden="true">
-      <svg class="m-actual" id="mCur" viewBox="0 0 400 420"><use href="#franela"/></svg>
-      <svg class="m-siguiente" id="mNext" viewBox="0 0 400 420"><use href="#franela"/></svg>
-      <div class="rejilla" id="rejilla"></div>
-      <div class="escaneo" id="escaneo"></div>
-    </div>
+    <figure class="portada__prenda" id="pPrenda">
+      <span class="portada__sombra" aria-hidden="true"></span>
+      <img class="portada__img" id="pBase" src="img/franelas/g-0.webp" srcset="img/franelas/g-0.webp 800w, img/franelas/z-0.webp 1200w"
+        sizes="(min-width: 900px) 46vw, 92vw" alt="Franela oversized ZETA en negro, fotografía real" width="800" height="840" fetchpriority="high">
+      <img class="portada__img portada__img--nueva" id="pNueva" alt="" width="800" height="840" aria-hidden="true">
+      <span class="portada__escaneo" id="pEscaneo" aria-hidden="true"></span>
+      <figcaption class="portada__nota" id="pNota">Fotografía real de la franela negra.</figcaption>
+    </figure>
 
-    <button class="flecha flecha--izq vidrio" id="ant" type="button" aria-label="Color anterior">
-      <svg viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-    <button class="flecha flecha--der vidrio" id="sig" type="button" aria-label="Color siguiente">
-      <svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-
-    <p class="pista">Desliza para cambiar de color</p>
-
-    <!-- Tarjeta de pedido -->
-    <div class="pedido vidrio" id="pedido" data-tapa-flotante>
-      <div class="pedido__fila">
-        <div class="pedido__mini"><svg id="mini" viewBox="0 0 400 420"><use href="#franela"/></svg></div>
-        <div class="pedido__info">
-          <div class="ln pedido__nombre"><span id="pNombre">Franela oversized</span></div>
-          <div class="ln pedido__detalle"><span id="pColor">Color</span></div>
-        </div>
-        <div class="pedido__botones">
-          <button class="pedido__anadir" id="anadir" type="button">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
-            <span>Añadir</span>
-          </button>
-          <a class="pedido__wa" data-wa-pedido href="#" target="_blank" rel="noopener" aria-label="Pedir solo esta franela por WhatsApp" title="Pedir solo esta por WhatsApp">
-            <svg aria-hidden="true"><use href="#ico-wa"/></svg>
-          </a>
-        </div>
+    <div class="portada__compra">
+      <div class="portada__colores">
+        <p class="portada__color-nombre"><span class="oculto">Color: </span><b id="pColorNombre" aria-live="polite">Negro</b></p>
+        <div class="portada__puntos" id="pPuntos" role="group" aria-label="Elige el color de la franela"></div>
       </div>
-      <div class="pedido__fila pedido__opciones">
-        <div class="grupo">
-          <span class="grupo__titulo">Talla</span>
-          <div class="tallas" id="tallas"></div>
-        </div>
-        <div class="grupo">
-          <span class="grupo__titulo">Color</span>
-          <div class="puntos" id="puntos"></div>
-        </div>
+      <p class="portada__ficha"><span>Oversized T-shirt</span><span>220 GSM</span><span id="pPrecio">Precio próximamente</span></p>
+      <div class="portada__botones">
+        <a class="boton portada__boton" href="catalogo.html">Discover the collection</a>
+        <a class="enlace portada__ver" id="pVer" href="productos.html?color=0">Ver la franela en negro</a>
       </div>
-    </div>
-
-    <div class="cursor" id="cursor" aria-hidden="true">
-      <div class="cursor__aro"></div><div class="cursor__punto"></div>
-      <span class="cursor__txt cursor__txt--probar">PROBAR</span>
-      <span class="cursor__txt cursor__txt--arrastra">ARRASTRA</span>
     </div>
   </section>
     <!-- 01 LA FRANELA -->
@@ -310,7 +270,7 @@
   <div class="paso-pagina" id="pasoPagina" aria-hidden="true"><div class="paso-pagina__velo"></div><span class="linea-luz"></span></div>
   <script src="config.js"></script>
   <script src="comun.js"></script>
-  <script src="probador.js"></script>
+  <script src="portada.js"></script>
   <script src="tienda.js"></script>
   <script src="efectos.js"></script>
 </body>

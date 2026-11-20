@@ -5,11 +5,20 @@
 
   // Cabecera: se vuelve sólida al bajar (en el inicio, al salir de la portada)
   if (cab) {
-    var portada = document.getElementById("probador");
+    var portada = document.getElementById("portada") || document.getElementById("probador");
     var limite = function () { return portada ? portada.offsetHeight - 80 : 20; };
     var solida = function () { cab.classList.toggle("solida", window.scrollY > limite()); };
     window.addEventListener("scroll", solida, { passive: true });
     solida();
+    // Al bajar la cabecera se esconde para dejar ver la página; al subir vuelve (como en las grandes tiendas)
+    var antes = window.scrollY;
+    window.addEventListener("scroll", function () {
+      var y = window.scrollY, menu = document.getElementById("menu"), abierto = menu && !menu.hidden;
+      if (!abierto && y > antes + 4 && y > 240) cab.classList.add("escondida");
+      if (y < antes - 4 || y < 240) cab.classList.remove("escondida");
+      antes = y;
+    }, { passive: true });
+    cab.addEventListener("focusin", function () { cab.classList.remove("escondida"); });
   }
 
   // Apariciones al bajar
