@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import {RoomEnvironment} from "three/addons/environments/RoomEnvironment.js";
 
-const TEX=["/assets/img/etiqueta-av2000-interior.webp", "/assets/img/etiqueta-av2000-brillo-de-seda.webp", "/assets/img/etiqueta-av2000-exterior.webp", "/assets/img/etiqueta-dekoral-mate.webp", "/assets/img/etiqueta-dekoral-satinado.webp", "/assets/img/etiqueta-cubremax.webp", "/assets/img/etiqueta-pinco-60-mate.webp", "/assets/img/etiqueta-pinco-60-satinado.webp", "/assets/img/etiqueta-pinco-caucho-mate.webp"];
+const TEX=["/assets/img/etiqueta-av2000-interior.webp?v=2", "/assets/img/etiqueta-av2000-brillo-de-seda.webp?v=2", "/assets/img/etiqueta-av2000-exterior.webp?v=2", "/assets/img/etiqueta-dekoral-mate.webp?v=2", "/assets/img/etiqueta-dekoral-satinado.webp?v=2", "/assets/img/etiqueta-cubremax.webp?v=2", "/assets/img/etiqueta-pinco-60-mate.webp?v=2", "/assets/img/etiqueta-pinco-60-satinado.webp?v=2", "/assets/img/etiqueta-pinco-caucho-mate.webp?v=2"];
 const CFG=window.MONTANA_CONFIG||{};
 const RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const FINE=matchMedia("(pointer: fine)").matches;
@@ -185,7 +185,7 @@ function setFlav(o,fi){if(o.fi!==fi){o.mats[0].map=texs[fi];o.fi=fi}}
 /* Imagen plana de cada galón, hecha con el mismo modelo 3D */
 /* Imagen plana de cada galón. Se genera con el mismo renderizador después de la entrada, para no retrasar la intro */
 const SLUG=["av2000-interior","av2000-brillo-de-seda","av2000-exterior","dekoral-mate","dekoral-satinado","cubremax","pinco-60-mate","pinco-60-satinado","pinco-caucho-mate"];
-const sprites=SLUG.map(x=>"/assets/img/galon-"+x+".webp");
+const sprites=SLUG.map(x=>"/assets/img/galon-"+x+".webp?v=2");
 const BLANK="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
 function makeSprites(){
   const W=Math.round(520*GA),H=520;
