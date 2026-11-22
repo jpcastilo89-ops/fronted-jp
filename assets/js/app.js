@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import {RoomEnvironment} from "three/addons/environments/RoomEnvironment.js";
 
-const TEX=["/assets/img/etiqueta-abc-latex-mate.webp", "/assets/img/etiqueta-brillo-de-seda.webp", "/assets/img/etiqueta-impercoat-plus.webp", "/assets/img/etiqueta-hidro-esmalte.webp", "/assets/img/etiqueta-montafix-mate.webp"];
+const TEX=["/assets/img/etiqueta-av2000-interior.webp", "/assets/img/etiqueta-av2000-brillo-de-seda.webp", "/assets/img/etiqueta-av2000-exterior.webp", "/assets/img/etiqueta-dekoral-mate.webp", "/assets/img/etiqueta-dekoral-satinado.webp", "/assets/img/etiqueta-cubremax.webp", "/assets/img/etiqueta-pinco-60-mate.webp", "/assets/img/etiqueta-pinco-60-satinado.webp", "/assets/img/etiqueta-pinco-caucho-mate.webp"];
 const CFG=window.MONTANA_CONFIG||{};
 const RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const FINE=matchMedia("(pointer: fine)").matches;
@@ -20,11 +20,15 @@ const GLIDE=bez(.25,.75,.2,1), ENTER=bez(.16,1,.3,1);
 
 /* Productos: solo lo esencial */
 const P=[
- {n:"ABC Látex Mate",two:["ABC","Látex Mate"],cat:"Pintura",col:"#0a78c8",bg:"#0e2a5e",cap:["Interior y exterior.","Acabado mate."],f:["Acabado mate","Rinde hasta 40 m² por galón por mano","Galón y cuñetes de 4 y 5"]},
- {n:"Brillo de Seda",two:["Brillo","de Seda"],cat:"Pintura",col:"#d12a30",bg:"#1a1f4c",cap:["Satinado lavable.","Primera calidad."],f:["Brillo sedoso y lavable","Rinde hasta 50 m² por galón por mano","Galón y cuñete de 4"]},
- {n:"ImperCoat Plus",two:["ImperCoat","Plus"],cat:"Impermeabilizante",col:"#0e8f8f",bg:"#0b2d4b",cap:["Techos y terrazas.","Sin calentar."],f:["Base agua, listo para aplicar","Bajo olor y no tóxico","Dos manos cruzadas, 24 h entre manos"]},
- {n:"Hidro Esmalte",two:["Hidro","Esmalte"],cat:"Esmalte al agua",col:"#1f9d55",bg:"#0f2d40",cap:["Esmalte al agua.","Interior y exterior."],f:["Mate, satinado o brillante","Se diluye con agua","Resiste la intemperie"]},
- {n:"Montafix Mate",two:["Montafix","Mate"],cat:"Esmalte alquídico",col:"#e8830c",bg:"#1e2448",cap:["Metal, concreto y madera.","Clase A."],f:["Primera calidad (Clase A)","Metal, concreto y madera","Presentación de 1 galón"]}
+ {n:"AV-2000 Interior",two:["AV-2000","Interior"],cat:"Pintura emulsionada",col:"#1f5fc8",bg:"#0e2a5e",cap:["Mate y lavable.","Clase A · Interior."],f:["Poliacrílica mate","Clase A para interiores","6 colores en carta"]},
+ {n:"AV-2000 Brillo de Seda",two:["AV-2000","Brillo de Seda"],cat:"Pintura emulsionada",col:"#c4952a",bg:"#272347",cap:["Satinada y lavable.","Clase A · Interior."],f:["Satinada y lavable","Clase A para interiores","6 colores en carta"]},
+ {n:"AV-2000 Exterior",two:["AV-2000","Exterior"],cat:"Pintura emulsionada",col:"#d12a30",bg:"#1a1f4c",cap:["Fachadas al sol.","Protección UV."],f:["Poliacrílica mate","Clase A con protección UV","12 colores en carta"]},
+ {n:"Dekoral Mate",two:["Dekoral","Mate"],cat:"Pintura poliacrílica",col:"#1a86d6",bg:"#0b2d4b",cap:["Interior y exterior.","Acabado mate."],f:["Poliacrílica mate","Interior y exterior","14 colores en carta"]},
+ {n:"Dekoral Satinado",two:["Dekoral","Satinado"],cat:"Pintura poliacrílica",col:"#5fa832",bg:"#0f2d40",cap:["Satinado lavable.","Para interiores."],f:["Poliacrílica satinada","Para interiores","8 colores en carta"]},
+ {n:"CubreMax",two:["CubreMax","Caucho"],cat:"Pintura de caucho",col:"#169fd8",bg:"#0c2a52",cap:["Interior y exterior.","Clase C."],f:["Caucho mate Pinco","Clase C, interior y exterior","14 colores en carta"]},
+ {n:"Pinco 60 Mate",two:["Pinco 60","Mate"],cat:"Pintura de caucho",col:"#a5643c",bg:"#2a2038",cap:["Interior y exterior.","Clase B."],f:["Caucho mate, Clase B","Decoración a tu alcance","10 colores en carta"]},
+ {n:"Pinco 60 Satinado",two:["Pinco 60","Satinado"],cat:"Pintura de caucho",col:"#a51d32",bg:"#261a3e",cap:["Satinado para interiores.","Clase B."],f:["Caucho satinado, Clase B","Elegancia a tu alcance","10 colores en carta"]},
+ {n:"Pinco Caucho Mate",two:["Pinco","Caucho Mate"],cat:"Pintura de caucho",col:"#17a39b",bg:"#0b2d3f",cap:["Para interiores.","Acabado mate."],f:["Caucho mate Pinco","Para interiores","11 colores en carta"]}
 ];
 const NP=P.length;
 const STEPS=[
@@ -180,7 +184,7 @@ function setFlav(o,fi){if(o.fi!==fi){o.mats[0].map=texs[fi];o.fi=fi}}
 
 /* Imagen plana de cada galón, hecha con el mismo modelo 3D */
 /* Imagen plana de cada galón. Se genera con el mismo renderizador después de la entrada, para no retrasar la intro */
-const SLUG=["abc-latex-mate","brillo-de-seda","impercoat-plus","hidro-esmalte","montafix-mate"];
+const SLUG=["av2000-interior","av2000-brillo-de-seda","av2000-exterior","dekoral-mate","dekoral-satinado","cubremax","pinco-60-mate","pinco-60-satinado","pinco-caucho-mate"];
 const sprites=SLUG.map(x=>"/assets/img/galon-"+x+".webp");
 const BLANK="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
 function makeSprites(){
@@ -451,11 +455,11 @@ document.body.classList.add("gl");
 if(kit){
 const glow=$("#glow"),thumbs=$("#thumbs"),buy=$("#buy");
 /* Kit libre (18/11/2026): se eligen de 1 a 5 productos, con recomendación según lo que se va a pintar */
-const LAYOUTS=[[],[[50,48]],[[37,50],[63,50]],[[50.2,37],[34.8,59.3],[64.8,59.3]],[[36,36],[64,36],[36,68],[64,68]],[[22,36],[50,36],[78,36],[36,68],[64,68]]];
-const NEEDS={paredes:{p:[0,1],t:"Para paredes: ABC Látex Mate (interior y exterior, acabado mate) o Brillo de Seda (satinado y lavable)."},
-  fachada:{p:[0,3],t:"Para fachadas: ABC Látex Mate (interior y exterior) e Hidro Esmalte, que resiste la intemperie."},
-  techo:{p:[2],t:"Para techos y terrazas: ImperCoat Plus, impermeabilizante base agua que se aplica sin calentar."},
-  rejas:{p:[4,3],t:"Para rejas, puertas y madera: Montafix Mate (metal, concreto y madera) o Hidro Esmalte al agua."}};
+const LAYOUTS=[[],[[50,48]],[[37,50],[63,50]],[[50.2,37],[34.8,59.3],[64.8,59.3]],[[36,36],[64,36],[36,68],[64,68]],[[22,36],[50,36],[78,36],[36,68],[64,68]],[[27,37],[50,37],[73,37],[27,65],[50,65],[73,65]],[[24,37],[42,37],[60,37],[78,37],[32,65],[50,65],[68,65]],[[20,38],[40,38],[60,38],[80,38],[20,64],[40,64],[60,64],[80,64]],[[30,27],[50,27],[70,27],[30,50],[50,50],[70,50],[30,73],[50,73],[70,73]]];
+const NEEDS={paredes:{p:[0,1,3,6],t:"Para paredes interiores: AV-2000 Interior o Brillo de Seda (Clase A), Dekoral Mate o Pinco 60 Mate."},
+  fachada:{p:[2,3,5,6],t:"Para fachadas: AV-2000 Exterior con protección UV, o Dekoral Mate, CubreMax y Pinco 60 Mate, para interior y exterior."},
+  techo:{p:[1,4,7],t:"Para un acabado satinado y lavable: AV-2000 Brillo de Seda, Dekoral Satinado o Pinco 60 Satinado."},
+  rejas:{p:[5,6,8],t:"Para rendir el presupuesto: pinturas de caucho CubreMax, Pinco 60 Mate y Pinco Caucho Mate."}};
 let pack=[],touched=false,need=null;
 const KIT_KEY="montanaKit";
 function loadKit(){try{const o=JSON.parse(localStorage.getItem(KIT_KEY)||"null");if(o&&typeof o==="object"){pack=(Array.isArray(o.pack)?o.pack:[]).filter((v,k,a)=>Number.isInteger(v)&&v>=0&&v<NP&&a.indexOf(v)===k);need=Object.prototype.hasOwnProperty.call(NEEDS,o.need)?o.need:null}}catch(e){}}
@@ -477,7 +481,7 @@ function renderPack(added=-1){
       s.innerHTML=`<div class="sp" data-i="${i}"><img alt="${P[i].n}" data-spr="${i}" src="${sprites[i]||BLANK}"></div><button class="x" aria-label="Quitar ${P[i].n}"><svg viewBox="0 0 12 12" fill="none" stroke="#f6f3ee" stroke-width="1.8" stroke-linecap="round"><path d="M2 2l8 8M10 2l-8 8"/></svg></button>`;
       s.querySelector(".x").addEventListener("click",()=>{touched=true;togglePack(i)});glow.appendChild(s);if(i===added&&!RM)s.querySelector(".sp").classList.add("rise")}
     s.style.left=L[k][0]+"%";s.style.top=L[k][1]+"%"});
-  glow.classList.toggle("many",pack.length===4);glow.classList.toggle("five",pack.length===5);ktEmpty.hidden=pack.length>0;
+  glow.classList.toggle("many",pack.length===4);glow.classList.toggle("five",pack.length===5);glow.classList.toggle("lots",pack.length>=6&&pack.length<=8);glow.classList.toggle("nine",pack.length>=9);ktEmpty.hidden=pack.length>0;
   thEls.forEach((t,i)=>{const on=pack.includes(i);t.classList.toggle("has",on);t.setAttribute("aria-pressed",String(on));t.classList.toggle("rec",!!need&&NEEDS[need].p.includes(i))});
   const n=pack.length;
   if(!buy.classList.contains("done")){buy.disabled=!n;buy.textContent=n?`Añadir ${n===1?"1 producto":n+" productos"} a tu lista`:"Elige tus productos"}
@@ -489,7 +493,7 @@ function mineDots(){const box=document.getElementById("ktMine"),sub=document.get
   if(L.length){box.hidden=false;box.innerHTML='<span>Con tus colores:</span>'+L.slice(0,8).map(x=>`<i style="--c:${/^#[0-9a-f]{6}$/i.test(x.h)?x.h:"#ccc"}" title="${x.n.replace(/[<>"&]/g,"")}"></i>`).join("")+(L.length>8?`<em>+${L.length-8}</em>`:"");sub.textContent="Se abrirá con tus colores ya pintados"}
   else{box.hidden=true;sub.textContent="Se abrirá con el Color del mes; guarda tus colores en el simulador"}}
 document.addEventListener("montana:colores",mineDots);
-function kitMsg(){const items=pack.map(i=>P[i].n);const lugar=need?{paredes:"las paredes de mi casa",fachada:"la fachada",techo:"el techo o la terraza",rejas:"rejas, puertas y madera"}[need]:"";
+function kitMsg(){const items=pack.map(i=>P[i].n);const lugar=need?{paredes:"las paredes de mi casa",fachada:"la fachada",techo:"con un acabado satinado y lavable",rejas:"rindiendo el presupuesto"}[need]:"";
   return "Hola, Tiendas Montana. Quiero asesoría"+(lugar?" para pintar "+lugar:"")+(items.length?". Me interesan: "+items.join(", "):"")+".";}
 ktWa.addEventListener("click",e=>{if(ktWa.getAttribute("aria-disabled")==="true"){e.preventDefault();ktTip.textContent="Elige primero qué vas a pintar o algún producto.";return}
   if(waNum){ktWa.href="https://wa.me/"+waNum+"?text="+encodeURIComponent(kitMsg());ktWa.target="_blank";ktWa.rel="noopener"}else{e.preventDefault();goPage(ROUTES.visitanos)}});
@@ -683,11 +687,11 @@ if(shop)once(shop,.18,()=>shop.classList.add("shown"));
 if(kit)once(kit,.18,()=>kit.classList.add("shown"));
 /* (kit libre: ya no se rellenan 3 productos automáticamente) */
 
-/* ---------- Productos: fichas de los cinco galones ---------- */
+/* ---------- Productos: fichas de los galones ---------- */
 const fiList=$("#fiList");
 if(fiList){
-  const USO={paredes:"Paredes",fachada:"Fachadas",techo:"Techos y terrazas",rejas:"Rejas, puertas y madera"};
-  const IDEAL={paredes:[0,1],fachada:[0,3],techo:[2],rejas:[4,3]};
+  const USO={paredes:"Paredes interiores",fachada:"Fachadas",techo:"Acabado lavable",rejas:"Rendir el presupuesto"};
+  const IDEAL={paredes:[0,1,3,6],fachada:[2,3,5,6],techo:[1,4,7],rejas:[5,6,8]};
   P.forEach((p,i)=>{
     const uses=Object.keys(IDEAL).filter(k=>IDEAL[k].includes(i)).map(k=>USO[k]);
     const a=document.createElement("article");a.className="fi";a.style.setProperty("--c",p.col);a.style.setProperty("--bg",p.bg);a.style.setProperty("--i",i);
@@ -698,7 +702,7 @@ if(fiList){
       <div class="fi-b"><button type="button" class="fi-add"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg>Añadir a tu lista</button>
       <button type="button" class="fi-see">Verlo en 3D</button></div></div>`;
     a.querySelector(".fi-add").addEventListener("click",()=>addToList({t:"p",i},[a.querySelector(".fi-im img")]));
-    a.querySelector(".fi-see").addEventListener("click",()=>{const k=mod(target,NP);let d=i-k;if(d>2)d-=NP;if(d<-2)d+=NP;goTo(target+d);setAuto(false);smoothTo(0)});
+    a.querySelector(".fi-see").addEventListener("click",()=>{const k=mod(target,NP);let d=i-k;const hf=Math.floor(NP/2);if(d>hf)d-=NP;if(d<-hf)d+=NP;goTo(target+d);setAuto(false);smoothTo(0)});
     fiList.appendChild(a);
   });
   if("IntersectionObserver" in window&&!RM){const io=new IntersectionObserver(en=>en.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{threshold:.12});fiList.querySelectorAll(".fi").forEach(a=>io.observe(a))}

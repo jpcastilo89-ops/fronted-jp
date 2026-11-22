@@ -272,7 +272,7 @@ img{display:block}
   .slot{width:90px;height:130px}
   .slot .sp{width:84px}
   .slot.full .x{transform:translate(-50%,-112px) scale(.85)}
-  .thumbs{gap:2%;margin-top:18px}
+  .thumbs{gap:2%;margin-top:18px;flex-wrap:wrap;row-gap:16px}
   .th{width:18.4%;gap:6px}
   .th .sq{border-radius:12px}
   .th .nm{font-size:9.5px}
@@ -921,6 +921,8 @@ img{display:block}
 #kit .glow{z-index:2}
 .glow.many .slot{transform:translate(-50%,-50%) scale(.78)}
 .glow.five .slot{transform:translate(-50%,-50%) scale(.7)}
+.glow.lots .slot{transform:translate(-50%,-50%) scale(.6)}
+.glow.nine .slot{transform:translate(-50%,-50%) scale(.5)}
 .th{position:relative}
 .th .ok{transform:scale(0)}
 .th.has .ok{transform:none}
