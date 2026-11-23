@@ -14,7 +14,7 @@ window.CEE_CONFIG = {
   colegiado: "",         /* número de colegiado, p. ej. "Colegiado n.º 00000". Vacío = no se muestra */
   zona: "Madrid capital",
   plazo: "48 h",         /* plazo de entrega que se muestra en la web */
-  horario: "",           /* p. ej. "Lunes a viernes, 9:00 a 19:00". Vacío = «Próximamente» */
+  horario: "Con cita previa",           /* p. ej. "Lunes a viernes, 9:00 a 19:00". Vacío = «Próximamente» */
   instagram: "",         /* usuario o enlace. Vacío = no se muestra */
   linkedin: "",          /* enlace del perfil. Vacío = no se muestra */
 
