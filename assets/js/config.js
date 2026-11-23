@@ -8,8 +8,8 @@ window.CEE_CONFIG = {
   marca: "",             /* nombre comercial o de marca, si lo hay. Vacío = se usa el nombre */
   logo: "",              /* ruta del logo, p. ej. "/assets/img/logo.png". Vacío = iniciales JR */
   foto: "",              /* foto profesional, p. ej. "/assets/img/jose-rafael.jpg". Vacío = iniciales */
-  whatsapp: "34662160915",          /* solo números con código de país */
-  telefono: "+34 662 16 09 15",     /* como se muestra en la web */
+  whatsapp: "34623120913",          /* solo números con código de país */
+  telefono: "+34 623 12 09 13",     /* como se muestra en la web */
   email: "",             /* correo de contacto. Vacío = «Próximamente» */
   colegiado: "",         /* número de colegiado, p. ej. "Colegiado n.º 00000". Vacío = no se muestra */
   zona: "Madrid capital",
