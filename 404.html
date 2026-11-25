@@ -36,12 +36,12 @@ addEventListener("pagereveal",function(){try{var f=navigation.activation&&naviga
 <!-- Si el navegador o el visor del teléfono no ejecuta JavaScript, la página se muestra igual (sin la intro) -->
 <noscript><style>#intro{display:none!important}.ln>span{transform:none!important}.fi{opacity:1;transform:none}</style></noscript>
 <link rel="preload" href="/assets/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/montana.css?v=20261122b">
-<script src="/assets/js/config.js?v=20261122b"></script>
+<link rel="stylesheet" href="/assets/css/montana.css?v=20261125">
+<script src="/assets/js/config.js?v=20261125"></script>
 <script type="importmap">
-{"imports":{"three":"/vendor/three/build/three.module.min.js","three/addons/":"/vendor/three/examples/jsm/"}}
+{"imports":{"three":"/vendor/three/build/three.slim.min.js","three/addons/":"/vendor/three/examples/jsm/"}}
 </script>
-<link rel="modulepreload" href="/vendor/three/build/three.module.min.js">
+<link rel="prefetch" href="/vendor/three/build/three.slim.min.js">
 <script type="speculationrules">
 {"prefetch":[{"source":"document","where":{"href_matches":"/*"},"eagerness":"moderate"}]}
 </script>
@@ -75,7 +75,7 @@ m();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(m);addEven
   <p>Puede que el enlace esté mal escrito o que la página haya cambiado de lugar.</p>
   <div class="hc-b"><a class="hc-btn hc-wa" href="/">Ir al inicio</a><a class="hc-btn hc-ol" href="/productos/">Ver productos</a></div>
 </div></section></main>
-<script src="/assets/js/nav.js?v=20261122b"></script>
+<script src="/assets/js/nav.js?v=20261125"></script>
 <script>(function(){var b=document.getElementById("menu"),p=document.getElementById("pill");if(!b||!p)return;b.addEventListener("click",function(){var o=!p.classList.contains("open");p.classList.toggle("open",o);b.setAttribute("aria-expanded",String(o))})})();</script>
 </body>
 </html>

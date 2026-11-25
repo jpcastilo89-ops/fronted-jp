@@ -77,3 +77,5 @@
     else if((e.key==="PageUp"||(e.key===" "&&e.shiftKey))&&prev&&atTop()&&since.t&&performance.now()-since.t>300){e.preventDefault();fire("prev")}});
   window.MONTANA_NAV={go:go,order:ORDER,index:cur};
 })();
+/* Velocidad (25/11/2026): guarda en el teléfono los archivos fijos de la web (ver /sw.js) */
+try{if("serviceWorker" in navigator&&(location.protocol==="https:"||location.hostname==="localhost"))addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})})}catch(e){}

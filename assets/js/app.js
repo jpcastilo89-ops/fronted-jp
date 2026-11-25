@@ -1,5 +1,3 @@
-import * as THREE from "three";
-import {RoomEnvironment} from "three/addons/environments/RoomEnvironment.js";
 
 const TEX=["/assets/img/etiqueta-av2000-interior.webp?v=2", "/assets/img/etiqueta-av2000-brillo-de-seda.webp?v=2", "/assets/img/etiqueta-av2000-exterior.webp?v=2", "/assets/img/etiqueta-dekoral-mate.webp?v=2", "/assets/img/etiqueta-dekoral-satinado.webp?v=2", "/assets/img/etiqueta-cubremax.webp?v=2", "/assets/img/etiqueta-pinco-60-mate.webp?v=2", "/assets/img/etiqueta-pinco-60-satinado.webp?v=2", "/assets/img/etiqueta-pinco-caucho-mate.webp?v=2"];
 const CFG=window.MONTANA_CONFIG||{};
@@ -61,6 +59,11 @@ const hero=$("#productos"),inside=$("#aplicar"),shop=$("#catalogo"),kit=$("#kit"
 /* Web multipágina (18/11/2026): cada página trae solo sus secciones; este código se adapta a lo que hay */
 const PAGE=document.body.dataset.page||"inicio";
 const HAS_GL=!!(hero||inside||shop);
+/* Velocidad (25/11/2026): three.js solo se descarga y arranca en las páginas con galones 3D (Productos y Catálogo).
+   En las demás, NO3D es un objeto vacío que acepta las llamadas 3D sin hacer nada; esas páginas nunca dibujaban en el lienzo. */
+const NO3D=(()=>{let p;p=new Proxy(function(){},{get:(t,k)=>k===Symbol.toPrimitive?()=>0:k==="then"?undefined:p,set:()=>true,apply:()=>p,construct:()=>p});return p})();
+const THREE=HAS_GL?await import("three"):NO3D;
+const {RoomEnvironment}=HAS_GL?await import("three/addons/environments/RoomEnvironment.js"):{RoomEnvironment:NO3D};
 const ROUTES={inicio:"/",productos:"/productos/",catalogo:"/catalogo/",kit:"/tu-kit/",colores:"/prueba-de-colores/",nosotros:"/sobre-nosotros/",visitanos:"/contacto/",simulador:"/prueba-de-colores/"};
 const goPage=url=>{if(window.MONTANA_NAV)window.MONTANA_NAV.go(url);else location.href=url};
 const cv=$("#gl"),titleEl=$("#title"),countEl=$("#count"),reveal=$("#reveal"),arc=$("#arc");
@@ -81,7 +84,7 @@ if(waNum&&$("#vWa")){const a=$("#vWa");a.href="https://wa.me/"+waNum;a.hidden=fa
 
 /* ---------- Fuentes y texturas ---------- */
 await Promise.all([document.fonts.load('800 40px "Bricolage Grotesque"'),document.fonts.load('600 20px "Bricolage Grotesque"'),document.fonts.load('500 20px "Bricolage Grotesque"')]).catch(()=>{});
-const imgs=await Promise.all(TEX.map(src=>new Promise(res=>{const im=new Image();im.onload=()=>res(im);im.onerror=()=>res(null);im.src=src})));
+const imgs=!HAS_GL?[]:await Promise.all(TEX.map(src=>new Promise(res=>{const im=new Image();im.onload=()=>res(im);im.onerror=()=>res(null);im.src=src})));
 
 function wrapLines(x,t,maxW){const w=t.split(" ");const out=[];let line="";for(const s of w){const tt=line?line+" "+s:s;if(x.measureText(tt).width>maxW&&line){out.push(line);line=s}else line=tt}if(line)out.push(line);return out}
 function rr(x,X,Y,W,H,r){x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+W,Y,X+W,Y+H,r);x.arcTo(X+W,Y+H,X,Y+H,r);x.arcTo(X,Y+H,X,Y,r);x.arcTo(X,Y,X+W,Y,r);x.closePath()}
@@ -105,7 +108,7 @@ function labelCanvas(i){
   x.fillStyle=p.col;x.beginPath();x.arc(R-10,py+ph-32,9,0,7);x.fill();
   return c;
 }
-const labels=P.map((_,i)=>labelCanvas(i));
+const labels=HAS_GL?P.map((_,i)=>labelCanvas(i)):[];
 
 /* ---------- Three.js ---------- */
 const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
@@ -163,7 +166,7 @@ function makeGallon(fi,sc=scene){
 const probe=makeGallon(0,new THREE.Scene());
 const box=new THREE.Box3().setFromObject(probe.group);
 const GW=box.max.x-box.min.x,GH=box.max.y-box.min.y,GC=(box.max.y+box.min.y)/2;
-const GA=GW/GH;document.documentElement.style.setProperty("--ga",GA.toFixed(4));
+const GA=HAS_GL?GW/GH:.8444;document.documentElement.style.setProperty("--ga",GA.toFixed(4));
 
 function setGallon(o,s){
   const vis=s.op>.01;o.group.visible=vis;o.shadow.visible=vis&&s.shadow>0;
@@ -795,7 +798,7 @@ function enter(){
   [[$("#play"),380],[countEl,460],[autoBtn,540]].filter(([el])=>el).forEach(([el,d])=>RM?el.style.opacity=1:el.animate([{opacity:0,translate:"0 8px"},{opacity:1,translate:"0 0"}],{duration:420,delay:d,easing:"cubic-bezier(.22,1,.36,1)",fill:"forwards"}));
   if(RM){pos=0;target=0}else{pos=-2.4;slide={from:-2.4,to:0,t0:performance.now(),dur:1400,ease:ENTER,fire:false,fired:true}}
   lastInteract=performance.now();startBits();
-  if(HAS_GL)setTimeout(()=>{try{makeSprites()}catch(e){}},RM?0:1900);
+  /* Velocidad (25/11/2026): las imágenes planas de los galones ya vienen hechas en assets/img/galon-*.webp (iguales a las que se generaban aquí), así que ya no se vuelven a dibujar en el teléfono. makeSprites() se deja por si hiciera falta regenerarlas. */
 }
 setTitle(0,1,false);if(countEl)countEl.textContent="01";
 document.documentElement.style.setProperty("--flav",P[0].bg);
