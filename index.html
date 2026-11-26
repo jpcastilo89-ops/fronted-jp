@@ -118,6 +118,83 @@ button{font:inherit;color:inherit;cursor:pointer}
 .duo .a{color:var(--mint)}.duo .b{color:var(--green-2);font-style:italic}
 .statement .sub{display:block;margin-top:18px;color:#8fa39a}
 
+
+/* ===== forge: mírala nacer (función única) ===== */
+.forge{display:none}
+.js .forge{display:block;position:relative;height:560vh;background:var(--ink);color:var(--mint)}
+.fg-stick{position:sticky;top:0;height:100vh;height:100svh;display:grid;grid-template-columns:minmax(250px,320px) 1fr;grid-template-rows:auto 1fr auto;gap:14px 44px;padding:112px var(--gut) 22px;overflow:hidden}
+.fg-head{grid-column:1/-1;display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.fg-head h2{margin:6px 0 0;font:300 clamp(2.4rem,5vw,4.6rem)/.95 var(--serif);letter-spacing:-.03em}
+.fg-head h2 em{color:var(--green-2)}
+.fg-head p{margin:0;max-width:21em;color:#b8cbc1;font-size:1rem}
+.fg-k b{color:var(--green-2);font-weight:400}
+.fg-steps{grid-column:1;grid-row:2;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.fg-steps li{padding:10px 0 10px 16px;border-left:1px solid var(--line-l);opacity:.3;transition:opacity .4s,border-color .4s}
+.fg-steps li.on{opacity:1;border-color:var(--green-2)}
+.fg-steps .mono{color:var(--green-2)}
+.fg-steps h3{margin:2px 0 0;font:400 1.3rem/1.1 var(--serif)}
+.fg-steps p{margin:4px 0 0;font-size:.95rem;line-height:1.35;color:#b8cbc1;max-height:0;overflow:hidden;transition:max-height .5s var(--ease)}
+.fg-steps li.on p{max-height:5em}
+.fg-stage{grid-column:2;grid-row:2;position:relative;min-height:0;display:flex;align-items:center}
+.fg-svg{pointer-events:none;display:block;width:100%;height:100%;overflow:visible;--pa:0;--paint:#009842;--paint-ink:#fff}
+.fg-gridbg{color:rgba(207,243,220,.07)}
+.fg-ground{stroke:rgba(207,243,220,.3);stroke-width:1;stroke-dasharray:6 8}
+.fg-svg .d{fill:transparent;stroke:var(--mint);stroke-width:1.6;stroke-linejoin:round;stroke-dasharray:1 1;stroke-dashoffset:calc(1 - var(--k,0));stroke-opacity:calc(1 - var(--pa)*.6)}
+.fg-svg .ln{stroke-opacity:calc(.55 - var(--pa)*.25)}
+.fg-svg .pf,.fg-svg .cab{fill:var(--paint);fill-opacity:var(--pa);transition:fill .4s}
+.fg-svg .dk{fill:#0c1418;fill-opacity:var(--pa)}
+.fg-svg .tire{fill:#0b1114;fill-opacity:var(--pa)}
+.fg-svg .rim{fill:#9aa8a0;fill-opacity:var(--pa)}
+.fg-svg .hub{fill:#2D3D46;fill-opacity:var(--pa)}
+.fg-svg .glass{fill:#2D3D46;fill-opacity:var(--pa)}
+.fg-svg .lamp{fill:#FFE9A8;fill-opacity:var(--pa)}
+.fg-svg .s5{--pa:var(--k)}
+.fg-logo{font:italic 300 46px var(--serif);fill:var(--paint-ink);fill-opacity:var(--pa);transition:fill .4s}
+.fg-truck{transform:translateX(var(--tx,440px))}
+.wh{transform-box:fill-box;transform-origin:center}
+.fg-notes g{opacity:0;transition:opacity .35s}
+.fg-notes g.on{opacity:1}
+.fg-notes text{font:400 14px var(--mono);letter-spacing:.08em;fill:var(--green-2)}
+.fg-notes line{stroke:var(--green-2);stroke-width:1;stroke-dasharray:3 4}
+.fg-notes circle{fill:var(--green-2)}
+.fg-real{position:absolute;left:0;top:0;width:min(220px,24%);margin:0;border-radius:14px;overflow:hidden;opacity:0;transform:translateY(18px) scale(.96);transition:opacity .6s var(--ease),transform .6s var(--ease);background:#000;box-shadow:0 24px 50px -24px #000;pointer-events:none}
+.fg-real.on{opacity:1;transform:none}
+.fg-real img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.fg-real figcaption{padding:9px 12px;background:#13201a;color:var(--mint);font-size:.6rem}
+.fg-ctrl{grid-column:1/-1;grid-row:3;display:flex;flex-wrap:wrap;align-items:center;gap:12px 26px;padding-top:14px;border-top:1px solid var(--line-l)}
+.fg-g{display:flex;align-items:center;gap:6px}
+.fg-g>.mono{color:#8fa39a;margin-right:4px}
+.fg-g button{min-height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line-l);background:transparent;color:var(--mint);font:400 .7rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;transition:background .25s,color .25s}
+.fg-g button:hover{border-color:var(--mint)}
+.fg-g button[aria-pressed=true]{background:var(--mint);color:var(--ink);border-color:var(--mint)}
+.fg-g button.sw{width:30px;min-height:30px;height:30px;padding:0;background:var(--c);border:2px solid var(--ink);box-shadow:0 0 0 1px var(--line-l)}
+.fg-g button.sw[aria-pressed=true]{background:var(--c);box-shadow:0 0 0 2px var(--green-2)}
+.fg-ctrl .pill{margin-left:auto}
+.in-forge .wa{opacity:0!important;pointer-events:none!important}
+@media (max-width:700px){
+  .js .forge{height:470vh}
+  .fg-stick{grid-template-columns:1fr;grid-template-rows:auto 1fr auto auto;gap:10px;padding:78px 16px 14px}
+  .fg-head{flex-direction:column;align-items:flex-start;gap:6px}
+  .fg-head h2{font-size:2.3rem}
+  .fg-head p{display:none}
+  .fg-stage{grid-column:1;grid-row:2}
+  .fg-steps{grid-column:1;grid-row:3;position:relative;display:block;height:5.4em}
+  .fg-steps li{position:absolute;inset:0;padding:0;border:0;opacity:0}
+  .fg-steps li.on{opacity:1}
+  .fg-steps h3{display:inline;font-size:1.15rem;margin-left:6px}
+  .fg-steps p{max-height:none}
+  .fg-ctrl{grid-row:4;gap:10px;padding-top:10px}
+  .fg-g>.mono{display:none}
+  .fg-g button{padding:0 11px;font-size:.62rem;min-height:36px}
+  .fg-ctrl .pill{margin-left:0;width:100%}
+  .fg-real{width:118px;border-radius:10px;left:auto;right:0}
+  .fg-real figcaption{padding:6px 8px;font-size:.5rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .forge{height:auto}
+  .fg-stick{position:relative;height:auto;min-height:100svh}
+}
+
 /* ===== meet ===== */
 .meet{position:relative;padding:clamp(100px,14vw,190px) var(--gut) clamp(60px,8vw,110px);text-align:center;overflow:hidden}
 .meet h2{margin:0;font:300 clamp(4.5rem,15vw,15rem)/.82 var(--serif);letter-spacing:-.05em;color:var(--ink)}
@@ -455,6 +532,54 @@ footer{background:var(--ink);color:var(--mint);padding:clamp(70px,10vw,130px) va
   <p data-split>Cuando necesitas un equipo de trabajo, casi siempre te toca elegir entre dos caminos.</p>
   <div class="duo" aria-label="lo que hay, o lo que llega"><span class="a rv">lo que hay</span><i class="rv">o</i><span class="b rv">lo que llega</span></div>
   <p data-split>¿Y si te lo fabricaran a la medida de tu camión, tu finca o tu operación?</p>
+</section>
+
+
+<!-- FORGE: mírala nacer -->
+<section class="forge" id="nace" aria-labelledby="t-forge" data-dark data-forge>
+  <div class="fg-stick">
+    <div class="fg-head">
+      <div><span class="mono fg-k">Mírala nacer · <b data-fstep>01</b> / 06</span>
+      <h2 id="t-forge">de lámina <em>a carretera</em></h2></div>
+      <p>Baja despacio y mira cómo se arma tu unidad en la planta. Cámbiala como quieras y cotízala tal cual la armaste.</p>
+    </div>
+    <ol class="fg-steps" data-fsteps>
+      <li class="on"><span class="mono">01</span><h3>El chasis</h3><p>Todo empieza por la base que va a cargar con tu trabajo.</p></li>
+      <li><span class="mono">02</span><h3>Los ejes</h3><p>Dos o tres ejes, según el peso que vas a mover.</p></li>
+      <li><span class="mono">03</span><h3>El piso</h3><p>La cama donde va tu carga, armada en Carora.</p></li>
+      <li><span class="mono">04</span><h3>La carrocería</h3><p>Plataforma, barandas, furgón o tanque. Tú eliges abajo.</p></li>
+      <li><span class="mono">05</span><h3>La pintura</h3><p>Del color de tu flota.</p></li>
+      <li><span class="mono">06</span><h3>A la carretera</h3><p>Enganchada a tu camión y lista para trabajar.</p></li>
+    </ol>
+    <div class="fg-stage">
+      <svg class="fg-svg" viewBox="0 0 1200 430" role="img" aria-labelledby="fg-desc" data-fsvg>
+        <desc id="fg-desc">Plano de un semirremolque que se arma por partes al bajar: chasis, ejes, piso, carrocería, pintura y camión.</desc>
+        <defs><pattern id="fg-grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" fill="none" stroke="currentColor" stroke-width=".6"/></pattern></defs>
+        <rect class="fg-gridbg" x="-600" y="-300" width="2400" height="1030" fill="url(#fg-grid)"/>
+        <line class="fg-ground" x1="-600" y1="362" x2="1800" y2="362"/>
+        <g class="s0"></g><g class="s1"></g><g class="s2"></g><g class="s3"></g>
+        <g class="s5 fg-truck"></g>
+        <g class="fg-notes">
+          <g data-n="0"><line x1="480" y1="306" x2="480" y2="388"/><circle cx="480" cy="306" r="3"/><text x="490" y="404">01 · CHASIS</text></g>
+          <g data-n="1"><line x1="240" y1="362" x2="240" y2="388"/><circle cx="240" cy="362" r="3"/><text x="250" y="404">02 · <tspan data-nax>3</tspan> EJES</text></g>
+          <g data-n="2"><line x1="640" y1="80" x2="640" y2="268"/><circle cx="640" cy="268" r="3"/><text x="650" y="76">03 · PISO</text></g>
+          <g data-n="3"><line x1="330" y1="60" x2="330" y2="140"/><circle cx="330" cy="140" r="3"/><text x="340" y="56">04 · <tspan data-nbody>FURGÓN</tspan></text></g>
+          <g data-n="4"><line x1="560" y1="60" x2="560" y2="160"/><circle cx="560" cy="160" r="3"/><text x="570" y="56">05 · <tspan data-ncol>VERDE ASTECA</tspan></text></g>
+          <g data-n="5"><line x1="1060" y1="70" x2="1060" y2="128"/><circle cx="1060" cy="128" r="3"/><text x="900" y="56">06 · LISTA PARA SALIR</text></g>
+        </g>
+      </svg>
+      <figure class="fg-real" data-freal><img data-img="09" alt="" data-frimg><figcaption class="mono" data-frcap>Una de verdad · Furgón de aluminio</figcaption></figure>
+    </div>
+    <div class="fg-ctrl">
+      <div class="fg-g" role="group" aria-label="Carrocería"><span class="mono">Carrocería</span>
+        <button type="button" data-fbody="plataforma" aria-pressed="false">Plataforma</button><button type="button" data-fbody="barandas" aria-pressed="false">Barandas</button><button type="button" data-fbody="furgon" aria-pressed="true">Furgón</button><button type="button" data-fbody="tanque" aria-pressed="false">Tanque</button></div>
+      <div class="fg-g" role="group" aria-label="Ejes"><span class="mono">Ejes</span>
+        <button type="button" data-fax="2" aria-pressed="false">2 ejes</button><button type="button" data-fax="3" aria-pressed="true">3 ejes</button></div>
+      <div class="fg-g" role="group" aria-label="Color"><span class="mono">Color</span>
+        <button type="button" class="sw" style="--c:#009842" data-fcol="verde" aria-pressed="true" aria-label="Verde Asteca"></button><button type="button" class="sw" style="--c:#E9EEEA" data-fcol="blanco" aria-pressed="false" aria-label="Blanco"></button><button type="button" class="sw" style="--c:#B3261E" data-fcol="rojo" aria-pressed="false" aria-label="Rojo"></button><button type="button" class="sw" style="--c:#E8741C" data-fcol="naranja" aria-pressed="false" aria-label="Naranja"></button></div>
+      <a class="pill pill-green" data-fsend href="https://wa.me/584120530590" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Cotizar esta unidad</a>
+    </div>
+  </div>
 </section>
 
 <!-- MEET -->
@@ -803,6 +928,62 @@ function showQ(i){qi=(i+FAQ.length)%FAQ.length;$("[data-answer]").innerHTML=`<sp
 qt.addEventListener("click",e=>{const b=e.target.closest("[data-qi]");if(b)showQ(+b.dataset.qi)});
 $$("[data-qstep]").forEach(b=>b.addEventListener("click",()=>showQ(qi+ +b.dataset.qstep)));
 showQ(0);
+
+
+/* forge: mírala nacer */
+(()=>{const F=$("[data-forge]");if(!F)return;
+const svg=$("[data-fsvg]",F),g=i=>$(".s"+i,svg),RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const R=(x,y,w,h,c,rx)=>`<rect pathLength="1" class="d ${c||""}" x="${x}" y="${y}" width="${w}" height="${h}"${rx?` rx="${rx}"`:""}/>`;
+const L=(a,b,c,d,k)=>`<line pathLength="1" class="d ${k||"ln"}" x1="${a}" y1="${b}" x2="${c}" y2="${d}"/>`;
+const C=(x,y,r,c)=>`<circle pathLength="1" class="d ${c}" cx="${x}" cy="${y}" r="${r}"/>`;
+const P=(d,c)=>`<path pathLength="1" class="d ${c}" d="${d}"/>`;
+const wheel=x=>`<g class="wh">${C(x,332,30,"tire")}${C(x,332,15,"rim")}${C(x,332,4,"hub")}${L(x,318,x,346)}</g>`;
+const rng=(a,b,s)=>{const o=[];for(let x=a;x<=b;x+=s)o.push(x);return o};
+const BODY={
+ plataforma:{n:"Plataforma",img:"11",cap:"Plataforma de 3 ejes",svg:()=>rng(100,860,76).map(x=>R(x,252,10,16,"pf")).join("")+L(84,262,900,262)+R(884,192,16,76,"pf")},
+ barandas:{n:"Barandas",img:"10",cap:"Carrocería ganadera",svg:()=>rng(88,888,80).map(x=>R(x,142,8,126,"pf")).join("")+R(84,142,816,8,"pf")+R(84,184,816,6,"pf")+R(84,224,816,6,"pf")+R(886,134,16,134,"pf")},
+ furgon:{n:"Furgón",img:"09",cap:"Furgón de aluminio",svg:()=>R(84,108,816,160,"pf",4)+rng(152,832,68).map(x=>L(x,114,x,262)).join("")+R(84,100,816,8,"dk")+L(98,112,98,264)+`<text class="fg-logo" x="492" y="204" text-anchor="middle">asteca</text>`},
+ tanque:{n:"Tanque",img:"03",cap:"Tanque de 7.000 litros",svg:()=>[210,490,770].map(x=>R(x-22,252,44,16,"dk")).join("")+R(116,138,748,122,"pf",61)+[300,490,680].map(x=>L(x,140,x,258)).join("")+R(290,126,40,12,"dk")+R(590,126,40,12,"dk")+L(846,150,846,268,"")+L(862,150,862,268,"")+rng(166,250,28).map(y=>L(846,y,862,y,"")).join("")}
+};
+const COL={verde:["Verde Asteca","#009842","#fff"],blanco:["Blanco","#E9EEEA","#1E2A31"],rojo:["Rojo","#B3261E","#fff"],naranja:["Naranja","#E8741C","#1E2A31"]};
+const st={body:"furgon",ax:3,col:"verde"};
+g(0).innerHTML=R(90,292,800,14,"dk")+[160,300,440,580,720].map(x=>L(x,295,x,303)).join("")+R(870,306,8,10,"dk")+R(698,306,10,42,"dk")+R(690,348,26,6,"dk")+R(80,298,12,28,"dk");
+g(2).innerHTML=R(80,268,822,24,"dk")+rng(140,840,70).map(x=>L(x,271,x,289)).join("");
+g(5).innerHTML=R(846,300,300,12,"dk")+R(852,290,56,10,"dk")+R(996,304,64,22,"dk")+R(966,112,9,160,"dk")+P("M984 300V150Q984 128 1006 128H1096L1142 196Q1152 208 1152 224V300Z","cab")+P("M1030 144H1092L1126 196H1030Z","glass")+L(1022,212,1022,296)+R(1148,248,10,40,"dk")+R(1140,292,22,24,"dk")+C(1146,232,5,"lamp")+wheel(890)+wheel(958)+wheel(1092);
+const steps=$$("[data-fsteps] li",F),notes=$$(".fg-notes [data-n]",svg),real=$("[data-freal]",F),cta=$("[data-fsend]",F);
+function render(){
+  g(1).innerHTML=(st.ax==3?[170,240,310]:[195,265]).map(x=>R(x-24,306,48,8,"dk")+wheel(x)).join("");
+  g(3).innerHTML=BODY[st.body].svg();
+  const c=COL[st.col],b=BODY[st.body];svg.style.setProperty("--paint",c[1]);svg.style.setProperty("--paint-ink",c[2]);
+  $("[data-nax]",svg).textContent=st.ax;$("[data-nbody]",svg).textContent=b.n.toUpperCase();$("[data-ncol]",svg).textContent=c[0].toUpperCase();
+  $("[data-frimg]",F).src=IMG[b.img];$("[data-frcap]",F).textContent="Una de verdad · "+b.cap;
+  $$("[data-fbody]",F).forEach(x=>x.setAttribute("aria-pressed",x.dataset.fbody===st.body));
+  $$("[data-fax]",F).forEach(x=>x.setAttribute("aria-pressed",x.dataset.fax==st.ax));
+  $$("[data-fcol]",F).forEach(x=>x.setAttribute("aria-pressed",x.dataset.fcol===st.col));
+  cta.href=wa(`Hola Asteca, armé esta unidad en su web: semirremolque con carrocería tipo ${b.n}, ${st.ax} ejes, color ${c[0]}. ¿Me pueden cotizar?`);
+  update()}
+F.addEventListener("click",e=>{const t=e.target.closest("[data-fbody],[data-fax],[data-fcol]");if(!t)return;
+  if(t.dataset.fbody)st.body=t.dataset.fbody;if(t.dataset.fax)st.ax=+t.dataset.fax;if(t.dataset.fcol)st.col=t.dataset.fcol;render()});
+const B=[0,.12,.25,.38,.55,.68,.84,1];
+const seg=(p,i)=>Math.min(1,Math.max(0,(p-B[i])/(B[i+1]-B[i])));
+const FOC=[480,240,490,490,490,1000];let vb=[0,0,1200,430],tgt=vb.slice(),raf=0;
+function cam(){vb=vb.map((v,i)=>v+(tgt[i]-v)*(RM?1:.12));svg.setAttribute("viewBox",vb.map(v=>v.toFixed(1)).join(" "));
+  raf=vb.some((v,i)=>Math.abs(v-tgt[i])>.5)?requestAnimationFrame(cam):0}
+function update(){
+  const r=F.getBoundingClientRect(),p=RM?1:Math.min(1,Math.max(0,-r.top/Math.max(1,r.height-innerHeight)));
+  [0,1,2,3].forEach(i=>g(i).style.setProperty("--k",seg(p,i).toFixed(3)));
+  svg.style.setProperty("--pa",seg(p,4).toFixed(3));
+  const k5=seg(p,5),e=1-Math.pow(1-k5,3),tx=(1-e)*440;const t=g(5);t.style.setProperty("--k",Math.min(1,k5*1.6).toFixed(3));t.style.setProperty("--tx",tx.toFixed(1)+"px");
+  $$(".wh",t).forEach(w=>w.style.transform=`rotate(${(-(440-tx)/30*57.3).toFixed(1)}deg)`);
+  let idx=0;for(let i=0;i<6;i++)if(p>=B[i])idx=i;const done=p>=B[6];
+  steps.forEach((s,i)=>s.classList.toggle("on",i===idx));$("[data-fstep]",F).textContent="0"+(idx+1);
+  notes.forEach((n,i)=>n.classList.toggle("on",!done&&i===idx&&seg(p,i)>.12));
+  real.classList.toggle("on",done);document.body.classList.toggle("in-forge",r.top<innerHeight&&r.bottom>0);
+  if(innerWidth<=700&&!done){const s=$(".fg-stage",F),sw=s.clientWidth||1,sh=s.clientHeight||1,w=600,h=w*sh/sw;tgt=[Math.min(1200-w,Math.max(0,FOC[idx]-w/2)),232-h/2,w,h]}
+  else tgt=[0,0,1200,430];
+  if(!raf)raf=requestAnimationFrame(cam)}
+let fk=false;addEventListener("scroll",()=>{if(!fk){fk=true;requestAnimationFrame(()=>{fk=false;update()})}},{passive:true});
+addEventListener("resize",update);render()})();
 
 /* reveal */
 const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}}),{rootMargin:"0px 0px -8% 0px",threshold:.06});
