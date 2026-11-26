@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Calculadora de obra · Centro Construrama</title>
+<meta name="description" content="Calcula cuántos bloques, sacos de cemento, galones de pintura o cajas de cerámica necesitas para tu obra.">
+<meta name="theme-color" content="#ffffff">
+<meta name="robots" content="noindex">
+<link rel="preload" href="../assets/fonts/anton.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script>document.documentElement.classList.add('js-anim');setTimeout(()=>document.documentElement.classList.add('anim-done'),4000)</script>
+</head><body>
+<div class="sh"><header class="top">
+  <a class="logo " href="../" aria-label="Centro Construrama, inicio"><span class="mark"><i></i></span><span class="wm">Centro<b>Construrama</b></span></a>
+  <span class="loc mono ">Carora · Estado Lara · Venezuela</span>
+  <ul class="nav mono"><li><a href="../calculadora/" aria-current="page">Calculadora</a></li><li><a href="../que-necesito/">¿Qué necesito?</a></li><li><a href="../productos/">Productos</a></li><li><a href="../contacto/">Contacto</a></li></ul>
+  <button class="mb " type="button" aria-controls="mnav" aria-expanded="false"><i></i>Menú</button>
+ </header></div>
+<main class="pg">
+<section class="phero">
+ <div class="cc-head">
+  <p class="over mono rv">Calculadora de obra</p>
+  <h2 class="cc-h rv"><span>¿Cuánto material</span><span class="o">necesitas?</span></h2>
+  <p class="cc-lede rv">Pon las medidas y te decimos cuánto comprar. Junta varios cálculos en «Mi lista» y mándanosla por WhatsApp para cotizar.</p>
+ </div>
+ <p class="ph-k mono">Herramienta 01<br>Gratis · sin registro</p>
+</section>
+<section class="calc" id="calculadora">
+ <div class="cc-grid">
+  <div class="cc-form rv">
+   <div class="cc-tabs" role="tablist">
+    <button role="tab" data-t="pared" aria-selected="true">Pared de bloques</button>
+    <button role="tab" data-t="piso">Piso o placa</button>
+    <button role="tab" data-t="pintura">Pintura</button>
+    <button role="tab" data-t="ceramica">Cerámica</button>
+   </div>
+   <div class="cc-fields" id="cc-fields"></div>
+   <svg class="cc-fig" id="cc-fig" viewBox="0 0 320 150" aria-hidden="true"></svg>
+  </div>
+  <div class="cc-res rv" aria-live="polite">
+   <p class="mono cc-rt" id="cc-rt">Resultado</p>
+   <ul class="cc-out" id="cc-out"></ul>
+   <p class="cc-note" id="cc-note"></p>
+   <div class="cc-act">
+    <button class="btn cc-add" id="cc-add" type="button">Añadir a mi lista<span class="ic"><svg viewBox="0 0 24 24"><path d="M11 5h2v14h-2zM5 11h14v2H5z"/></svg></span></button>
+    <a class="lnk lt" id="cc-wa1" href="#" target="_blank" rel="noopener">Cotizar solo esto →</a>
+   </div>
+   <button type="button" class="cc-open" id="cc-open" hidden>Ver mi lista (<span>0</span>) →</button>
+  </div>
+ </div>
+</section>
+
+</main>
+<footer class="pie"><div class="pie-in"><h2 class="ct-h"><span>¿Listo para</span><span class="o">tu obra?</span></h2><a class="btn" data-wa target="_blank" rel="noopener" href="#">Cotizar por WhatsApp<span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg></span></a></div><ul class="pie-n"><li><a class="mono" href="../">Inicio</a></li><li><a class="mono" href="../calculadora/">Calculadora</a></li><li><a class="mono" href="../que-necesito/">¿Qué necesito?</a></li><li><a class="mono" href="../productos/">Productos</a></li><li><a class="mono" href="../contacto/">Contacto</a></li></ul><div class="ft mono"><span>© 2026 Centro Construrama</span><span>Carora · Estado Lara · Venezuela</span><span>Web de muestra</span></div></footer>
+<a class="wa" href="https://wa.me/584245866638?text=Hola%2C%20quisiera%20cotizar%20materiales" target="_blank" rel="noopener">Escríbenos por WhatsApp<span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg></span></a>
+<div class="mnav" id="mnav" aria-hidden="true" role="dialog" aria-label="Menú"><div class="mnav-h"><span class="wm">Centro<b>Construrama</b></span><button class="mx" type="button" aria-label="Cerrar menú">×</button></div><ol><li><a href="../" >Inicio<small>Portada</small></a></li><li><a href="../calculadora/" aria-current="page">Calculadora<small>Cuánto comprar</small></a></li><li><a href="../que-necesito/" >¿Qué necesito?<small>Lista por trabajo</small></a></li><li><a href="../productos/" >Productos<small>Lo que vendemos</small></a></li><li><a href="../contacto/" >Contacto<small>Cómo llegar</small></a></li></ol><a class="btn" data-wa target="_blank" rel="noopener" href="#">Escríbenos por WhatsApp<span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg></span></a></div>
+<script src="../assets/config.js"></script>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/calc.js"></script>
+</body></html>
