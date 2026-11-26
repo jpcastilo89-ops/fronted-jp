@@ -31,7 +31,7 @@ function glow(y){
  if(op<.002||e>1.04){hz.style.display='none'}else{
   const Rx=Math.max(.75*vw,.9*vh),Ry=.72*vh,cy=edge*vh-Ry,s=m=>(m*Rx).toFixed(1)+'px';
   hz.style.display='block';hz.style.opacity=op;
-  hz.style.background=`radial-gradient(${Rx}px ${Ry}px at 50% ${cy}px,rgba(255,255,255,0) 0,rgba(255,243,236,0) ${s(.985)},rgba(255,222,204,.6) ${s(1)},#ffb48a ${s(1.06)},#ff8a4d ${s(1.14)},#ff5500 ${s(1.236)},#ff7a33 ${s(1.32)},#ffb08a ${s(1.42)},#ffe6d9 ${s(1.53)},#fff ${s(1.65)})`}
+  hz.style.background=`radial-gradient(${Rx}px ${Ry}px at 50% ${cy}px,rgba(5,8,26,0) 0,rgba(5,8,26,0) ${s(.975)},rgba(255,214,186,.5) ${s(.995)},rgba(255,150,90,.75) ${s(1.015)},rgba(255,85,0,.62) ${s(1.06)},rgba(200,60,10,.42) ${s(1.14)},rgba(90,30,30,.5) ${s(1.26)},rgba(12,12,40,.9) ${s(1.4)},#05081a ${s(1.56)})`}
  if(sticky)hero.style.visibility=e<-0.06?'hidden':'visible';else hero.style.visibility='visible';
  const k=clamp((0.95-e)/0.42);
  const kk=sticky?k:0;copy.style.opacity=1-kk;copy.style.transform=kk?`translateY(${-5*kk}vh)`:'';

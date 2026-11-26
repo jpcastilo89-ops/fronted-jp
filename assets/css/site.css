@@ -504,6 +504,17 @@ html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){.btn::before,.mq-t{animation:none}.prog{display:none}}
 .btn .ic svg path[stroke]{stroke:var(--or)}
 .hero .mapbox{pointer-events:none}.hero .top{z-index:4}.hero .main{z-index:3}
+/* paso del mapa a «Construimos contigo»: todo en oscuro, sin franja blanca */
+.hwrap{background:var(--abyss)}
+.stats{background:radial-gradient(70% 40% at 50% 0%,rgba(255,85,0,.10),transparent 70%),var(--abyss);color:#fff}
+.stats .big{color:#fff}
+.stats .intro{color:var(--soft)}
+.stats .ilinks a{color:#fff}.stats .ilinks a:hover{color:var(--or)}
+.stats .nums li::before{background:var(--line)}
+.stats .nums .c{color:var(--soft)}
+.stats .ph{box-shadow:0 40px 90px -40px rgba(255,85,0,.35);border:1px solid var(--line)}
+.mq{border-top:0}
+@media (max-width:900px),(orientation:portrait){.hwrap .hero::before{content:"";position:absolute;left:0;right:0;bottom:0;height:160px;background:linear-gradient(180deg,rgba(5,8,26,0),var(--abyss));pointer-events:none;z-index:1}}
 
 /* ===== Transiciones: bienvenida y cambio de página ===== */
 /* --- cortina entre páginas --- */
