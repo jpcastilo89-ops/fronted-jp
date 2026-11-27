@@ -173,7 +173,7 @@ panels.forEach(p=>{const n=p.dataset.n,items=[...p.querySelectorAll('li')].map(l
 /* contadores */
 const fmt=(el,v)=>{const f=el.dataset.fmt;el.textContent=f==='k'?Math.round(v)+'K+':f==='pct'?Math.round(v)+'%':Math.round(v)};
 const io=new IntersectionObserver(es=>es.forEach(en=>{if(!en.isIntersecting)return;io.unobserve(en.target);const el=en.target,to=+el.dataset.count;
- if(R){fmt(el,to);return}const t0=performance.now(),st=n=>{const k=Math.min(1,(n-t0)/1400);fmt(el,to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(st)};requestAnimationFrame(st)}),{threshold:.4});
+ if(R){fmt(el,to);return}const t0=performance.now(),st=n=>{const k=Math.max(0,Math.min(1,(n-t0)/1400));fmt(el,to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(st)};requestAnimationFrame(st)}),{threshold:.4});
 $$('.num[data-count]').forEach(n=>{if(!R)fmt(n,0);io.observe(n)});
 })();
 /* Guía: abrir el trabajo que viene en el enlace (#pintar, #electrico…) */
