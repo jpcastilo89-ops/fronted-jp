@@ -290,8 +290,9 @@ button{font-family:inherit}
 .top{position:sticky;top:0;z-index:40;transition:background .3s,box-shadow .3s}
 .top.sc{background:rgba(244,241,234,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--linea)}
 .top-in{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1440px;margin:0 auto;padding:14px var(--mx)}
-.logo{display:flex;align-items:center;gap:10px;font:800 19px/1 var(--fh);letter-spacing:-.02em}
-.logo i{width:32px;height:32px;border-radius:9px;background:var(--naranja);display:grid;place-items:center;color:#fff;font:400 18px/1 var(--fn);font-style:normal}
+.logo{display:flex;align-items:center;line-height:0}
+.logo img{display:block;height:54px;width:auto}
+.top.sc .logo img{height:46px}.logo img{transition:height .3s}
 .nav{display:flex;gap:4px;background:#fff;border-radius:999px;padding:5px;box-shadow:0 1px 0 var(--linea);list-style:none}
 .nav a{display:block;padding:10px 16px;border-radius:999px;font:500 14.5px/1 var(--fh);transition:background .2s}
 .nav a:hover{background:var(--cemento)}
@@ -519,14 +520,15 @@ html.hgo .phero h1 .ln:nth-child(2)>span{transition-delay:.19s}
 .pt .pa{background:var(--naranja)}
 .pt .pb{background:var(--cemento)}
 .pt .pm{color:var(--navy)}
-.pt .pm .logo i{animation:ptSpin 1.2s cubic-bezier(.65,0,.35,1) infinite}
-@keyframes ptSpin{to{transform:rotate(360deg)}}
+.pt .pm .logo img{height:72px;animation:ptPulse 1.2s ease-in-out infinite}
+@keyframes ptPulse{50%{transform:scale(.94);opacity:.75}}
 .in-b{background:var(--cemento);color:var(--navy)}
 .in-b::after{display:none}
 .in-w{font-family:var(--fh);font-weight:800;text-transform:none;letter-spacing:-.04em}
 .in-w>span:first-child{color:var(--navy);letter-spacing:-.03em;padding-left:0;font-size:clamp(30px,3.6vw,48px)}
 .in-w>span:last-child{font-size:clamp(54px,8vw,120px)}
-.in-m{background:var(--naranja);border:0;border-radius:18px;color:#fff;font:400 36px/1 var(--fn)}
+.in-m{background:none;border:0;border-radius:0;width:78px;height:78px}
+.in-m img{width:78px;height:auto;display:block}
 .in-m b{display:none}
 .in-l{background:var(--linea)}.in-l i{background:var(--naranja)}
 .in-t{color:var(--gris)}
@@ -538,6 +540,7 @@ html.hgo .phero h1 .ln:nth-child(2)>span{transition-delay:.19s}
  body{font-size:16px}
  .nav,.nb{display:none}.mb{display:grid}
  .top-in{padding:12px var(--mx)}
+ .logo img,.top.sc .logo img{height:42px}
  .h-top{grid-template-columns:1fr;gap:18px}
  .hero h1{font-size:clamp(38px,11vw,52px)}
  .h-side p{font-size:16px;margin-bottom:18px}
